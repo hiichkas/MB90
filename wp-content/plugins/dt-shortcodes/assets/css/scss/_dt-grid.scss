@@ -1,0 +1,85 @@
+/*	DT Grid
+---------------------------------------------------------------*/
+.dtsc-col-1,
+.dtsc-col-2,
+.dtsc-col-3,
+.dtsc-col-4,
+.dtsc-col-5,
+.dtsc-col-6,
+.dtsc-col-7,
+.dtsc-col-8,
+.dtsc-col-9,
+.dtsc-col-10,
+.dtsc-col-11,
+.dtsc-col-12 {
+	position: relative;
+	display:inline;
+	float: left;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-bottom: 10px;
+}
+
+.dtsc.first { margin-left:0; }
+.dtsc.last { margin-right:0;}
+
+.dtsc.last:after {
+	clear: both;
+}
+
+.dtsc-col-12 {
+	width: 98%;
+}
+.dtsc-col-11 {
+	width: 89.66666666666666%;
+}
+.dtsc-col-10 {
+	width: 81.33333333333334%;
+}
+.dtsc-col-9 {
+	width: 73%;
+}
+.dtsc-col-8 {
+	width: 64.66666666666666%;
+}
+.dtsc-col-7 {
+	width: 56.333333333333336%;
+}
+.dtsc-col-6 {
+	width: 48%;
+}
+.dtsc-col-5 {
+	width: 39.66666666666667%;
+}
+.dtsc-col-4 {
+	width: 31.33333333333333%;
+}
+.dtsc-col-3 {
+	width: 23%;
+}
+.dtsc-col-2 {
+	width: 14.666666666666664%;
+}
+.dtsc-col-1 {
+	width: 6.333333333333332%;
+}
+
+@media screen and (max-width:768px) {
+	.dtsc-col-1,
+	.dtsc-col-2,
+	.dtsc-col-3,
+	.dtsc-col-4,
+	.dtsc-col-5,
+	.dtsc-col-6,
+	.dtsc-col-7,
+	.dtsc-col-8,
+	.dtsc-col-9,
+	.dtsc-col-10,
+	.dtsc-col-11,
+	.dtsc-col-12 {
+		display: block;
+		float:none;
+		margin:0 auto;
+		width:100%;
+	}
+}

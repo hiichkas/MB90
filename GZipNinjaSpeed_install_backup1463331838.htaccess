@@ -1,0 +1,37 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# BEGIN MemberPress Rules
+<IfModule mod_rewrite.c>
+
+RewriteCond %{HTTP_COOKIE} mplk=([a-zA-Z0-9]+)
+RewriteCond /home/paulcotter/public_html/wp-content/uploads/mepr/rules/%1 -f
+RewriteRule ^(.*)$ - [L]
+
+RewriteCond %{REQUEST_URI} !^/(wp-admin|wp-includes|wp-content/plugins|wp-content/themes)
+RewriteCond %{REQUEST_URI} \.(zip|gz|tar|doc|docx|xls|xlsx|xlsm|pdf|ZIP|GZ|TAR|DOC|DOCX|XLS|XLSX|XLSM|PDF)$
+RewriteRule . /wp-content/plugins/memberpress/lock.php [L]
+
+</IfModule>
+# END MemberPress Rules
+
+# END WordPress
+
+RewriteCond %{HTTP_REFERER} !^http://mybody90.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://mybody90.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.mybody90.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.mybody90.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://mybody90.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://mybody90.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.mybody90.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.mybody90.com$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+

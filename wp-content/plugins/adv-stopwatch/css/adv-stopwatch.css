@@ -1,0 +1,55 @@
+#adv-stopwatch #timer-container {
+  padding-bottom: 20px;
+}
+#adv-stopwatch #timer-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#adv-stopwatch #timer, #adv-stopwatch #lap-timer {
+  font-size: 200%;
+  display: inline-block;
+}
+#adv-stopwatch #timer-left, #adv-stopwatch #timer-right {
+  float: left;
+}
+#adv-stopwatch #timer-left {
+  margin-right: 20px;
+}
+#adv-stopwatch #timer-right {
+  margin-left: 20px;
+}
+#adv-stopwatch #timer span, #adv-stopwatch #lap-timer span {
+  color: #999;
+}
+#adv-stopwatch #watch-buttons {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+#adv-stopwatch table {
+  vertical-align: middle;
+}
+#adv-stopwatch table td {
+  vertical-align: middle;
+}
+#adv-stopwatch #checkboxes {
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  #adv-stopwatch table {
+    font-size: 60%;
+  }
+  #adv-stopwatch .label-insert, #adv-stopwatch .row-num, #adv-stopwatch .large-date {
+    display: none;
+  }
+  #adv-stopwatch .delete-time {
+    font-size: 60%;
+    padding: 2px 3px;
+  }
+  #adv-stopwatch #timer-left, #adv-stopwatch #timer-right {
+    display: block;
+    margin: 0;
+    float: none;
+  }
+}

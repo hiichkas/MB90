@@ -1,0 +1,119 @@
+/*	DT Progress Bar
+---------------------------------------------------------------*/
+.dt-progressbar {
+	width: 100%;
+	margin-bottom: 30px;
+	@include border-radius(6px); 
+	&.dark {
+	  background-color: #222;
+		@include box-shadow(rgba(0,0,0,1) 1px 1px 10px inset);
+		border-bottom: 1px solid rgba(255,255,255,0.2);
+	}
+	&.light {
+	  background-color: #eee;
+		@include box-shadow(rgba(0,0,0,0.1) 1px 1px 5px inset);
+	  border-bottom: none;
+	}
+	.bar {
+		position: relative;
+	  height: 32px;
+		line-height: 32px;
+		width: 0%;
+		border-top: 1px solid rgba(255,255,255,0.3);
+		@include border-radius(3px);     	
+		&.striped {
+		  @include background-size(32px 32px);		
+			background-image: -webkit-gradient(linear, left top, right bottom,
+								color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
+								color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
+								color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
+								to(transparent));
+			background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+								transparent 75%, transparent);
+			background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+								transparent 75%, transparent);
+			background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+								transparent 75%, transparent);
+			background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+								transparent 75%, transparent);
+			background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+								transparent 75%, transparent);             		
+		}	
+	}
+}
+
+
+.dt-progressbar .bar.animate {
+	-webkit-animation: animate-stripes 3s linear infinite;
+	-moz-animation: animate-stripes 3s linear infinite;       		
+}
+
+.dt-progressbar.light .bar {
+	border-radius: 3px;
+	border-top: none;
+}
+
+.dt-progressbar .bar.green {
+	background-color: #a5c052;     		
+}
+
+.dt-progressbar .bar.blue {
+	background-color: #0295c5;     		
+}
+
+.dt-progressbar .bar.purple {
+	background-color: #9f58c4;     		
+}
+
+.dt-progressbar .bar.red {
+	background-color: #d84242;     		
+}
+
+.dt-progressbar .bar.orange {
+	background-color: #e3b62d;     		
+}
+
+.dt-progressbar .bar.black {
+	background-color: #002f3f;     		
+}
+
+.dt-progressbar .bar.grey {
+	background-color: #b1c0c5;     		
+}
+
+.dt-progressbar .dtpb-label {
+	position: absolute;
+	left: 50px;
+	display: block;
+	font-weight: bold;
+	color: #fff;
+	padding: 0 20px;
+	opacity: 0;
+	text-align: left;
+	text-shadow: 1px 1px #333;
+}
+
+.dt-progressbar .dtpb-progress {
+	position: absolute;
+	right: 0;
+	display: block;
+	font-weight: bold;
+	color: #fff;
+	padding: 0 20px;
+	opacity: 0;
+	text-align: right;
+	text-shadow: 1px 1px #333;
+}
+
+@-webkit-keyframes animate-stripes { 
+	0% {background-position: 0 0;} 100% {background-position: 32px 0;}
+}
+
+@-moz-keyframes animate-stripes {
+	0% {background-position: 0 0;} 100% {background-position: 32px 0;}
+}

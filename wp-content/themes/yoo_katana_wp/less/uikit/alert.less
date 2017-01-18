@@ -1,0 +1,81 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Alert
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@alert-margin-vertical:                         @global-margin;
+
+@alert-padding:                                 15px;
+@alert-background:                              @global-color;
+@alert-color:                                   @global-contrast-color;
+
+@alert-success-background:                      @global-success-background;
+@alert-success-color:                           @global-contrast-color;
+
+@alert-warning-background:                      @global-warning-background;
+@alert-warning-color:                           @global-contrast-color;
+
+@alert-danger-background:                       @global-danger-background;
+@alert-danger-color:                            @global-contrast-color;
+
+@alert-large-padding:                           50px;
+
+//
+// New
+//
+
+@alert-button-border: 							fade(@global-contrast-color, 70%);
+@alert-button-color: 							fade(@global-contrast-color, 70%);
+@alert-button-hover-border: 					@global-contrast-color;
+@alert-button-hover-color:	 					@global-contrast-color;
+
+
+// Component
+// ========================================================================
+
+.hook-alert() {
+
+	.uk-button,
+	.uk-button-primary {
+
+		border-color: @alert-button-border;
+		color: @alert-button-color;
+
+		&:hover {
+			border-color: @alert-button-hover-border;
+			color: @alert-button-hover-color;
+		}
+
+	}
+
+}
+
+
+// Modifier: `uk-alert-success`
+// ========================================================================
+
+.hook-alert-success() {}
+
+
+// Modifier: `uk-alert-warning`
+// ========================================================================
+
+.hook-alert-warning() {}
+
+
+// Modifier: `uk-alert-danger`
+// ========================================================================
+
+.hook-alert-danger() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-alert-misc() {}

@@ -1,0 +1,24 @@
+/* Remove empty paragraph tags */
+
+p {
+  &:empty {
+		display:none
+	}
+}
+
+
+//Clearfix
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+ *zoom:1;
+}

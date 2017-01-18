@@ -1,0 +1,29 @@
+@media 
+only screen and (max-width: 760px){
+    .ui-tabs .ui-tabs-nav li{width:100% !important}
+}
+
+/* rohea: add responsive css */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+.tm-block{padding:4px !important;}
+.uk-container{padding:2px !important;}
+.r-tabs .r-tabs-panel{padding:2px !important;}
+.uk-panel-box, .uk-panel-box-tertiary{padding:4% !important}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+.tm-block{padding:4px !important;}
+.uk-container{padding:2px !important;}
+.r-tabs .r-tabs-panel{padding:2px !important;}
+.uk-panel-box, .uk-panel-box-tertiary{padding:4% !important}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+.tm-block{padding:4px !important;}
+.uk-container{padding:2px !important;}
+.r-tabs .r-tabs-panel{padding:2px !important;}
+.uk-panel-box, .uk-panel-box-tertiary{padding:4% !important}
+}

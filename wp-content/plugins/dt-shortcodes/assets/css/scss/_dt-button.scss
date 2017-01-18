@@ -1,0 +1,110 @@
+/*	DT Button
+---------------------------------------------------------------*/
+
+body a.dt-button {
+	display: inline-block;
+	line-height: 1.0em;
+	color: #ffffff;
+	text-decoration: none;
+	cursor:pointer;
+	margin: 0 5px 20px 5px;
+	@include transition-duration(0.2s);
+  @include transition-timing-function(ease-in);
+  &.block {
+  	display: block;
+		text-align: center;
+  }
+  &.small {
+	  font-size: 14px;
+		padding: 10px 20px;	
+  }
+  &.medium {
+		font-size: 16px;
+		padding: 15px 30px;
+  }
+  &.large {
+		font-size: 22px;
+		padding: 20px 30px;
+  }
+  &:hover {
+   	color: #fff;
+		text-decoration: none;
+  }
+  &.active, 
+  &:active {
+  	@include box-shadow(rgba(0,0,0,0.2) 0px 0px 10px inset);
+  }
+  &:visited {
+  	&.block {
+  		display: block;
+			text-align: center;
+  	}
+  }
+  i {
+  	margin-right: 5px;
+  }
+}
+
+/* Button Colors */
+
+a.dt-button.grey {
+  background-color: #b1c0c5;
+	&:hover {
+	  background-color: #c2d2d7;
+	}
+}
+
+a.dt-button.blue, 
+a.dt-button.blue:visited {
+  background-color: #2980b9;
+	&:hover {
+	  background-color: #00aae1;
+	}
+}
+
+a.dt-button.green, 
+a.dt-button.green:visited {
+  background-color: #a5c052;
+	&:hover {
+	  background-color: #bddc5e;
+	}
+}
+
+a.dt-button.red, 
+a.dt-button.red:visited {
+  background-color: #d84242;
+	&:hover {
+	  background-color: #f84e4e;
+	}
+}
+
+a.dt-button.orange, 
+a.dt-button.orange:visited {
+  background-color: #e3b62d;
+	&:hover {
+	  background-color: #ffcd33;
+	}
+}
+
+a.dt-button.purple, 
+a.dt-button.purple:visited {
+  background-color: #9f58c4;
+	&:hover {
+	  background-color: #b966e4;
+	}
+}
+
+a.dt-button.black, 
+a.dt-button.black:visited {
+  background-color: #002f3f;
+	&:hover {
+	  background-color: #004861;
+	}
+}
+
+a.dt-button.light-blue, 
+a.dt-button.light-blue:visited {
+	&:hover {
+	  background-color: #5fd4fa;
+	}
+}

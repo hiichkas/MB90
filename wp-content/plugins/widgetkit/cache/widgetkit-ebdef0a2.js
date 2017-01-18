@@ -1,0 +1,1 @@
+var widgetkitajax="http://104.238.73.184/~paulcotter/wp-admin/admin-ajax.php?action=widgetkit&ajax=1";

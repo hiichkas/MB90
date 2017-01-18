@@ -1,0 +1,11 @@
+.image-grid-image-div{float:left;cursor:pointer;cursor:hand;padding-right:20%}
+
+.image-grid-image-div img{width:50px}
+
+.image-grid-row{float:left; padding-bottom:10px}
+
+.image-grid-wrapper{float:none; padding-bottom:10px;width:103%}
+
+.active-exercise-dayicon{opacity: 1.0; cursor: pointer}
+
+.inactive-exercise-dayicon{opacity: 0.5; cursor: default}

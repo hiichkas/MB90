@@ -1,0 +1,29 @@
+/*	DT Toggle
+---------------------------------------------------------------*/
+
+div.dt-toggle {
+	clear: both;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	margin-bottom: 30px;
+	.dt-trigger {
+		color: #666;
+		font-size: 1.0em;
+		border-bottom: 1px solid #ddd;
+		padding: 15px 30px;
+		margin: 0;
+		outline: none;
+		cursor: pointer;
+		@include transition-duration(0.2s);
+ 		@include transition-timing-function(ease-in);
+	  @include background-image(linear-gradient(top, white, #f9f9f9));
+		i {
+			margin-right: 10px;
+		}
+	}
+	.dt-toggle-content {
+		padding: 30px;
+		border-bottom: 1px solid #ddd;
+		background: #ffffff;
+	}
+}

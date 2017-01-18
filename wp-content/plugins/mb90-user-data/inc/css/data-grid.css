@@ -1,0 +1,69 @@
+        #fm{
+            margin:0;
+            padding:10px 15px;
+        }
+        .ftitle{
+            font-size:16px;
+            font-weight:bold;
+            padding:5px 15px;
+            margin-bottom:10px;
+            border-bottom:1px solid #ccc;
+        }
+        .fitem{
+            margin-bottom:5px;
+        }
+        .fitem label{
+            display:inline-block;
+            width:200px;
+            vertical-align:baseline;
+            padding:4px;
+        }
+        .fitem input{
+            width:160px;
+        }
+        
+        .fitem input[type="checkbox"], input[type="radio"]{width: 20px}
+        
+        .fitem textarea{width: 354px; }
+        
+        /*.panel{height:auto !important}
+        #dlg{height:auto !important}*/
+        div.window.panel{display:table;background-color: rgb(15, 159, 230);    /*border-color: #5a6061;    border-radius: 7px; */   color: #fff; }
+        #dlg{display:table-row}
+        
+        .datagrid-cell-c2-ProgrammeType{width:144px !important}
+        .datagrid-cell-c2-ExerciseName{width:144px !important}
+        .datagrid-cell-c2-Reps{width:65px !important}
+        .datagrid-cell-c2-ExerciseDay{width:120px !important}
+        .datagrid-cell-c2-NumMinsForReps{width:144px !important}
+        .datagrid-cell-c2-SelfAssessment{width:144px !important}
+        .datagrid-cell-c2-10DayChallenge{width:160px !important}
+        .datagrid-cell-c2-10DayChallengePhase{width:200px !important}
+        .datagrid-cell-c2-Message{width:380px !important}
+        
+        .datagrid .panel-body{ background-color: rgba(147, 213, 245, 0.48);      color: #707070 !important; }
+        
+        .panel-header{ padding-top:10px;background: #0fa2e6 !important;    /*border-color: #5a6061;  border-top-right-radius: 7px;  border-top-left-radius: 7px;*/    color: #fff;    font-size: 80%}
+        
+        .uk-grid:not(.uk-grid-preserve) > *{padding-left:22px;padding-bottom:40px;}
+
+        .panel{background:none}
+        
+        .panel-body{background:none}
+        
+        .window .window-body{border:none;}
+        
+        .dialog-toolbar, .dialog-button{background:none;border:none;text-align:center;}
+        
+        .window-shadow{display:none !important}
+        
+        
+        #exercies-inputform-wrapper{padding-top:6%}
+        
+        /*.flatten-row{height:0px;display:none}*/
+        
+        .graph-raiser{margin-top: -100px;    padding-left: 3%;    text-align: center;}
+        .graph-raiser-lower{padding-left: 3%;    text-align: center;}
+        
+        /*.mb90-form-input-vc-row{max-height:42px !important;min-height:42px !important}*/
+        

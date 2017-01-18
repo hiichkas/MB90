@@ -1,0 +1,93 @@
+/* 
+    Document   : mb90-user-input
+    Created on : 09-Mar-2015, 17:32:38
+    Author     : robohea
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.mb90-chart-outer-wrapper{overflow: hidden;    padding-bottom: 40px;    text-align: center;    width: 100%;}
+.mb90-chart-wrapper{float:left;width:33%}
+.mb90-chart-caption{}
+.mb90-chart-contents{}
+
+.mb90-challengeDatesWrapper{width:100%;padding-bottom:20px;overflow:hidden}
+.mb90-challengeDateLink{float:left;width:32%;padding:5px;text-align:center;}
+.mb90-assessmentDateLink{float:left;width:24%;padding:5px;text-align:center;}
+/*.mb90-challengeDateLink > a{color: #925312;}
+.mb90-assessmentDateLink > a{color: #925312;}*/
+
+.mb90-formRowWrapper{width:100%}
+.mb90-formCell-left{width:50%;float:left}
+.mb90-formCell-right{width:50%;float:right}
+.mb90-chart-contents > canvas{border-top:none !important}
+
+
+    /*#canvas_1 {
+        width: 300px;
+        margin: 20px auto;
+    }*/
+    #canvas-holder1 {
+        width: 300px;
+        margin: 20px auto;
+    }
+    #canvas-holder2 {
+        width: 50%;
+        margin: 20px 25%;
+    }
+    #chartjs-tooltip {
+        opacity: 1;
+        position: absolute;
+        background: rgba(0, 0, 0, .7);
+        color: white;
+        padding: 3px;
+        border-radius: 3px;
+        -webkit-transition: all .1s ease;
+        transition: all .1s ease;
+        pointer-events: none;
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+    }
+   	.chartjs-tooltip-key{
+   		display:inline-block;
+   		width:10px;
+   		height:10px;
+   	}
+    
+.mb90-graph-canvas{width:100% !important;height:100% !important}
+canvas{padding-top:0px !important;margin-top:0px !important}
+        
+/* rohea: changes to responsive classes */
+/*.vc_col-sm-3{width:33% !important}*/
+
+/*.vc_row{margin-left:-30px;}*/
+
+.challengelink-button-wrapper{text-align:center;width:100%;padding:2%;}
+
+.challengelink-button-wrapper a{text-align:center;width:100%}
+
+ul {
+    list-style-image: none !important;
+    list-style: none !important;
+}
+
+ul a{
+    list-style-image: none !important;
+    list-style: none !important;
+}
+
+ul li {
+    list-style-image: none !important;
+    list-style: none !important;
+}
+
+li{
+    list-style-image: none !important;
+    list-style: none !important;    
+}
+
+

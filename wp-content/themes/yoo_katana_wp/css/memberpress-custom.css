@@ -1,0 +1,54 @@
+.mp_wrapper input[type=button],
+.mp_wrapper input[type=submit]{
+  width: 100% !important;
+  outline-style: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  padding: 10px !important;
+  letter-spacing: normal !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  /* margin-bottom: 10px !important; */
+  display: inline;
+  box-sizing: border-box;
+}
+
+.invalid_input{background-color: #ff6666 !important;border: 2px solid red !important;}
+
+#mp-errormessage{display:none;background-color:#fff;color:#ff6666;font-weight:bold;padding:5px;}
+#mp-errormessage-weights{display:none;background-color:#fff;color:#ff6666;font-weight:bold;padding:5px;}
+
+.profile-fields{width:100%}
+.profile-fields .label{width:40%}
+.profile-fields .data{width:60%}
+
+.weight-fields{width:100%}
+.weight-fields .label{width:60%}
+.weight-fields .data{width:40%}
+
+.mp_tablecaption{font-size:20px;font-weight:600;padding-bottom:20px;font-family:"Raleway";color:#34495e;text-transform:uppercase;}
+
+.mp_error{background-color:#fff;color:#ff6666;font-weight:bold;padding:5px;}
+
+.mp_error_box{background-color:#fff;color:#ff6666;font-weight:bold;padding:5px;border-color:red;}
+
+#ProfileTab{display:none}
+
+.ui-tabs .ui-tabs-panel{padding:2px !important;padding-top:10px !important}
+
+#NoSubscriptionTab{display:none}
+
+.mp_tablesubcaption{font-size:18px;padding-bottom:10px;font-family:"Raleway";font-weight:300;}
+
+.mp_tablecontent{font-size:16px;font-weight:100;padding-bottom:4px;font-family:"Raleway"}
+
+
+.white-row{/* background-color:#fff; */text-align:center}
+
+.graph-cell{text-align:center;}
+
+canvas{padding-bottom:0px;padding-top:40px; padding-left:0px }
+
+.bold-subcaption{color: #414042 !important;    font-weight: bold;    padding-bottom: 10px !important;  }
+
+.leftpad-subcaption{padding-left: 10px !important;}
+

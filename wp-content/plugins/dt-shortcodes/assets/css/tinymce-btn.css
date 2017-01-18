@@ -1,0 +1,21 @@
+/* TinyMCE Icon */
+
+i.dt-shortcodes {
+  background-image: url('../img/diablo_icon.png');
+}
+
+body .mce-window .mce-window-head {
+  background: none repeat scroll 0 0 #333;
+  border-bottom: 1px solid #DFDFDF;
+  min-height: 36px;
+  color: #fff;
+}
+
+body .mce-window .mce-window-head .mce-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 36px;
+  margin: 0;
+  padding: 0 36px 0 16px;
+}

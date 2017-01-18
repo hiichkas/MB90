@@ -1,0 +1,34 @@
+/* 
+    Document   : myBody90_cmsforms
+    Created on : 06-Feb-2015, 10:38:19
+    Author     : robohea
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+.form_container{float:left;width:100%;padding-bottom:20px;}
+
+.form-cell{float:left; min-width:160px;}
+
+.form-cell > label{display: block; width: 160px;}
+
+/*.description{width:120px;}*/
+
+.ex-input-row{float:left}
+
+.input-wrapper{padding:0}
+
+.input-wrapper > input{width:100px}
+.input-wrapper > input[type="checkbox"], input[type="radio"]{width:20px}
+.input-wrapper > select{width:auto}
+.input-wrapper > textarea{width:200px;height:100px;}
+
+.row1{background:#f9f9f9}
+
+.row2{background:#fff}
+

@@ -1,0 +1,68 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Pagination
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@pagination-padding-vertical:                   5px;
+@pagination-padding-horizontal:                 7px;
+
+@pagination-line-height:                        @global-line-height;
+@pagination-background:                         transparent;
+@pagination-color:                              @global-primary-background;
+@pagination-hover-background:                   @global-primary-background;
+@pagination-hover-color:                        @global-contrast-color;
+@pagination-onclick-color:                      @global-color;
+
+@pagination-active-background:                  @global-primary-background;
+@pagination-active-color:                       @global-contrast-color;
+
+@pagination-disabled-color:                     @global-muted-color;
+
+
+//
+// New
+//
+
+@pagination-border: 							@global-primary-background;
+
+
+// Component
+// ========================================================================
+
+//
+// Items
+//
+
+.hook-pagination-item() {
+	border-radius: @global-border-radius;
+	border: 1px solid @pagination-border;
+}
+
+// Link
+.hook-pagination-link() {}
+
+.hook-pagination-link-hover() {}
+
+.hook-pagination-link-active() {}
+
+// Active
+.hook-pagination-active() {}
+
+// Disabled
+.hook-pagination-disabled() { border-color: @global-muted-color; }
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-pagination-misc() {
+
+	.uk-pagination { color: @pagination-color; }
+
+}

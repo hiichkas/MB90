@@ -1,0 +1,28 @@
+/*	DT Highlights
+---------------------------------------------------------------*/
+
+.dt-highlight {
+	color: #ffffff;
+	&.yellow {
+		background: #e3b62d;
+	}
+	&.red {
+		background: #d84242;
+	}
+	&.blue {
+		background: #0295c5;
+	}
+	&.green {
+		background: #a5c052;
+	}
+	&.purple {
+		background: #9b59b6;
+	}
+	&.black {
+		background: #002f3f;
+	}
+	&.grey {
+		background: #999;
+	}
+}
+

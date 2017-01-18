@@ -1,0 +1,120 @@
+/*.diet-selector-wrapper{background:lightgrey;overflow:hidden}
+*/
+
+.diet-calories-wrapper{height:100%;position:relative}
+
+.diet-selector-item p, .ui-accordion-header{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+.ui-accordion-header{background:#34495e !important; color:#FFF !important}
+
+/*.ui-accordion h3:not(.ui-state-active):hover{ color: #FFF !important; background: #48b3e5 !important }*/
+
+.ui-accordion h3:hover{ color: #FFF !important; background: #48b3e5 !important }
+
+/*.ui-state-hover{color: #FFF !important; background: #48b3e5 !important}*/
+  
+#diet-selection-message{color:lightgrey;font-size: 20px}
+
+.diet-selector-item{cursor:pointer;cursor:hand;float:left; width:84%;display:table-cell}
+
+.diet-selector-wrapper{border-bottom: 1px dotted #3399ff; display: table; padding: 10px 0;width: 100%;}
+
+.diet-selected-item-caption{width:60%;float: left}
+.diet-selected-item-delete{cursor:pointer;cursor:hand;color:#e33a0c;}
+
+.diet-calories-perday, .diet-calories, .diet-calories-remaining, .diet-blue-caption{ 
+    color: #34495e;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+#save-button-wrapper{
+    padding-top:30px;
+}
+
+.diet-save-button{}
+
+.diet-cancel-button{}
+
+.diet-edit-button{}
+
+#dietDayDD{
+    color: #0fa2e6;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 30px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.mb90-tooltip {
+    position:absolute;
+    display:none;
+    z-index:1000;
+    background-color:black;
+    color:white;
+    border: 1px solid black;
+}
+
+/* jquery ui styling */
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{border-bottom-right-radius:0px !important}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl{border-bottom-left-radius:0px !important}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr{border-top-right-radius:0px !important}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{border-top-left-radius:0px !important}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{background:/* lightblue */ !important;}
+.ui-state-hover{background:lightgrey !important}
+
+
+.meal-instructions-wrapper{display:none;width:100%}
+
+.meal-ingredients-col{width:50%;float:left}
+
+.meal-instructions-col{width:50%;float:right}
+
+.meal-info-button{float:right;display:table-cell; width:13% !important}
+
+.meal-info-button img{width:30px}
+
+.ui-accordion .ui-accordion-content{padding-left: 24px !important;}
+
+.mb90-btn-primary {
+  background-color:#428BCA;
+  border-color:#357EBD;
+  color:#FFFFFF;
+}
+
+.mb90-btn-cancel {
+  background-color: #c9302c;
+  border-color: #ac2925;
+  color: #fff;
+}
+
+.mb90-btn {
+  background-image:none;
+  border:1px solid transparent;
+  border-radius:4px;
+  cursor:pointer;
+  display:inline-block;
+  font-size:14px !important;
+  font-weight:400;
+  line-height:1.42857;
+  margin-bottom:0;
+  padding:6px 12px;
+  text-align:center;
+  user-select:none;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+button {
+  overflow:visible;
+}
+
+.featherlight .featherlight-content{width:85% !important}

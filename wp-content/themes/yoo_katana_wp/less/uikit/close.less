@@ -1,0 +1,41 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Close
+//
+// ========================================================================
+
+@close-size:                                    20px;
+
+@close-alt-padding:                             4px;
+@close-alt-background:                          @global-primary-background;
+
+//
+// New
+//
+
+@close-alt-color: 								@global-contrast-color;
+@close-alt-hover-color: 						@global-contrast-color;
+
+
+// Component
+// ========================================================================
+
+.hook-close() {}
+
+
+// Modifier: `uk-close-alt`
+// ========================================================================
+
+.hook-close-alt() {
+
+	color: @close-alt-color;
+
+	&:hover { color: @close-alt-hover-color; }
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-close-misc() {}

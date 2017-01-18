@@ -1,0 +1,4 @@
+[29-May-2015 16:54:30 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/paulcotter/public_html/wp-content/plugins/hello.php on line 60
+[01-Jul-2015 05:42:59 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/paulcotter/public_html/wp-content/plugins/hello.php on line 60
+[24-Aug-2015 08:30:08 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/paulcotter/public_html/wp-content/plugins/hello.php on line 60
+[22-Oct-2015 01:02:46 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/paulcotter/public_html/wp-content/plugins/hello.php on line 60

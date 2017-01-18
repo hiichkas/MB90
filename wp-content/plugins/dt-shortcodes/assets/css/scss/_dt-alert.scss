@@ -1,0 +1,56 @@
+/*	DT Alert
+---------------------------------------------------------------*/
+.dt-alert {
+	position: relative;
+	color: #ffffff;
+	margin: 30px 0;
+	padding: 30px 30px 30px 30px;
+	&.green {
+ 		background-color: #a5c052;
+	}
+	&.blue {
+	  background-color: #0295c5;	
+	}
+	&.purple {
+		background-color: #9f58c4;
+	}
+	&.red {
+		background-color: #e74c3c;
+	}
+	&.orange {
+		background-color: #e3b62d;
+	}
+	&.grey {
+		background-color: #b1c0c5;
+	}
+	&.black {
+		background-color: #002f3f;
+	}
+	&.border {
+		border: 5px double #fff; 
+	}
+	&.close-enabled {
+		a.close-alert {
+			display: inline-block;
+		}
+	}
+	a {
+		&.close-alert {
+			display: none;
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			line-height: 1.0em;
+			color: #fff;
+			text-transform: uppercase;
+			font-size: 12px;
+			cursor: pointer;
+			text-decoration: none;
+			padding: 4px 6px;
+			&::hover {
+			  color: #fff;
+				text-decoration: none;
+			}
+		}
+	}
+}

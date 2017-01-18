@@ -1,0 +1,110 @@
+/*	DT Tabs
+---------------------------------------------------------------*/
+
+/* Horizontal */
+
+div.dt-tabgroup.horizontal {
+	margin-bottom: 30px;
+	ul {
+	  margin: 0;
+		padding: 0;
+		li {
+			display: inline-block;
+			list-style-type: none;
+			list-style-position: inside;
+			margin: 0 3px -1px 0;
+		  padding: 0;
+			z-index: 10;
+			a {
+				display: inline-block;
+				padding: 10px;
+				color: #777;
+				line-height: 26px;
+				border: 1px solid #ddd;
+				outline: none;
+				height: 27px;
+				text-decoration: none;
+				transition: none;
+				@include box-sizing(content-box);
+				@include transition-duration(0.2s);
+		 		@include transition-timing-function(ease-in);
+			  @include background-image(linear-gradient(top, white, #f9f9f9));
+			}
+			&.ui-state-active {
+				a {
+					height: 27px;
+					color: #555;
+					background: #fff;
+					border-bottom: 1px solid #fff;
+				}
+			}
+		}
+	}
+	.dt-tab {
+		border: 1px solid #ddd;
+		padding: 30px;
+	  transition: all 1s ease 0s;
+		background: #ffffff;
+	}
+}
+
+/* Vertical */
+
+div.dt-tabgroup.vertical {
+	margin-bottom: 30px;
+	ul {
+		float: left;
+	  margin: 0;
+		padding: 0;
+		margin: 0;
+		width: 200px;
+		border-top: 1px solid #ddd;
+		border-left: 1px solid #ddd;
+		background: #f9f9f9;
+		@include box-sizing(content-box);
+		li {
+		  display: block;
+			margin: 0;
+			padding: 0;
+			background: #fff;
+			z-index: 10;
+			a {
+				display: block;
+				line-height: 26px;
+				color: #777;
+				height: 26px;
+			  margin: 0;
+				padding: 10px 20px;
+				text-decoration: none;
+				outline: none;
+				border-bottom: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+			  transition: none;
+				@include box-sizing(content-box);
+				@include transition-duration(0.2s);
+		 		@include transition-timing-function(ease-in);
+			  @include background-image(linear-gradient(top, white, #f9f9f9));
+			}
+			&.ui-state-active {
+				a {
+					color: #333;
+					border-right: 1px solid #fff;
+					background: #fff;
+				}
+			}
+		}
+	}
+	.dt-tab {
+		z-index: 9;
+	  margin-left: 200px;
+		background: #fff;
+		border: 1px solid #ddd;
+		.tab-inner {
+			display: block;
+			padding: 30px;
+			@include box-sizing(content-box);
+		}
+	}
+}
+
+

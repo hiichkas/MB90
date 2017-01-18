@@ -1,0 +1,134 @@
+# Copyright (C) 2015 MemberPress MailChimp
+# This file is distributed under the same license as the MemberPress MailChimp package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MemberPress MailChimp 1.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/memberpress-"
+"mailchimp\n"
+"POT-Creation-Date: 2015-11-10 07:26:33+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: MpMailChimp.php:86
+msgid "Enable MailChimp"
+msgstr ""
+
+#: MpMailChimp.php:93
+msgid "MailChimp API Key:"
+msgstr ""
+
+#: MpMailChimp.php:100
+msgid "You can find your API key under your Account settings at MailChimp.com."
+msgstr ""
+
+#: MpMailChimp.php:108
+msgid "MailChimp List:"
+msgstr ""
+
+#: MpMailChimp.php:116
+msgid "Enable Double Opt-in"
+msgstr ""
+
+#: MpMailChimp.php:119
+msgid ""
+"Members will have to click a confirmation link in an email before being "
+"added to your list."
+msgstr ""
+
+#: MpMailChimp.php:126
+msgid "Enable Opt-In Checkbox"
+msgstr ""
+
+#: MpMailChimp.php:130
+msgid ""
+"If checked, an opt-in checkbox will appear on all of your membership "
+"registration pages."
+msgstr ""
+
+#: MpMailChimp.php:135
+msgid "Signup Checkbox Label:"
+msgstr ""
+
+#: MpMailChimp.php:138
+msgid ""
+"This is the text that will display on the signup page next to your mailing "
+"list opt-in checkbox."
+msgstr ""
+
+#: MpMailChimp.php:186
+msgid "We Respect Your Privacy"
+msgstr ""
+
+#: MpMailChimp.php:266
+msgid "MailChimp list for this Membership"
+msgstr ""
+
+#: MpMailChimp.php:269
+msgid "Enable Membership MailChimp List"
+msgstr ""
+
+#: MpMailChimp.php:270
+msgid ""
+"If this is set the member will be added to this list when their payment is "
+"completed for this membership. If the member cancels or you refund their "
+"subscription, they will be removed from the list automatically. You must "
+"have your MailChimp API key set in the Options before this will work."
+msgstr ""
+
+#: MpMailChimp.php:274
+msgid "MailChimp List: "
+msgstr ""
+
+#: MpMailChimp.php:300 MpMailChimp.php:322
+msgid "Hey yo, why you creepin'?"
+msgstr ""
+
+#: MpMailChimp.php:305 MpMailChimp.php:327
+msgid "No apikey code was sent"
+msgstr ""
+
+#: MpMailChimp.php:454
+msgid "Sign Up for the %s Newsletter"
+msgstr ""
+
+#. #-#-#-#-#  memberpress-mailchimp.pot (MemberPress MailChimp 1.0.3)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: main.php:35
+msgid "MemberPress MailChimp"
+msgstr ""
+
+#: main.php:36
+msgid "MailChimp Autoresponder Integration for MemberPress."
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:56
+msgid "Welcome %s!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:60
+msgid "A string with low priority!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:62
+msgid "Bye\n"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.memberpress.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "MailChimp Autoresponder integration for MemberPress."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Caseproof, LLC"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://caseproof.com/"
+msgstr ""

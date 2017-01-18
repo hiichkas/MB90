@@ -1,0 +1,75 @@
+    function get10DayChallengeLinks($mode)
+    {
+        global $wpdb;
+        $allowEdit = false;
+        $allowAdd = false;
+        
+        if($mode == "Previous")
+        {
+            $challenges = $wpdb->get_results("SELECT * FROM mb90_user_challenge_translated WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID", OBJECT);
+
+            if( $wpdb->num_rows > 0 )
+            {
+                $rows = array();
+                foreach( $challenges as $key => $row)
+                {
+                    $rows[] = $row;
+                }
+
+                header("Content-type: application/json");
+
+                $response = array("total" => $wpdb->num_rows, "rows" => $rows);
+
+                echo json_encode($response);
+            }
+        }
+        else if($mode == "All")
+        {
+            // get completed challenges ... don't allow adding any new records to these
+            $completedChallenges = $wpdb->get_results("SELECT * FROM mb90_user_challenge_translated WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID", OBJECT);
+            
+            //echo "SELECT * FROM mb90_user_challenge_translated WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID";
+            if( $wpdb->num_rows > 0 )
+            {
+                $rows = array();
+                foreach( $completedChallenges as $key => $row)
+                {
+                    $challengeCompletionDates[] = $row->InputDate;
+                }
+            }
+            //print_r($challengeCompletionDates);
+            //$startDateStr = $wpdb->get_var("SELECT StartDate FROM mb90_user_details WHERE UserID = ".$_SESSION["LoggedUserID"]);
+            $startDateStr = $_SESSION["UserStartDate"];
+
+            $allChallengeDates = $this->getAllChallengeDates($startDateStr, "User10DayChallenge");
+            
+            /*$loopDate = strtotime("+8 days", $loopDate);
+            $onClickStr = $this->getOnClick(date("Y-m-d", $loopDate), $challengeCompletionDates, 1, "User 10 Day Challenge");         
+            $dateDisplay = date("d/m/Y", $loopDate);
+
+            //$loopDate->Add(new DateInterval('P8D')); 
+            $linkHTML .= '<div class="mb90-challengeDateLink"><a '.$onClickStr.' href="javascript:void(0);" title="10 Day Challenge For ' . $dateDisplay . '" class="tm-blog-more uk-button uk-button-primary uk-button-large uk-text-truncate">' . $dateDisplay . '</a></div>';
+            for($dateCount = 1; $dateCount <9; $dateCount ++){
+                $loopDate = strtotime("+10 days", $loopDate);
+                $onClickStr = $this->getOnClick(date("Y-m-d", $loopDate), $challengeCompletionDates, $dateCount+1, "User 10 Day Challenge");         
+                $dateDisplay = date("d/m/Y", $loopDate);
+                $linkHTML .= '<div class="mb90-challengeDateLink"><a '.$onClickStr.' href="javascript:void(0);" title="10 Day Challenge For ' . $dateDisplay . '" class="tm-blog-more uk-button uk-button-primary uk-button-large uk-text-truncate">' . $dateDisplay . '</a></div>';
+            }
+             * 
+             */
+            $challengeDateCount = 1;
+
+            $linkHTML = '<div class="mb90-challengeDatesWrapper">';
+            //print_r($allChallengeDates);
+            //foreach($allChallengeDates as $challengeDate)
+            for($cd =0; $cd < count($allChallengeDates); $cd++)
+            {
+                $challengeDate = $allChallengeDates[$cd];
+                $onClickStr = $this->getOnClick($challengeDate, $challengeCompletionDates, $cd+1, "User 10 Day Challenge");         
+                $dateDisplay = date("d/m/Y", strtotime($challengeDate));
+                $linkHTML .= '<div class="mb90-challengeDateLink"><a '.$onClickStr.' href="javascript:void(0);" title="10 Day Challenge For ' . $dateDisplay . '" class="tm-blog-more uk-button uk-button-primary uk-button-large uk-text-truncate">' . $dateDisplay . '</a></div>';
+            }
+            $linkHTML .= '</div>';
+        }
+        return $linkHTML;
+    }

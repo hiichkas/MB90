@@ -1,0 +1,1 @@
+var widgetkitajax="http://localhost:8080/myBody90Live/wp-admin/admin-ajax.php?action=widgetkit&ajax=1";

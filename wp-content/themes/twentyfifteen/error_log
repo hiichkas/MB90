@@ -1,0 +1,1 @@
+[05-Oct-2015 12:13:11 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/paulcotter/public_html/wp-content/themes/twentyfifteen/404.php on line 10

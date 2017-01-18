@@ -1,0 +1,42 @@
+        #fm{
+            margin:0;
+            padding:10px 15px;
+        }
+        .ftitle{
+            font-size:16px;
+            font-weight:bold;
+            padding:5px 15px;
+            margin-bottom:10px;
+            border-bottom:1px solid #ccc;
+        }
+        .fitem{
+            margin-bottom:5px;
+        }
+        .fitem label{
+            display:inline-block;
+            width:200px;
+            vertical-align:baseline;
+            padding:4px;
+        }
+        .fitem input{
+            width:160px;
+        }
+        
+        .fitem input[type="checkbox"], input[type="radio"]{width: 20px}
+        
+        .fitem textarea{width: 354px; }
+        
+        /*.panel{height:auto !important}
+        #dlg{height:auto !important}*/
+        div.window.panel{display:table;top:40px !important}
+        #dlg{display:table-row}
+        
+        .datagrid-cell-c2-ProgrammeType{width:144px !important}
+        .datagrid-cell-c2-ExerciseName{width:144px !important}
+        .datagrid-cell-c2-Reps{width:65px !important}
+        .datagrid-cell-c2-ExerciseDay{width:120px !important}
+        .datagrid-cell-c2-NumMinsForReps{width:144px !important}
+        .datagrid-cell-c2-SelfAssessment{width:144px !important}
+        .datagrid-cell-c2-10DayChallenge{width:160px !important}
+        .datagrid-cell-c2-10DayChallengePhase{width:200px !important}
+        .datagrid-cell-c2-Message{width:380px !important}

@@ -1,0 +1,31 @@
+/*  DT Quote
+---------------------------------------------------------------*/
+
+blockquote {
+	&.dt-quote {
+		display: block;
+		font-size: 1.2em;
+		font-style: italic;
+		color: #999;
+		margin-bottom: 30px;
+		&.dark {
+		  color: #fff;
+			background: #444; 
+			padding: 20px;
+		}
+		&.left {
+		  float: left;
+			width: 33%;
+			margin-right: 30px;
+		}
+		&.right {
+			float: right;
+			width: 33%; 
+			margin-left: 30px;
+		}
+		&.center {
+		  float: none;
+			margin: 20px 30px;
+		}
+	}
+}

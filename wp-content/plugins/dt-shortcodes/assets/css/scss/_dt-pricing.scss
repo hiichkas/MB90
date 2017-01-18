@@ -1,0 +1,216 @@
+/*	DT Pricing Tables
+---------------------------------------------------------------*/
+
+div.dt-pricing-group {
+	width: 100%;
+	margin: 60px 0;
+}
+
+div.dt-pricing-group.no-spaces {
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+div.dt-pricing-group.spaces div.dt-pricing {
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+div.dt-pricing {
+	text-align: center;
+	background: #fff;
+}
+
+div.dt-pricing.promoted {
+	box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	z-index: 100;
+	transform: scale(1.07,1.07);
+	-webkit-transform: scale(1.07,1.07);
+}
+
+div.dt-pricing .pricing-header  {
+	color: #fff;
+  background: #0295c5;
+}
+
+div.dt-pricing .plan {
+	line-height: 1.0em;
+	font-size: 18px;
+  padding: 30px 30px 10px 30px;
+	text-transform: uppercase;
+}
+
+div.dt-pricing .price {
+	line-height: 1.0em;
+	font-weight: bold;
+	font-size: 48px;
+  padding: 0 30px 10px 30px;
+}
+
+div.dt-pricing .term {
+	line-height: 1.0em;
+	font-style: italic;
+  padding: 0 30px 30px 30px;
+}
+
+div.dt-pricing ul  {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+div.dt-pricing ul li {
+	color: #666;
+	list-style-type:none;
+	line-height: 40px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #eee;
+	margin: 0;
+	padding: 0;
+}
+
+div.dt-pricing ul li.even {
+	background: #fcfcfc;
+}
+
+div.dt-pricing .take-action {
+	padding: 30px;
+}
+
+div.dt-pricing .take-action a {
+	display: inline-block;
+	color: #fff;
+	padding: 20px 30px;
+	text-decoration: none;
+}
+
+/* DT Pricing Table Colors */
+
+div.dt-pricing.green .pricing-header, div.dt-pricing.green .take-action a {
+	background-color: #a5c052;
+}
+
+div.dt-pricing.blue .pricing-header, div.dt-pricing.blue .take-action a {
+	background-color: #0295c5;
+}
+
+div.dt-pricing.purple .pricing-header, div.dt-pricing.purple .take-action a {
+	background-color: #9f58c4;
+}
+
+div.dt-pricing.red .pricing-header, div.dt-pricing.red .take-action a {
+	background-color: #d84242;
+}
+
+div.dt-pricing.orange .pricing-header, div.dt-pricing.orange .take-action a {
+	background-color: #e3b62d;
+}
+
+div.dt-pricing.black .pricing-header, div.dt-pricing.black .take-action a {
+	background-color: #002f3f;
+}
+
+div.dt-pricing.grey .pricing-header, div.dt-pricing.grey .take-action a {
+	background-color: #999;
+}
+
+.pricing-header {
+	position: relative;
+  overflow: hidden;
+}
+
+.promoted-ribbon {
+  background-color: #a00;
+  overflow: hidden;
+  /* top left corner */
+  position: absolute;
+  right: -38px;
+  top: 15px;
+  /* 45 deg ccw rotation */
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  /* shadow */
+  -moz-box-shadow: 0 0 1em #888;
+  -webkit-box-shadow: 0 0 1em #888;
+}
+.promoted-ribbon span {
+  border: 1px solid #faa;
+  color: #fff;
+  display: block;
+  font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 5px 40px 5px 50px;
+  text-align: center;
+  text-decoration: none;
+  /* shadow */
+	text-transform: uppercase;
+}
+
+/* Pricing Table Columns */
+
+div.dt-pricing-group.no-spaces div.dt-pricing {
+	position: relative;
+	display: inline;
+	float: left;
+}
+
+div.dt-pricing-group.no-spaces.two-col div.dt-pricing {
+	width: 50%;
+}
+
+div.dt-pricing-group.no-spaces.three-col div.dt-pricing {
+	width: 33.333%;
+}
+
+div.dt-pricing-group.no-spaces.four-col div.dt-pricing {
+	width: 25%;
+}
+
+div.dt-pricing-group.no-spaces.five-col div.dt-pricing {
+	width: 20%;
+}
+
+div.dt-pricing-group.spaces div.dt-pricing {
+	position: relative;
+	display: inline;
+	float: left;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+div.dt-pricing-group.spaces.two-col div.dt-pricing {
+	width: 48%;
+}
+
+div.dt-pricing-group.spaces.three-col div.dt-pricing {
+	width: 31.333%;
+}
+
+div.dt-pricing-group.four-col div.dt-pricing {
+	width: 23%;
+}
+
+div.dt-pricing-group.spaces.five-col div.dt-pricing {
+	width: 18%;
+}
+
+@media screen and (max-width:768px) {
+	div.dt-pricing-group.no-spaces.two-col div.dt-pricing,
+	body div.dt-pricing-group.no-spaces.three-col div.dt-pricing,
+	div.dt-pricing-group.spaces.no-four-col div.dt-pricing,
+	div.dt-pricing-group.spaces.no-five-col div.dt-pricing
+	div.dt-pricing-group.spaces.two-col div.dt-pricing,
+	body div.dt-pricing-group.spaces.three-col div.dt-pricing,
+	div.dt-pricing-group.spaces.four-col div.dt-pricing,
+	div.dt-pricing-group.spaces.five-col div.dt-pricing {
+			display: block;
+			float:none;
+			margin:0 auto;
+			width:100%;
+		}
+		
+	div.dt-pricing.promoted {
+		box-shadow: 0 0 20px rgba(0,0,0,0.2);
+		z-index: 100;
+		transform:none;
+		-webkit-transform: none;
+	}
+}

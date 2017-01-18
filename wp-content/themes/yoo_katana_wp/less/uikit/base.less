@@ -1,0 +1,86 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Base
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@base-body-font-family:                         "Roboto", sans-serif;
+@base-body-font-weight:                         300;
+@base-body-background:                          @global-background;
+@base-body-font-size:                           @global-font-size;
+@base-body-line-height:                         @global-line-height;
+@base-body-color:                               @global-color;
+
+@base-link-color:                               @global-link-color;
+@base-link-hover-color:                         @global-link-hover-color;
+@base-ins-color:                                @global-color;
+@base-mark-color:                               @global-color;
+
+@base-margin-vertical:                          @global-margin;
+
+@base-heading-font-family:                      "Roboto", sans-serif;
+@base-heading-font-weight:                      100;
+@base-heading-color:                            @global-color;
+@base-heading-margin-top:                       @global-margin-large;
+@base-h1-font-size:                             round((@global-font-size * 3.75)); // 60px
+@base-h1-line-height:                           round((@base-h1-font-size * 1.133)); // 68
+@base-h2-font-size:                             round((@global-font-size * 2.5)); // 40px
+@base-h2-line-height:                           round((@base-h2-font-size * 1.2)); // 48px
+@base-h3-font-size:                             round((@global-font-size * 1.875)); // 30px
+@base-h3-line-height:                           round((@base-h3-font-size * 1.2)); // 36px
+@base-h4-font-size:                             round((@global-font-size * 1.375)); // 24px
+@base-h4-line-height:                           round((@base-h4-font-size * 1.25)); // 30px
+@base-h5-font-size:                             @global-font-size; // 16px
+@base-h5-line-height:                           @global-line-height; // 22px
+@base-h6-font-size:                             round((@global-font-size * 0.875)); // 14px
+@base-h6-line-height:                           round((@base-h6-font-size * 1.285)); // 18px
+
+@base-hr-border:                                @global-border;
+
+@base-blockquote-border:                        @global-border;
+@base-blockquote-font-size:                     round((@global-font-size * 1.14)); // 16px / 18px
+@base-blockquote-line-height:                   round((@base-blockquote-font-size * 1.36)); // 22px / 24px
+
+@base-code-font-size:                           round((@global-font-size * 0.85)); // 12px / 14px
+
+@base-pre-color:                                @global-color;
+@base-pre-font-size:                            round((@global-font-size * 0.85)); // 12px / 14px
+@base-pre-line-height:                          round((@base-pre-font-size * 1.46)); // 18px / 20px
+
+//
+// New
+//
+
+@base-blockquote-small-color:                   @global-muted-color;
+
+
+// Body
+// ========================================================================
+
+.hook-base-body() {}
+
+
+// Code and preformatted text
+// ========================================================================
+
+.hook-base-code() {}
+
+.hook-base-code-reset() {}
+
+.hook-base-pre() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-base-misc() {
+
+    /* Small print for identifying the source */
+    blockquote small { color: @base-blockquote-small-color; }
+
+}
