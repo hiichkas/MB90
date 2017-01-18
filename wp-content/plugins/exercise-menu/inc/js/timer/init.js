@@ -1,5 +1,36 @@
 jQuery(document).ready(function(){
     
+// add tick mark to filled in inputs
+jQuery( ".mb90-input-form-input" ).children('input').each(function(index) {
+    
+    if( jQuery(this).val().length > 0 ){
+        jQuery(this).removeClass("form-control-danger");
+        jQuery(this).addClass("form-control-success");
+        jQuery(this).parents().addClass("has-success")
+        jQuery(this).parents().removeClass("has-danger")
+    }else{
+        jQuery(this).removeClass("form-control-success");
+        jQuery(this).addClass("form-control-danger");
+        jQuery(this).parents().addClass("has-danger")
+        jQuery(this).parents().removeClass("has-success")
+    }
+        
+    jQuery(this).on("change", function(){
+        //var boolKey = jQuery(this).data('selected');
+        if( jQuery(this).val().length > 0 ){
+            jQuery(this).removeClass("form-control-danger");
+            jQuery(this).addClass("form-control-success");
+            jQuery(this).parents().addClass("has-success");
+            jQuery(this).parents().removeClass("has-danger");
+        }else{
+            jQuery(this).removeClass("form-control-success");
+            jQuery(this).addClass("form-control-danger");
+            jQuery(this).parents().addClass("has-danger");
+            jQuery(this).parents().removeClass("has-success");
+        }
+    });
+});
+
 jQuery("#totalworkouttimespan").html(jQuery("#totalworkouttimestring").val()); // display total workout minutes and seconds
    
 timeTotal = jQuery("#totalworkouttime").val() / 2;

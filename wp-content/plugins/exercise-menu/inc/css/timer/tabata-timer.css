@@ -318,7 +318,7 @@ timer-wrapper{
 
 .mb90-exercise-description{padding-left:20px; padding-bottom:10px}
 
-.mb90-nopointer{pointer-events: none; width: 100%}
+.mb90-nopointer{pointer-events: none; width: 100%; white-space: normal}
 
 .mb90-ex-separator{padding-top:20px}
 

@@ -4,8 +4,6 @@ $pluginPath = ABSPATH . 'wp-content/plugins/mb90-user-data/';
 
 require_once($pluginPath . '/inc/scripts/dbase_include.php');
 
-global $wpdb;
-
 class userDetails
 {
     function getUserDetails($userID)
@@ -166,37 +164,43 @@ class datagrid
     function getHtmlFormInputs($formType, $mode)
     {
         global $wpdb;
-        if( $formType == "User10DayChallenge" || $formType == "SelfAssessment" || $formType == "UserBodyData")
+        global $post;
+        $page_slug = $post->post_name;
+        
+        if( $page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG || $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG || $page_slug == MB90_BODY_STATS_PAGE_SLUG )
         {
             $formArray = array();
             $programmeID = $_SESSION["UserProgrammeID"];
             
-            if( $formType == "User10DayChallenge" ){
-                $challengePhase = $this->getChallengePhase("10Day");
-                $dataViewName = "mb90_user_challenge_translated";
-                //$exerciseViewName = "mb90_prog_exercises_translated_frontend";
-                $exerciseViewName = "mb90_prog_exercises_days";
-                $phaseFilterField = "10DayChallengePhase";
-            }
-            else if($formType == "SelfAssessment"){
-                $challengePhase = $this->getChallengePhase("Assessment");
-                $dataViewName = "mb90_user_assessment_translated";
-                //$exerciseViewName = "mb90_prog_exercises_translated_frontend";
-                $exerciseViewName = "mb90_prog_exercises_days";
-                $phaseFilterField = "SelfAssessmentPhase";
-            }
-            else if($formType == "UserBodyData"){
-                $challengePhase = $this->getChallengePhase("UserBodyData");
-                //return "cp = [" . $challengePhase . "]";
-                $dataViewName = "mb90_user_bodystats";
-                $exerciseViewName = "mb90_prog_exercises_translated_frontend";
-                $phaseFilterField = "UserBodyStatsPhase";
-            }
-            
-            //echo "challenge phase = [" . $challengePhase . "]";
-            
-            // get those challenges/assessments where the user has entered data
+            switch (strtolower($page_slug)) {
+                case MB90_SELF_ASSESSMENT_PAGE_SLUG:
+                    $challengePhase = $this->getChallengePhase(MB90_SELF_ASSESSMENT_PAGE_SLUG);
+                    $dataViewName = "mb90_user_assessment_translated";
+                    //$exerciseViewName = "mb90_prog_exercises_translated_frontend";
+                    $exerciseViewName = "mb90_prog_exercises_days";
+                    $phaseFilterField = "SelfAssessmentPhase";
+                    $orderBy = "ORDER BY OrderNumber, ExerciseName, ExerciseMMType";
+                    break;
+                case MB90_10_DAY_CHALLENGE_PAGE_SLUG:
+                    $challengePhase = $this->getChallengePhase(MB90_10_DAY_CHALLENGE_PAGE_SLUG);
+                    $dataViewName = "mb90_user_challenge_translated";
+                    //$exerciseViewName = "mb90_prog_exercises_translated_frontend";
+                    $exerciseViewName = "mb90_prog_exercises_days";
+                    $phaseFilterField = "10DayChallengePhase";
+                    $orderBy = "ORDER BY OrderNumber, ExerciseName, ExerciseMMType";
+                    break;
+                case MB90_BODY_STATS_PAGE_SLUG:
+                    $challengePhase = $this->getChallengePhase(MB90_BODY_STATS_PAGE_SLUG);
+                    //return "cp = [" . $challengePhase . "]";
+                    $dataViewName = "mb90_user_bodystats";
+                    $exerciseViewName = "mb90_prog_exercises_translated_frontend";
+                    $phaseFilterField = "UserBodyStatsPhase";
+                    $orderBy = "";
+                    break;
+                default:
 
+            }
+            // get those challenges/assessments where the user has entered data
             $completedChallenges = $wpdb->get_results("SELECT * FROM ".$dataViewName." WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID", OBJECT);
             if( $wpdb->num_rows > 0 )
             {
@@ -246,7 +250,7 @@ class datagrid
                     $formInputHTML = '<div class="vc_row wpb_row vc_row-fluid mb90-form-input-vc-row">';
                     $exerciseCount = 0;
                     // get the previously inputted data and generate form with data displayed
-
+                    //echo "SELECT * FROM ".$dataViewName." where InputDate='".$challengeCompletionDate."' and UserId=" . $_SESSION["LoggedUserID"] . " " . $orderBy;
                     foreach( $wpdb->get_results("SELECT * FROM ".$dataViewName." where InputDate='".$challengeCompletionDate."' and UserId=" . $_SESSION["LoggedUserID"] ) as $key => $row)
                     { 
                         $isPopulatedForm = true;
@@ -255,7 +259,7 @@ class datagrid
                         $dataFoundForPhase = true;
 
                         if($phaseCount == 0){ // only populate these arrays once in this loop
-                            if($formType == "UserBodyData"){
+                            if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                                 $labelArr = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf"); // captions to use for forms with no data i.e. adding data
                                 $fieldNameArr = array("Weight", "RightArm", "LeftArm", "Chest", "Navel", "Hips", "RightLegUpper", "RightLegThigh", "RightLegCalf", "LeftLegUpper", "LeftLegThigh", "LeftLegCalf"); // dbase field names
                             }else{
@@ -278,21 +282,21 @@ class datagrid
                         
                         $suffix = $phaseCount . $formCount;
                         
-                        if($formType == "UserBodyData"){
+                        if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                             for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
                                 $suffix = $phaseCount . $formCount;
-                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" required="true" /></div>';
+                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group has-success has-danger"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" required="true" class="form-control"/></div>';
                                 //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                                 $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldNameArr[$bsCount].'" />';
-                                $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" /></div>';
+                                $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" /></div></div>';
                                 $formCount ++;
                             }
                             //$formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
                         }else{
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" required="true" /></div>';
+                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group has-success has-danger"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" required="true"  class="form-control"/></div>';
                             $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                             $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" />';
-                            $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
+                            $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div></div>';
                             $formCount ++;
                         }
                     }
@@ -319,22 +323,22 @@ class datagrid
                     $formInputHTML = "";
                     unset($labelArr);
                     $labelArr = array();
-                    if( $formType == "User10DayChallenge" ){
+                    if( $page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG ){
                         //$exerciseWhereClause = "WHERE ProgrammeID=".$programmeID." and 10DayChallenge='Y'";
                         $exerciseWhereClause = "WHERE ProgrammeID=".$programmeID." and ExerciseDay=8 GROUP BY ExerciseID ORDER BY OrderNumber, ExerciseName, ExerciseMMType ASC";
                     }
-                    else if($formType == "SelfAssessment"){
+                    else if($page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG){
                         //$exerciseWhereClause = "WHERE ProgrammeID=".$programmeID." and SelfAssessment='Y'";
                         $exerciseWhereClause = "WHERE ProgrammeID=".$programmeID." and ExerciseDay=1 GROUP BY ExerciseID ORDER BY OrderNumber, ExerciseName, ExerciseMMType ASC";
                         //SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=1 AND ProgrammeID = 1 GROUP BY ExerciseID ORDER BY OrderNumber, ExerciseName, ExerciseMMType ASC
                     }
                     
-                    if($formType == "UserBodyData"){
+                    if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                         $labelArr = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf"); // captions to use for forms with no data i.e. adding data
                         $fieldNameArr = array("Weight", "RightArm", "LeftArm", "Chest", "Navel", "Hips", "RightLegUpper", "RightLegThigh", "RightLegCalf", "LeftLegUpper", "LeftLegThigh", "LeftLegCalf"); // dbase field names
                     }else{
                         //echo "SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause;
-                        foreach( $wpdb->get_results("SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause ) as $key => $row)
+                        foreach( $wpdb->get_results("SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause . $orderBy) as $key => $row)
                         {
                             //$labelArr[] = $row->ExerciseName.'&nbsp;('.$row->ExerciseMeasurementType.'):'; // captions to use for forms with no data i.e. adding data
                             $labelArr[] = $row->ExerciseName.':'; // captions to use for forms with no data i.e. adding data
@@ -363,7 +367,7 @@ class datagrid
                         //print_r($labelArr);
                         //echo "here2";
                         
-                        if($formType == "UserBodyData"){
+                        if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                             //for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
                                 $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" name="Result_'.($suffix).'" required="true" /></div>';
                                 //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
@@ -471,7 +475,7 @@ class datagrid
         else if( $gridType == "User10DayChallenge")
         {
             $programmeID = $_SESSION["UserProgrammeID"];
-            $tenDayChallengePhase = $this->getChallengePhase("10Day");
+            $tenDayChallengePhase = $this->getChallengePhase(MB90_10_DAY_CHALLENGE_PAGE_SLUG);
             //$whereClause = " WHERE ProgrammeID = " . $programmeID ." AND TenDayChallengePhase = " . $tenDayChallengePhase;
             $whereClause = " WHERE UserID = " . $_SESSION["LoggedUserID"];
             //echo "SELECT * FROM mb90_user_challenge_exercises_translated " .$whereClause." ORDER BY ExerciseID ASC";
@@ -492,7 +496,7 @@ class datagrid
         else if( $gridType == "UserSelfAssessment")
         {
             $programmeID = $_SESSION["UserProgrammeID"];
-            $assessmentPhase = $this->getChallengePhase("Assessment");
+            $assessmentPhase = $this->getChallengePhase(MB90_SELF_ASSESSMENT_PAGE_SLUG);
             //$whereClause = " WHERE ProgrammeID = " . $programmeID ." AND SelfAssessmentPhase = " . $assessmentPhase;
             $whereClause = " WHERE UserID = " . $_SESSION["LoggedUserID"];
             
@@ -526,27 +530,36 @@ class datagrid
         return $formInputHTML;
     }
     
-    function getChallengePhase($type)
+    function getChallengePhase()
     {
-        if($type == "10Day" || $type == "UserBodyData" )
-            $divider = 10;
-        else if( $type == "Assessment")
-            $divider = 30;   
+        global $post;
+        $page_slug = $post->post_name;
         
-        $startDateStr = $_SESSION["UserStartDate"];
-        $startDate = strtotime($startDateStr);
-        $today = strtotime("now");
-        $numberDaysSinceStart = floor(($today - $startDate)  / (60 * 60 * 24));
-        if( $numberDaysSinceStart > 90){ // failsafe 
-            $numberDaysSinceStart = 90;
+        if( MB90_90_DEBUG ) // if in debug mode then return the max number of phases to display
+        {
+            if($page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG|| $page_slug == MB90_BODY_STATS_PAGE_SLUG )
+                $phase = MB90_NUM_PHASES;
+            else if( $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG )
+                $phase = MB90_NUM_SELF_ASSESSMENTS;
         }
-        
-        //echo "startDate = [".$startDate."], today = [".$today."] numdays start =[".$numberDaysSinceStart."]";
-        
-        $phase =  floor(($numberDaysSinceStart / $divider))+1;
-        //echo "phase= [".$phase."]";
+        else
+        {
+            if($page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG|| $page_slug == MB90_BODY_STATS_PAGE_SLUG )
+                $divider = MB90_NUM_DAYS_BETWEEN_10_DAY_CHALLENGES;
+            else if( $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG )
+                $divider = MB90_NUM_DAYS_BETWEEN_SELF_ASSESSMENTS;   
+
+            $startDateStr = $_SESSION["UserStartDate"];
+            $startDate = strtotime($startDateStr);
+            $today = strtotime("now");
+            $numberDaysSinceStart = floor(($today - $startDate)  / (60 * 60 * 24));
+            if( $numberDaysSinceStart > MB90_NUM_DAYS){ // failsafe 
+                $numberDaysSinceStart = MB90_NUM_DAYS;
+            }
+
+            $phase =  floor(($numberDaysSinceStart / $divider))+1;
+        }
         return $phase;
-        //return 1;
     }
     
     function getGridHeader($gridType)
@@ -762,12 +775,14 @@ class chartFunctions
         return $rowArray;
     }
     
-    function getBarChartValues($screenName)
+    function getBarChartValues()
     {
         global $wpdb;
         $rowArray = array();
-        
-        if( $screenName == "UserBodyData"){
+        global $post;
+        $page_slug = $post->post_name;
+
+        if( $page_slug == MB90_BODY_STATS_PAGE_SLUG ){
             $weightStr = "";
             $rightArmStr = "";
             $lefttArmStr = "";
@@ -814,7 +829,7 @@ class chartFunctions
             array_push($rowArray, $this->stripLeadComma($leftLegCalfStr));
             array_push($rowArray, $this->stripLeadComma($dateStr));
         }
-        else if( $screenName == "User10DayChallenge"){
+        else if( $page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG ){
             $programmeID = $_SESSION["UserProgrammeID"];
             //$whereClause = " WHERE ProgrammeID = " . $programmeID ." AND UserID = " . $_SESSION["LoggedUserID"];
             $whereClause = " WHERE UserID = " . $_SESSION["LoggedUserID"];
@@ -832,7 +847,7 @@ class chartFunctions
             }
             return $varArray;
         }
-        else if( $screenName == "UserSelfAssessment"){
+        else if( $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG ){
             $programmeID = $_SESSION["UserProgrammeID"];
             //$tenDayChallengePhase = $this->get10DayChallengePhase();
             //echo " WHERE ProgrammeID = " . $programmeID ." AND UserID = " . $_SESSION["LoggedUserID"];
@@ -841,7 +856,7 @@ class chartFunctions
             $whereClause = " WHERE UserID = " . $_SESSION["LoggedUserID"];
             $exerciseCount = 0;
             $varArray = array();
-            foreach( $wpdb->get_results("SELECT * FROM mb90_user_assessment_exercises_translated " .$whereClause." ORDER BY InputDate, ExerciseID ASC") as $key => $row)
+            foreach( $wpdb->get_results("SELECT * FROM mb90_user_assessment_exercises_translated " .$whereClause." ORDER BY InputDate, OrderNumber ASC") as $key => $row)
             { 
                 $varArray[$exerciseCount]['exercisetype'] = $row->MeasurementType;
                 $varArray[$exerciseCount]['exercisename'] = $row->ExerciseName;
@@ -854,19 +869,26 @@ class chartFunctions
         }
         return $rowArray;
     }
-    function getBarChartCaptions($screenName)
+    
+    function getBarChartCaptions()
     {
-        switch($screenName){
-            case "UserBodyData":
-                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );                
+        global $post;
+        $page_slug = $post->post_name;
+        
+        switch (strtolower($page_slug)) {
+            case MB90_SELF_ASSESSMENT_PAGE_SLUG:
+                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );
                 break;
-            case "User10DayChallenge":
-                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );                
+            case MB90_10_DAY_CHALLENGE_PAGE_SLUG:
+                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );
                 break;
-            case "UserSelfAssessment":
-                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );                
+            case MB90_BODY_STATS_PAGE_SLUG:
+                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );
                 break;
+            default:
+                $captionArray = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf" );
         }
+
         return $captionArray; 
     }
     

@@ -87,8 +87,8 @@
             $showGraphs = false;
 
             $chartObj = new chartFunctions();
-            //$captionArray = $chartObj->getBarChartCaptions($recordType);
-            $chartDataValArray = $chartObj->getBarChartValues($recordType);
+            //$captionArray = $chartObj->getBarChartCaptions();
+            $chartDataValArray = $chartObj->getBarChartValues();
             //echo "dataCount = [".count($chartDataValArray)."]";
             if( count($chartDataValArray) > 0)
             {
@@ -231,8 +231,8 @@
         if( $showGraphs )
         {
             $chartObj = new chartFunctions();
-            $captionArray = $chartObj->getBarChartCaptions($recordType);
-            $chartDataValArray = $chartObj->getBarChartValues($recordType);
+            $captionArray = $chartObj->getBarChartCaptions();
+            $chartDataValArray = $chartObj->getBarChartValues();
 
             $startValue = "";
             $startLabel = "";

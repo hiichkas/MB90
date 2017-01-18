@@ -7,14 +7,9 @@ Author: Page Masters
 Author URI: http://www.pagemasters.ie
 */
 
-$docRoot = $_SERVER['DOCUMENT_ROOT'];
-// if running locally
-//echo $_SERVER['SERVER_NAME'];
-if( strpos($_SERVER['SERVER_NAME'], "localhost") !== false || strpos($_SERVER['SERVER_NAME'], "127.0.0.1") !== false){
-    $webFolderArr = explode("/", dirname(($_SERVER['REQUEST_URI'])));
-    $docRoot .= $webFolderArr[1];
-}
-//echo "docRoot = [" . $docRoot . "]";
+require_once(plugin_dir_path(dirname(__FILE__)) . "/exercise-menu/inc/Classes/ExerciseUtilitiesClass.php"); 
+$docRoot = ExerciseUtilitiesClass::getSiteRootPath();
+
 // Hook for adding admin menus
 add_action('admin_menu', 'mt_add_pages');
 

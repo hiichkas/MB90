@@ -41,7 +41,7 @@
                 //echo "startDateStr, startDate, numberDaysSinceStart = [" . $startDateStr . "][" . $startDate. "][" .$numberDaysSinceStart . "]";
                 //die();
 
-                if( $numberDaysSinceStart > 90){ // failsafe 
+                if( $numberDaysSinceStart > MB90_NUM_DAYS){ // failsafe 
                     redirectTo($redirPath . "course-completed");   
                 }
             }

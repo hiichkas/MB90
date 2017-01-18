@@ -16,6 +16,10 @@ define('MB90_WORKOUT_DAY_PAGE_SLUG', 'your-exercise-details');
 define('MB90_WORKOUT_DAY_PAGE_WELCOME', 'Welcome to your workout ');
 define('MB90_WORKOUT_DAY_PAGE_WELCOME_HTML', 'h1');
 
+define('MB90_BODY_STATS_PAGE_SLUG', 'your-body-stats');
+//define('MB90_WORKOUT_DAY_PAGE_WELCOME', 'Welcome to your workout ');
+//define('MB90_WORKOUT_DAY_PAGE_WELCOME_HTML', 'h1');
+
 //define('90_DAY_COURSE_FINISHED', 'Your 90 day course has now been completed.');
 define('COURSE_FINISHED', 'Your course has now been completed');
 define('USER_PROFILE_INCOMPLETE', 'Please complete your user profile details before continuing');
@@ -42,7 +46,11 @@ define('FILL_ALL_FORM_FIELDS', 'Please fill in all highlighted fields');
 
 define('MESSAGE_SLIDE_DELAY', 3000);
 
+define('MB90_NUM_DAYS', 90);
 define('MB90_NUM_PHASES', 9);
+define('MB90_NUM_SELF_ASSESSMENTS', 4);
+define('MB90_NUM_DAYS_BETWEEN_SELF_ASSESSMENTS', 30);
+define('MB90_NUM_DAYS_BETWEEN_10_DAY_CHALLENGES', 10);
 
 define('MB90_USER_CHALLENGE_REST', 5);
 define('MB90_USER_CHALLENGE_EXTIME', 10);
@@ -54,7 +62,9 @@ define('MB90_SELF_ASSESSMENT_EXTIME', 10);
 define('MB90_SELF_ASSESSMENT_NUMROUNDS', 1);
 define('MB90_SELF_ASSESSMENT_ROUNDREST', 1);
 
+// chart options
 define('MB90_WEIGHTGRAPH_DATANUM_FORBARCHART', 5);
+define('MB90_CHARTS_PER_ROW', 3);
 
 /* Membership Subscription IDs */
 if( strpos("localhost", $_SERVER["SERVER_NAME"]) !== false){
@@ -71,6 +81,14 @@ define('MB90_90_DAY_COMPLETE_PURCHASE_REMINDER', 'Please complete your 90 day co
 define('MB90_90_EX_MENU_INC_FOLDER_PATH', '/wp-content/plugins/exercise-menu/inc/');
 define('MB90_90_USER_DATA_INC_FOLDER_PATH', '/wp-content/plugins/mb90-user-data/inc/');
 define('MB90_90_EX_SCHEDULE_FOLDER_PATH', '/exercise-schedule/');
+
+
+// css colours
+
+define('MB90_NAVY_GREY', 'rgb(52, 73, 94)');
+define('MB90_ORANGE', 'rgb(227, 58, 12)');
+define('MB90_SKYBLUE', 'rgb(63, 175, 212)');
+define('MB90_WHITE', 'rgb(0, 0, 0)');
 
 /* debugging and dev work */
 define('MB90_90_DEBUG', true);

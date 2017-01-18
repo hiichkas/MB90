@@ -102,12 +102,12 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         };
         
         function customFormHTML(formName, mode, date, challengePhase, msg, caption){
-
+            var debugMode = <?php echo MB90_90_DEBUG; ?>;
             var todaysDate = new Date();
             var todaysDateFormatted = todaysDate.yyyymmdd();
             //alert(todaysDateFormatted);
             $(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
-            if( (todaysDate.getTime() < new Date(date).getTime())){
+            if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging
                 $("#start-button").hide();
                 msgHTML = dialogHTML(caption, msg);
                 $("#exercies-inputform-wrapper").html(msgHTML);
@@ -327,7 +327,9 @@ if( false ){
     </div>
     
     <?php
-    //echo "inputs = [" . count($challengeInputs) . "]";
+    //echo "inputs length = [" . count($challengeInputs) . "]";
+    //echo "challengePhase = [" . $challengePhase . "]";
+    
     for($challengePhase = 0; $challengePhase < count($challengeInputs); $challengePhase ++)
     {
         ?>

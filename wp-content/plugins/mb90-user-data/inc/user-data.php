@@ -55,6 +55,9 @@
 
 <?php
 
+    global $post;
+    $page_slug = $post->post_name;
+        
     $startDateStr = $_SESSION["UserStartDate"];
     //echo "startdate= [".$userDetailsArr['userstartdate']."]";
     $startDate = strtotime($startDateStr);
@@ -63,8 +66,8 @@
     $numberDaysSinceStart = floor(($today - $startDate)  / (60 * 60 * 24));
     if( $_SESSION["LoggedUserID"] == ""){
         echo "Sorry, you are not logged in<br />Click <a href='../login'>here</a> to login";
-    }else if( $numberDaysSinceStart > 90){ // failsafe 
-        echo "Sorry, it appears that your 90 day course has been completed. Please contact info@mybody90.com if this is not the case";
+    }else if( $numberDaysSinceStart > MB90_NUM_DAYS){ // failsafe 
+        echo "Sorry, it appears that your " . MB90_NUM_DAYS . " day course has been completed. Please contact info@mybody90.com if this is not the case";
     }
     else
     {
@@ -73,7 +76,7 @@
         {
 
         }
-        else if($recordType == "User10DayChallenge" || $recordType == "UserSelfAssessment"){
+        else if($page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG || $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG){
             $challengeObj = new Assessments();
             /*switch($recordType){
                 case "User10DayChallenge":
@@ -88,17 +91,15 @@
             $showGraphs = false;
 
             $chartObj = new chartFunctions();
-            //$captionArray = $chartObj->getBarChartCaptions($recordType);
-            $chartDataValArray = $chartObj->getBarChartValues($recordType);
-            //echo "dataCount = [".count($chartDataValArray)."]";
+            //$captionArray = $chartObj->getBarChartCaptions();
+            $chartDataValArray = $chartObj->getBarChartValues();
+
             if( count($chartDataValArray) > 0)
             {
-                //print_r($chartDataValArray);
                 $count = 0;
                 $phaseDate = $chartDataValArray[0]["exercisedate"];
                 $numPhases = 0;
                 for($i = 1; $i <= count($chartDataValArray); $i++){
-                    //echo "phase = '".$phaseDate."]";
                     if($phaseDate != $chartDataValArray[$i]["exercisedate"]){
                         $numPhases = $numPhases + 1;
                         $phaseDate = $chartDataValArray[$i]["exercisedate"];
@@ -159,7 +160,7 @@
 
                     //echo '<div class="mb90-chart-wrapper">';
 
-                    if( $count > 0 && $count % 3 === 0){ // start a row after 3 charts
+                    if( $count > 0 && $count % MB90_CHARTS_PER_ROW === 0){ // start a row after 3 charts
                         echo '</div><div class="vc_row wpb_row vc_row-fluid graph-raiser-lower">'; // row start
                     }
                     // set up responsive divs for each chart
@@ -197,12 +198,16 @@
 
                     echo '{'."\r\n";
                     echo 'label: "'.$caption.'",'."\r\n";
-                    echo 'fillColor : "rgba(220,220,220,0.2)",'."\r\n";
-                    echo 'strokeColor : "rgba(220,220,220,1)",'."\r\n";
-                    echo 'pointColor : "rgba(220,220,220,1)",'."\r\n";
+                    //color: rgb(227, 58, 12) -- orange
+                    //color: rgb(52, 73, 94) -- navy-grey
+                    //color: rgb(63,175,212) -- sky blue
+                    //echo 'fillColor : "rgba(220,220,220,0.2)",'."\r\n";
+                    echo 'fillColor : "' . MB90_ORANGE . '",'."\r\n";
+                    echo 'strokeColor : "' . MB90_WHITE . '",'."\r\n";
+                    echo 'pointColor : "' . MB90_NAVY_GREY . '",'."\r\n";
                     echo 'pointStrokeColor : "#fff",'."\r\n";
                     echo 'pointHighlightFill : "#fff",'."\r\n";
-                    echo 'pointHighlightStroke : "rgba(220,220,220,1)",'."\r\n";
+                    echo 'pointHighlightStroke : "rgb(63,175,212)",'."\r\n";
                     echo "data : [".$dataArr[$i]."]"."\r\n";
                     echo '}'."\r\n";
                     echo ']'."\r\n";
@@ -217,7 +222,7 @@
                     echo 'window.myLine'.($count+1).' = new Chart(ctx_'.($count+1).').Line(lineChartData_'.($count+1).', {'."\r\n";
                     echo 'responsive: true,'."\r\n";
                     echo 'showTooltips: true,'."\r\n";
-                    echo 'scaleFontColor: "#777"'."\r\n";
+                    echo 'scaleFontColor: "' . MB90_NAVY_GREY . '"'."\r\n";
                     echo '});'."\r\n";
                     $count = $count + 1;
                 }
@@ -233,8 +238,8 @@
         if( $showGraphs )
         {
             $chartObj = new chartFunctions();
-            $captionArray = $chartObj->getBarChartCaptions($recordType);
-            $chartDataValArray = $chartObj->getBarChartValues($recordType);
+            $captionArray = $chartObj->getBarChartCaptions();
+            $chartDataValArray = $chartObj->getBarChartValues();
 
             $startValue = "";
             $startLabel = "";
@@ -378,4 +383,3 @@
     }
 
 ?>
-    
