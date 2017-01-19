@@ -53,7 +53,7 @@ class UtilitiesClass {
         $incPath = get_site_url() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         
         echo '<script src="'.$incPath.'js/timer/tabata-timer.js?v=1.3" type="text/javascript"></script>';
-        echo '<script src="'.$incPath.'js/timer/init.js?v=1.917" type="text/javascript"></script>';
+        echo '<script src="'.$incPath.'js/timer/init.js?v=1.956" type="text/javascript"></script>';
 
         //echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>';
         

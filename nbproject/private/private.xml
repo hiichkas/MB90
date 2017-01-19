@@ -7,29 +7,44 @@
             <file>file:/C:/wamp64/www/MB90/mb90-db-13Jan2017.sql</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/exercise-schedule/exercise-schedule.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/constants/constants.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/js/Chart.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/ProfileSaveWebService.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-settings.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/DietDetailsInclude.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/js/mb90-functions.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/DataGridClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/UserFunctionsClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_goal_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/cms-forms/exercise-input.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_user_10daychallenge_data.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/exercise-menu.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/Classes/ExerciseUtilitiesClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/WeightSaveWebService.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/index.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/ExerciseDetailsInclude-ori.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/js/mb90-functions-memberpress.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/paid-memberships-pro/shortcodes/checkout.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/self-assessment.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/user-data-old.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/css/timer/tabata-timer.css</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/css/data-grid.css</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/data-grid-memberpress.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/DietSaveWebService.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/akismet/class.akismet.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/layouts/single.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/css/memberpress-custom.css</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/update_record.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/user-data-dupe.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/user-data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/get_exercise_listing_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/layouts/theme.config.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/ExDetailsClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-admin/network/site-new.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/ExerciseScheduleInclude.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-includes/plugin.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/user-data-input.php</file>
             <file>file:/C:/wamp64/www/MB90/index.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/timer/init.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/cms-forms/exercise-input.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/UtilitiesClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/mb90exheader-welcome.php</file>
@@ -37,21 +52,26 @@
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/get_prog_exercise_data.php</file>
             <file>file:/C:/wamp64/www/MB90/.htaccess-LIVE</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/destroy_record.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/getFormHTML.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/constants/html-tag-constants.php</file>
             <file>file:/C:/wamp64/www/MB90/.htaccess</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/layouts/theme.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/css/myBody90-user-input.css</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/save_record.php</file>
-            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/user-data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/save_form_record.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/data-grid.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/grid-functions.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/dbase_include.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/ExerciseDetailsInclude.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/DietWebService.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_user_body_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/diet/init.js</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/timer/tabata-timer.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_user_selfassessment_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/js/grid-functions.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_prog_exercise_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/destroy_record.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/user-data-memberpress.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/ExerciseScheduleInclude-ori.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/warp.php</file>
         </group>

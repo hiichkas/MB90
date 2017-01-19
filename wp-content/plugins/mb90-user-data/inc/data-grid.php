@@ -138,9 +138,9 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                 //alert($(this).prop("id"));
                 if($(this).val().length === 0){
                     errorCount ++;
-                    $(this).css("border", "1px solid red");
+                    //$(this).css("border", "1px solid red");
                 }else{
-                    $(this).css("border", "1px solid #0fa2e6");                    
+                    //$(this).css("border", "1px solid #0fa2e6");                    
                 }
             });
             if( errorCount > 0 ){

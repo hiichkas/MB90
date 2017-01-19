@@ -285,7 +285,7 @@ class datagrid
                         if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                             for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
                                 $suffix = $phaseCount . $formCount;
-                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group has-success has-danger"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" required="true" class="form-control"/></div>';
+                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" class="form-control"/></div>';
                                 //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                                 $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldNameArr[$bsCount].'" />';
                                 $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" /></div></div>';
@@ -293,7 +293,7 @@ class datagrid
                             }
                             //$formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
                         }else{
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group has-success has-danger"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" required="true"  class="form-control"/></div>';
+                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" class="form-control"/></div>';
                             $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                             $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" />';
                             $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div></div>';
@@ -369,7 +369,7 @@ class datagrid
                         
                         if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                             //for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
-                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" name="Result_'.($suffix).'" required="true" /></div>';
+                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" name="Result_'.($suffix).'" /></div>';
                                 //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                                 $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldNameArr[$formCount].'" />';
                                 $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="" /></div>';
@@ -377,8 +377,8 @@ class datagrid
                             $formCount = $formCount + 1;
                             //$formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
                         }else{
-                            //$formInputHTML .= '<div class="fitem ' . $formCellStyle . '"><label>'.$label.'</label><input id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" class="easyui-textbox" required="true">';
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input type="text" id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" required="true" /></div>';
+                            //$formInputHTML .= '<div class="fitem ' . $formCellStyle . '"><label>'.$label.'</label><input id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" class="easyui-textbox">';
+                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" /></div>';
                             $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$exerciseIdArr[$formCount].'" />';
                             $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="" />';
                             $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$measurementTypeArr[$formCount].'" /></div>';
@@ -486,9 +486,9 @@ class datagrid
             { 
                 //$ddHTML .= '<option value="'.$row->$tableID.'">'.$row->$dropdownCaption.'</option>';
                 //echo "<br />Exercise = [".$row->ExerciseName."]";
-                $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
-                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" class="easyui-textbox" required="true" hidden="true">';
-                $formInputHTML .= '<input id="MeasurementType_'.$exerciseCount.'" name="MeasurementType_'.$exerciseCount.'" class="easyui-textbox" required="true" readonly="true"></div>';
+                $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
+                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" class="easyui-textbox" hidden="true">';
+                $formInputHTML .= '<input id="MeasurementType_'.$exerciseCount.'" name="MeasurementType_'.$exerciseCount.'" class="easyui-textbox" readonly="true"></div>';
                 $exerciseCount = $exerciseCount + 1;
             }
             $formInputHTML .= '</div>';
@@ -506,7 +506,7 @@ class datagrid
             { 
                 //$ddHTML .= '<option value="'.$row->$tableID.'">'.$row->$dropdownCaption.'</option>';
                 //echo "<br />Exercise = [".$row->ExerciseName."]";
-                $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
+                $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
                 $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" class="easyui-textbox" required="true" hidden="true">';
                 $formInputHTML .= '<input id="MeasurementType_'.$exerciseCount.'" name="MeasurementType_'.$exerciseCount.'" class="easyui-textbox" required="true" readonly="true"></div>';
                 $exerciseCount = $exerciseCount + 1;
