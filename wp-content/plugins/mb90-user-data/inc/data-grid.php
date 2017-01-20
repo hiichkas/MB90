@@ -149,7 +149,8 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             return true;
         }
         
-        function saveHTMLFormRecord(challengePhase){
+        function saveHTMLFormRecord(e, challengePhase){
+            e.preventDefault();
             //$('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
             $('#fmFormHTML_'+challengePhase).form('submit',{
                 url: formSubmitURL,
@@ -168,7 +169,17 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                     } else {
                         alert("Data saved. Click Ok to reload the page")
                         //location.reload(); // need to reload the page to refresh the graphs
-                        location.href = window.location.href;
+                        //location.href = window.location.href;
+                        var form = document.createElement("form");
+                        form.setAttribute("method", "POST");
+                        form.setAttribute("action", window.location.href );
+                        var hiddenField = document.createElement("input");
+                        hiddenField.setAttribute("type", "hidden");
+                        hiddenField.setAttribute("name", "exDay");
+                        hiddenField.setAttribute("value", $("#exDayLocal").val());
+                        form.appendChild(hiddenField);
+                        document.body.appendChild(form);
+                        form.submit();
                     }
                 }
             });
@@ -248,6 +259,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         }
         
         $(document).ready(function(){
+                //$('[data-toggle="tooltip"]').tooltip()
                 $('#dg').datagrid({
                     <?php if( !$hideToolBar ){ ?>
                     onDblClickCell: function(index,field,value){
@@ -341,7 +353,9 @@ if( false ){
         <div class="vc_row wpb_row vc_row-fluid">
             <div class="vc_col-sm-12 wpb_column vc_column_container">
                 <div class="mb90-input-form-button">
-                    <a href="javascript:void(0)" class="button fullwidth bluebutton" onclick="saveHTMLFormRecord(<?=$challengePhase+1?>)">Save</a>
+                    <!--<a href="javascript:void(0)" class="button fullwidth bluebutton" onclick="saveHTMLFormRecord(<?=$challengePhase+1?>)">Save</a>-->
+                    <!--<button data-toggle="tooltip" data-placement="top" title="Please fill all fields" class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>-->
+                    <button class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>
                 </div>
             </div>
         </div>

@@ -131,14 +131,15 @@
         }else{
         $incPath = "http://mybody90.com/wp-content/plugins/exercise-menu/inc/";
         }
-        
-        echo '<script src="'.$incPath.'js/timer/tabata-timer.js?v=1.32" type="text/javascript"></script>';
-        echo '<script src="'.$incPath.'js/timer/init.js?v=1.94" type="text/javascript"></script>';
+ 
+        //echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>';
 
-        echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>';
-        echo '<script src="'.$incPath.'js/progressTimer/js/jquery.progressTimer.js"></script>';
+        echo '<script src="'.$incPath.'js/timer/tabata-timer.js?v=1.322" type="text/javascript"></script>'."\r\n";
+        echo '<script src="'.$incPath.'js/timer/init.js?v=1.941" type="text/javascript"></script>'."\r\n";
+
+        echo '<script src="'.$incPath.'js/progressTimer/js/jquery.progressTimer.js"></script>'."\r\n";
         
-        echo '<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>';
+        echo '<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>'."\r\n";
         
         //echo '<script src="'.$incPath.'js/asProgress/src/rainbow.min.js"></script>';        
         //echo '<script src="'.$incPath.'js/asProgress/src/jquery-asProgress.js"></script>';
@@ -157,7 +158,7 @@
         }
         
         //echo '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">';
-        echo '<link rel="stylesheet" href="'.$incPath.'css/timer/bootstrap.css">';
+        //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/bootstrap.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/timer-styling.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/TimeCircles.css">';
         echo '<link rel="stylesheet" href="'.$incPath.'css/timer/tabata-timer.css?v=1.5">';
@@ -265,6 +266,8 @@ echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'
     {
         global $wpdb;
         $exDay = $_REQUEST["exDay"];
+        localStorage.setItem('exDayLocal', $exDay);
+        alert(localStorage.exDayLocal);
         $mode = $_REQUEST["exDayType"];
         if( strlen($exDay) == 0 )
         {

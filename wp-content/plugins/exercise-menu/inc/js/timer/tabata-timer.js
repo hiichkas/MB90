@@ -19,6 +19,9 @@
 
 (function($){
     var DEBUG = false;
+  
+    //$('[data-toggle="tooltip"]').tooltip()
+
     var exlistingArr = $("#exlistinghidden").val().split("##,##"); // hidden var
     var numexercises = $("#numexercises").val();
     var exerciseCount = 0;
