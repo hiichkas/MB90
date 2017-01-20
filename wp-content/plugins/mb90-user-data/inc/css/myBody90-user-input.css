@@ -10,10 +10,14 @@ root {
     display: block;
 }
 
+.slider-selection {
+	background: #BABABA;
+}
+
 .mb90-chart-outer-wrapper{overflow: hidden;    padding-bottom: 40px;    text-align: center;    width: 100%;}
 .mb90-chart-wrapper{float:left;width:33%}
 .mb90-chart-caption{padding-bottom: 20px}
-.mb90-chart-caption h4{background-color: rgb(52, 73, 94); color: #FFF; margin-right:10px; border: 1px solid white; padding:10px}
+.mb90-chart-caption h4{background-color: rgb(52, 73, 94); color: #FFF; margin-right:10px; border: 1px solid white; padding:10px; font-size:20px}
 .mb90-chart-contents{}
 
 .mb90-challengeDatesWrapper{width:100%;padding-bottom:20px;overflow:hidden}

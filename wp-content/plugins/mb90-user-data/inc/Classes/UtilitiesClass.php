@@ -52,14 +52,14 @@ class UtilitiesClass {
         //$incPath = self::getRootURL() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         $incPath = get_site_url() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         
-        echo '<script src="'.$incPath.'js/timer/tabata-timer.js?v=1.3" type="text/javascript"></script>'."\r\n";
-        echo '<script src="'.$incPath.'js/timer/init.js?v=1.960" type="text/javascript"></script>'."\r\n";
-
         //echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>';
         
         //echo '<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>';
         echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>'."\r\n";
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js?v=1.0" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>'."\r\n";
+
+        echo '<script src="'.$incPath.'js/timer/tabata-timer.js?v=1.3" type="text/javascript"></script>'."\r\n";
+        echo '<script src="'.$incPath.'js/timer/init.js?v=1.964" type="text/javascript"></script>'."\r\n";
         
         echo '<script src="'.$incPath.'js/progressTimer/js/jquery.progressTimer.js"></script>'."\r\n";
         
@@ -83,12 +83,13 @@ class UtilitiesClass {
         //$incPath = self::getRootURL() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         $incPath = get_site_url() . MB90_90_EX_MENU_INC_FOLDER_PATH;
 
+        
         echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">'."\r\n";
         //echo '<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/bootstrap.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/timer-styling.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/timer/TimeCircles.css">';
-        echo '<link rel="stylesheet" href="'.$incPath.'css/timer/tabata-timer.css?v=1.51">'."\r\n";
+        echo '<link rel="stylesheet" href="'.$incPath.'css/timer/tabata-timer.css?v=1.511">'."\r\n";
         
         echo '<link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />'."\r\n";
         

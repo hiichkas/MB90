@@ -29,6 +29,11 @@ jQuery(document).ready(function(){
     jQuery('[data-toggle="tooltip"]').tooltip();
     jQuery('.mb90-input-form-button > button').tooltip('show');
     
+    jQuery(document).on( 'change', '.mb90-input-form-input > input[type=text]', function(){
+        alert(jQuery(this).val());
+    });
+
+    
     jQuery( ".mb90-input-form-input" ).children('input').each(function(index) {
         mb90ProcessInput(this);
     });
@@ -185,5 +190,7 @@ jQuery("#tabata-roundsrest").val(roundrest);
 //$exListing .= '<p style=\"text-align: right;\"><strong>' . $currentExName . '</strong></p>';
 
 jQuery("#exlisting").html(exlistingHTML);
+
+//jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100});
 
 });

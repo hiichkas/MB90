@@ -122,6 +122,11 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                     currentDisplayedFormID = "dlgFormHTML_"+challengePhase;
                     formHTML = getFormHTML(challengePhase);
                     $("#exercies-inputform-wrapper").html(formHTML);
+                    
+                    //$("#Result_31").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                    
+                    $(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                    //$(".mb90-input-form-input > input[type=text]")
                     // show the entire timer block
                     $(".outer-timer-wrapper").show();
 
@@ -341,7 +346,7 @@ if( false ){
     <?php
     //echo "inputs length = [" . count($challengeInputs) . "]";
     //echo "challengePhase = [" . $challengePhase . "]";
-    
+    echo '<div id="hiddenExerciseForms">';
     for($challengePhase = 0; $challengePhase < count($challengeInputs); $challengePhase ++)
     {
         ?>
@@ -365,6 +370,8 @@ if( false ){
             
     </div>    
     <?php } ?>
+
+    </div> <!-- close off the hidden forms div ... these are only used for data ... not displayed -->
     
     
     

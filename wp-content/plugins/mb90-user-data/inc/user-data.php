@@ -42,7 +42,7 @@
 <link rel="stylesheet" type="text/css" href="<?=$incURL?>css/mb90-buttons.css">
 <link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90_cmsforms.css">
 
-<link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90-user-input.css?v=1.0">
+<link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90-user-input.css?v=1.001">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?=$incURL?>js/jquery.easyui.min.js"></script>
