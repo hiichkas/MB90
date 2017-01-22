@@ -277,7 +277,7 @@ timer-wrapper{
 
 .h2-narrow{color: #e33a0c;font-size:20px}
 
-#hiddenExerciseForms{display:none}
+#hiddenExerciseForms{display:block}
 .input-form-hidden{display:none}
 
 .ftitle{display:none !important}

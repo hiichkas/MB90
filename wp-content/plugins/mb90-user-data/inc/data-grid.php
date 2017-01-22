@@ -57,22 +57,14 @@ $formInputs =  $dgObj->getFormInputs($recordType);
 
     <script type="text/javascript">
         
-        $.extend($.fn.dialog.methods, {
-            mymove: function(jq, newposition){
-                return jq.each(function(){
-                    $(this).dialog('move', newposition);
-                });
-            }
-        });
-
         var url;
         var formSubmitURL;
         var currentDisplayedFormID;
         
         function dialogHTML(caption, msg){
 
-            //$('#dlgHTML').dialog('open').dialog('setTitle',caption);
-            //$('#fmHTML').form('clear');
+            //jQuery('#dlgHTML').dialog('open').dialog('setTitle',caption);
+            //jQuery('#fmHTML').form('clear');
             msgHTML = '<div class="vc_row wpb_row vc_row-fluid"><div class="vc_col-sm-12 wpb_column vc_column_container">';
             msgHTML += "<div class='exercise-input-msg'>";
             msgHTML += "<h2>" + caption + "</h2>";
@@ -84,13 +76,13 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         
         function dialogHTMLClose(id)
         {
-            $('#' + id).dialog('close');
-            $("#exercies-inputform-wrapper").css("height", 0);    
+            jQuery('#' + id).dialog('close');
+            jQuery("#exercies-inputform-wrapper").css("height", 0);    
         }
         
         function getFormHTML(phase)
         {
-            var formHTML = $("#dlgFormHTML_" + phase).html().replace("fmFormHTML_" + phase + "_temp", "fmFormHTML_" + phase ).replace('class="ftitle"', 'style="display:none"');
+            var formHTML = jQuery("#dlgFormHTML_" + phase).html().replace("fmFormHTML_" + phase + "_temp", "fmFormHTML_" + phase ).replace('class="ftitle"', 'style="display:none"');
             return formHTML;
         }
         
@@ -106,29 +98,34 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             var todaysDate = new Date();
             var todaysDateFormatted = todaysDate.yyyymmdd();
             //alert(todaysDateFormatted);
-            $(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
+            jQuery(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
             if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging
-                $("#start-button").hide();
+                jQuery("#start-button").hide();
                 msgHTML = dialogHTML(caption, msg);
-                $("#exercies-inputform-wrapper").html(msgHTML);
+                jQuery("#exercies-inputform-wrapper").html(msgHTML);
                 // hide the entire timer block
-                $(".outer-timer-wrapper").hide();
+                jQuery(".outer-timer-wrapper").hide();
             }else{
-                
-                if( $('#dlgFormHTML_'+challengePhase).length > 0 ){
-                    $("#start-button").show();
-                    $(".timer-start").show();
-                    $("#exercies-inputform-wrapper").html(""); // reset form content
+                //alert(jQuery('#dlgFormHTML_'+challengePhase).html());
+                if( jQuery('#dlgFormHTML_'+challengePhase).length > 0 ){
+                    jQuery("#start-button").show();
+                    jQuery(".timer-start").show();
+                    jQuery("#exercies-inputform-wrapper").html(""); // reset form content
                     currentDisplayedFormID = "dlgFormHTML_"+challengePhase;
-                    formHTML = getFormHTML(challengePhase);
-                    $("#exercies-inputform-wrapper").html(formHTML);
                     
-                    //$("#Result_31").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                    jQuery('div[id^="dlgFormHTML_"]').hide();
+                    jQuery("#" + currentDisplayedFormID).show();
+                    //jQuery("#" + currentDisplayedFormID).css("display", "block !important");
+                    //alert(jQuery("#" + currentDisplayedFormID).html());
                     
-                    $(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
-                    //$(".mb90-input-form-input > input[type=text]")
+                    //formHTML = getFormHTML(challengePhase);
+                    //jQuery("#exercies-inputform-wrapper").html(formHTML);
+                    
+                    //jQuery("#Result_31").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                    
+                    //jQuery(".mb90-input-form-input > input[type=text]")
                     // show the entire timer block
-                    $(".outer-timer-wrapper").show();
+                    jQuery(".outer-timer-wrapper").show();
 
                 }
                 
@@ -139,13 +136,13 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         function ValidateForm(formID)
         {
             var errorCount = 0;
-            $("form#" + formID + " input[type=text]").each(function(){
-                //alert($(this).prop("id"));
-                if($(this).val().length === 0){
+            jQuery("form#" + formID + " input[type=text]").each(function(){
+                //alert(jQuery(this).prop("id"));
+                if(jQuery(this).val().length === 0){
                     errorCount ++;
-                    //$(this).css("border", "1px solid red");
+                    //jQuery(this).css("border", "1px solid red");
                 }else{
-                    //$(this).css("border", "1px solid #0fa2e6");                    
+                    //jQuery(this).css("border", "1px solid #0fa2e6");                    
                 }
             });
             if( errorCount > 0 ){
@@ -156,17 +153,17 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         
         function saveHTMLFormRecord(e, challengePhase){
             e.preventDefault();
-            //$('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
-            $('#fmFormHTML_'+challengePhase).form('submit',{
+            //jQuery('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
+            jQuery('#fmFormHTML_'+challengePhase).form('submit',{
                 url: formSubmitURL,
                 onSubmit: function(){
-                    //return $(this).form('validate');
+                    //return jQuery(this).form('validate');
                     return ValidateForm("fmFormHTML_"+challengePhase); // check that all values were entered
                 },
                 success: function(result){
                     var result = eval('('+result+')');
                     if (result.errorMsg){
-                        /*$.messager.show({
+                        /*jQuery.messager.show({
                             title: 'Error',
                             msg: result.errorMsg
                         });*/
@@ -181,7 +178,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", "exDay");
-                        hiddenField.setAttribute("value", $("#exDayLocal").val());
+                        hiddenField.setAttribute("value", jQuery("#exDayLocal").val());
                         form.appendChild(hiddenField);
                         document.body.appendChild(form);
                         form.submit();
@@ -193,66 +190,66 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         function newRecord(){
             var currentDate = getCurrentDate();
 
-            $('#dlg').dialog('open').dialog('setTitle','New <?=$recordName?>');
-            $('#fm').form('clear');
-            $('#fm').form('load', {
+            jQuery('#dlg').dialog('open').dialog('setTitle','New <?=$recordName?>');
+            jQuery('#fm').form('clear');
+            jQuery('#fm').form('load', {
                 InputDate: currentDate
             });
             url = '<?=$incURL?>scripts/save_record.php?recordType=<?=$recordName?>&UserID=<?=$wpLoggedInUserID?>';
         }
         function editRecord(){
             
-            var row = $('#dg').datagrid('getSelected');
+            var row = jQuery('#dg').datagrid('getSelected');
             if (row){
-                $('#dlg').dialog('open').dialog('setTitle','Edit <?=$recordName?>');
-                $('#fm').form('load',row);
+                jQuery('#dlg').dialog('open').dialog('setTitle','Edit <?=$recordName?>');
+                jQuery('#fm').form('load',row);
                 url = '<?=$incURL?>scripts/update_record.php?id='+row.ID+'&recordType=<?=$recordName?>&UserID=<?=$wpLoggedInUserID?>';
             }
         }
         
         function editChallengeRecord(name){
-            $('#dlgChallenge').dialog('open').dialog('setTitle','Edit ' + name);
-            $('#fmChallenge').form('load',row);
+            jQuery('#dlgChallenge').dialog('open').dialog('setTitle','Edit ' + name);
+            jQuery('#fmChallenge').form('load',row);
             url = '<?=$incURL?>scripts/update_record.php?id='+row.ID+'&recordType=<?=$recordName?>&UserID=<?=$wpLoggedInUserID?>';
         }
 
         function saveRecord(){
-            $('#fm').form('submit',{
+            jQuery('#fm').form('submit',{
                 url: url,
                 onSubmit: function(){
-                    return $(this).form('validate');
+                    return jQuery(this).form('validate');
                 },
                 success: function(result){
                     var result = eval('('+result+')');
                     if (result.errorMsg){
-                        $.messager.show({
+                        jQuery.messager.show({
                             title: 'Error',
                             msg: result.errorMsg
                         });
                     } else {
-                        $('#dlg').dialog('close');        // close the dialog
-                        $('#dg').datagrid('reload');    // reload the data
+                        jQuery('#dlg').dialog('close');        // close the dialog
+                        jQuery('#dg').datagrid('reload');    // reload the data
                         location.reload(); // need to reload the page to refresh the graphs
                     }
                 }
             });
         }
         function destroyRecord(){
-            var row = $('#dg').datagrid('getSelected');
+            var row = jQuery('#dg').datagrid('getSelected');
             if (row){
-                $.messager.confirm('Confirm','Are you sure you want to delete this <?=$recordName?>?',function(r){
+                jQuery.messager.confirm('Confirm','Are you sure you want to delete this <?=$recordName?>?',function(r){
                     if (r){
-                        $.post('<?=$incURL?>scripts/destroy_record.php?id=' +row.ID + "&ProgrammeID=<?=$progSelected?>&recordType=<?=$recordName?>",function(result){
+                        jQuery.post('<?=$incURL?>scripts/destroy_record.php?id=' +row.ID + "&ProgrammeID=<?=$progSelected?>&recordType=<?=$recordName?>",function(result){
                             if (result === 0){ // 1 = true
-                                //$('#dg').datagrid('reload');    // reload the data
-                                $('#dg').datagrid('loadData',[]); // clear the grid as no rows left in dbase
-                                //$('#dg').datagrid({url: '<?=$getDataURL?>'});
+                                //jQuery('#dg').datagrid('reload');    // reload the data
+                                jQuery('#dg').datagrid('loadData',[]); // clear the grid as no rows left in dbase
+                                //jQuery('#dg').datagrid({url: '<?=$getDataURL?>'});
                             } 
                             else if(result > 0){
-                                $('#dg').datagrid('reload');    // reload the data
+                                jQuery('#dg').datagrid('reload');    // reload the data
                             }
                             else {
-                                $.messager.show({    // show error message
+                                jQuery.messager.show({    // show error message
                                     title: 'Error',
                                     msg: result.errorMsg
                                 });
@@ -263,22 +260,54 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             }
         }
         
-        $(document).ready(function(){
-                //$('[data-toggle="tooltip"]').tooltip()
-                $('#dg').datagrid({
+    jQuery( document ).ready(function() {
+        
+        jQuery.extend(jQuery.fn.dialog.methods, {
+            mymove: function(jq, newposition){
+                return jq.each(function(){
+                    jQuery(this).dialog('move', newposition);
+                });
+            }
+        });
+
+
+        
+        //jQuery(document).ready(function(){
+                //jQuery('[data-toggle="tooltip"]').tooltip()
+                /*jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                jQuery(".mb90-input-form-input > input[type=text]").each(function(){
+                    jQuery(this).on('slide', function(slideEvt){
+                        alert(slideEvt.value);
+                        jQuery("#exerciseInputSliderDisplay").text(slideEvt.value);
+                    });
+                });*/
+                /*jQuery(".mb90-input-form-input > input[id^='Result_']").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+                jQuery(".mb90-input-form-input > input[id^='Result_']").each(function(){
+                    var id = "#" + this.id;
+                    jQuery("body").on('change', "'" + id + "'", function(event){
+                        alert("here");
+                    });
+                    alert(this.id);
+                    jQuery(this).slider().on('slide', function(slideEvt){
+                        alert(slideEvt.value);
+                        jQuery("#exerciseInputSliderDisplay30").text(slideEvt.value);
+                    });
+                });*/
+                
+                jQuery('#dg').datagrid({
                     <?php if( !$hideToolBar ){ ?>
                     onDblClickCell: function(index,field,value){
                         editRecord();
                     }
                     <?php } ?>
                 });
-/*                $('#dg').datagrid('getPager').pagination({
+/*                jQuery('#dg').datagrid('getPager').pagination({
                     pageSize: 5, //The number of records per page, the default is 10 
                     pageList: [5, 10, 12, 14, 16] //The list can be set PageSize
                 });*/
 
-                /*$('#dg').datagrid({pagePosition:'both', pageList: [5, 10, 12, 14, 16]});                
-                $('#dg').datagrid('getPager').pagination({
+                /*jQuery('#dg').datagrid({pagePosition:'both', pageList: [5, 10, 12, 14, 16]});                
+                jQuery('#dg').datagrid('getPager').pagination({
 				layout:['list','sep','first','prev','sep','links','sep','next','last','sep','refresh']
 			});*/
 
@@ -350,7 +379,8 @@ if( false ){
     for($challengePhase = 0; $challengePhase < count($challengeInputs); $challengePhase ++)
     {
         ?>
-    <div class="input-form-hidden" id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">
+    <!--<div class="input-form-hidden" id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">-->
+    <div id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">
         <div class="ftitle">My Body 90: Input Form</div>
         <form id="fmFormHTML_<?=$challengePhase+1?>_temp" method="post">
         <?=$challengeInputs[$challengePhase]?>
@@ -368,6 +398,7 @@ if( false ){
             
         </form>
             
+    </div>    
     </div>    
     <?php } ?>
 

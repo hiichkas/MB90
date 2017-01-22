@@ -148,6 +148,8 @@
                 }
 
                 $captionArray = array();
+                echo '<div id="chart-container">';
+                
                 echo '<div class="vc_row wpb_row vc_row-fluid graph-raiser">'; // row start
                 for($i = 0; $i < $numExercises; $i++)
                 {
@@ -275,6 +277,8 @@
             }
             //echo '<div id="chartjs-tooltip"></div>';
             echo '</div>';
+            
+            echo '</div>'; // close the chart container
 
             $count = 0;
 
@@ -377,7 +381,6 @@
             echo '}'."\r\n";
             echo '</script>'."\r\n";
         }
-
 
         include($pluginPath . 'inc/data-grid.php');
     }

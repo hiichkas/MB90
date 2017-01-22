@@ -1,6 +1,6 @@
 function mb90ProcessInput(inputObj)
 {
-    if( inputObj.value.length > 0 ){
+    /*if( inputObj.value.length > 0 ){
         jQuery("#" + inputObj.id).removeClass("form-control-danger");
         jQuery("#" + inputObj.id).parents().eq(1).removeClass("has-danger");
         jQuery("#" + inputObj.id).addClass("form-control-success");
@@ -10,7 +10,7 @@ function mb90ProcessInput(inputObj)
         jQuery("#" + inputObj.id).parents().eq(1).removeClass("has-success");        
         jQuery("#" + inputObj.id).addClass("form-control-danger");
         jQuery("#" + inputObj.id).parents().eq(1).addClass("has-danger");
-    }
+    }*/
 }
 
 function isNumberKey(evt) {
@@ -23,113 +23,22 @@ function isNumberKey(evt) {
 
 jQuery(document).ready(function(){
     
-    //localStorage.setItem('exDayLocal', "testval");
-    //alert(localStorage.exDayLocal);
-        
-    jQuery('[data-toggle="tooltip"]').tooltip();
-    jQuery('.mb90-input-form-button > button').tooltip('show');
+       
+    var chartHTML = jQuery("#chart-container").html();
+    jQuery("#chart-container").html(""); // reset the chart container
+    // append the chart html to the bottom row
+    //alert(chartHTML);
+    jQuery("#chart-container-lower").append(chartHTML);
     
-    jQuery(document).on( 'change', '.mb90-input-form-input > input[type=text]', function(){
-        alert(jQuery(this).val());
-    });
+    //jQuery('[data-toggle="tooltip"]').tooltip();
+    //jQuery('.mb90-input-form-button > button').tooltip('show');
+    
+    // turn on the bootstrap validation for form inputs
+    //jQuery( ".mb90-input-form-input" ).children('input').each(function(index) {
+        //mb90ProcessInput(this);
+    //});
+    
 
-    
-    jQuery( ".mb90-input-form-input" ).children('input').each(function(index) {
-        mb90ProcessInput(this);
-    });
-    
-/*jQuery('document').on('change', '.form-control', function(){
-    alert(jQuery(this).val());
-    if( jQuery(this).val().length > 0 ){
-        alert("filled");
-    }else{
-        alert("blank");
-    }   
-});*/
-    
-/*jQuery('input[id^="Result_"]').each(function(index){
-   jQuery(document).on('change', this, function(index){
-        if( jQuery(this).val().length > 0 ){
-            alert("filled");
-            jQuery(this).removeClass("form-control-danger");
-            jQuery(this).parents().eq(1).removeClass("has-danger");
-            //jQuery(this).closest("div.form-group").removeClass("has-danger");
-
-            jQuery(this).addClass("form-control-success");
-            jQuery(this).parents().eq(1).addClass("has-success");
-            //jQuery(this).closest("div.form-group").addClass("has-success");
-            //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid green" );
-        }else{
-            alert("blank");
-            jQuery(this).removeClass("form-control-success");
-            jQuery(this).parents().eq(1).removeClass("has-success");
-            //jQuery(this).closest("div.form-group").removeClass("has-success");
-            jQuery(this).addClass("form-control-danger");
-            jQuery(this).parents().eq(1).addClass("has-danger");
-            //jQuery(this).closest("div.form-group").addClass("has-danger");
-            //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid blue" );
-        }    
-   });
-});
-    */
-/*    jQuery('input[id^="Result_"]').on('change', function(index){
-        //jQuery(document).on('change', this, function(){
-            if( jQuery(this).val().length > 0 ){
-                jQuery(this).removeClass("form-control-danger");
-                jQuery(this).parents().eq(1).removeClass("has-danger");
-                //jQuery(this).closest("div.form-group").removeClass("has-danger");
-
-                jQuery(this).addClass("form-control-success");
-                jQuery(this).parents().eq(1).addClass("has-success");
-                //jQuery(this).closest("div.form-group").addClass("has-success");
-                //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid green" );
-            }else{
-                jQuery(this).removeClass("form-control-success");
-                jQuery(this).parents().eq(1).removeClass("has-success");
-                //jQuery(this).closest("div.form-group").removeClass("has-success");
-                jQuery(this).addClass("form-control-danger");
-                jQuery(this).parents().eq(1).addClass("has-danger");
-                //jQuery(this).closest("div.form-group").addClass("has-danger");
-                //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid blue" );
-            }
-        //});        
-    });*/
-    
-// add tick mark to filled in inputs
-/*
-jQuery( ".mb90-input-form-input" ).children('input').each(function(index) {
-    
-    if( jQuery(this).val().length > 0 ){
-        jQuery(this).removeClass("form-control-danger");
-        jQuery(this).parentsUntil(".form-group").removeClass("has-danger");
-        jQuery(this).addClass("form-control-success");
-        jQuery(this).parentsUntil(".form-group").addClass("has-success");
-        //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid green" );
-    }else{
-        jQuery(this).removeClass("form-control-success");
-        jQuery(this).parentsUntil(".form-group").removeClass("has-success");
-        jQuery(this).addClass("form-control-danger");
-        jQuery(this).parentsUntil(".form-group").addClass("has-danger");
-        //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid blue" );
-    }*/
-    
-    /*
-    jQuery(document).on('change', jQuery('#' + jQuery(this).attr('id')), function(){
-        if( jQuery(this).val().length > 0 ){
-            jQuery(this).removeClass("form-control-danger");
-            jQuery(this).parentsUntil("div.form-group").removeClass("has-danger");
-            jQuery(this).addClass("form-control-success");
-            jQuery(this).parentsUntil("div.form-group").addClass("has-success");
-            //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid green" );
-        }else{
-            jQuery(this).removeClass("form-control-success");
-            jQuery(this).parentsUntil("div.form-group").removeClass("has-success");
-            jQuery(this).addClass("form-control-danger");
-            jQuery(this).parentsUntil("div.form-group").addClass("has-danger");
-            //jQuery(this).parentsUntil(".form-group").css( "border", "3px solid blue" );
-        }
-    });*/
-//});
 
 jQuery("#totalworkouttimespan").html(jQuery("#totalworkouttimestring").val()); // display total workout minutes and seconds
    
@@ -186,11 +95,86 @@ jQuery("#tabata-roundsrest").val(roundrest);
 //jQuery("#tabata-rounds").prop('disabled', true);
 //jQuery("#tabata-exrest").prop('disabled', true);
 //jQuery("#tabata-work").prop('disabled', true);
-
 //$exListing .= '<p style=\"text-align: right;\"><strong>' . $currentExName . '</strong></p>';
 
 jQuery("#exlisting").html(exlistingHTML);
 
 //jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100});
 
+/*jQuery(".mb90-input-form-input > input[type=text]").each(function(){
+    jQuery(this).on('slide', function(slideEvt){
+        alert(slideEvt.value);
+        jQuery("#exerciseInputSliderDisplay").text(slideEvt.value);
+    });
+});*/
+    
+//jQuery(".mb90-input-form-input > input[id^='Result_']").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+        //.on('change', function(){
+    //alert("hello");
+//});
+
+    /*jQuery(".mb90-input-form-input > input[name^='Result_']").trigger('slider-change');
+    
+    jQuery(".mb90-input-form-input > input[name^='Result_']").each(function(){
+        alert("outside event");
+        jQuery(this).on("slider-change", function(event){
+            alert("in event");
+            //alert("value = [" + event.value + "]")
+            //alert("value = [" + jQuery(this).val() + "]");
+        });
+    });*/
+
+/*jQuery(".mb90-input-form-input > input[id^='Result_']").each(function(){
+    var id = "#" + this.id;
+    jQuery(id).on('change', function(event){
+        alert("here");
+    });
+    alert(this.id);
+    jQuery(this).slider().on('slide', function(slideEvt){
+        alert(slideEvt.value);
+        jQuery("#exerciseInputSliderDisplay30").text(slideEvt.value);
+    });
+});*/
+    /*
+    var slides = document.getElementsByClassName("mb90Slider");
+    var placeHolders = document.getElementsByClassName("mb90SliderPlaceHolder");
+    var slideValue = 0;
+    for(var i = 0; i < slides.length; i++)
+    {
+//        'input[type=hidden]'
+       //alert("id = [" + slides[i].id + "]");
+       slideValue = jQuery("#" + slides[i].id).next('input[type=hidden]').val(); //init slider with the hidden input value
+       var slideID = slides[i].id;
+       var idIndex = slides[i].id.split("_")[1];
+       //var slider = document.getElementById('slider');
+       noUiSlider.create(slides[i], {
+        animate: true,
+	animationDuration: 1000,
+	start: slideValue,
+        step: 1,
+        tooltips: true,
+	connect: [true, false],
+            range: {
+                    'min': 0,
+                    'max': 100
+            }
+        }).on('change', function( values, handle, unencoded ){
+            jQuery("#exerciseInputSliderDisplay_" + slides[i].id.split('_')[1]).text(values[handle]);
+        });
+    
+        
+    }*/
+    
+    /*var slides2 = document.getElementsByClassName("mb90Slider");
+    for(var i = 0; i < slides2.length; i++)
+    {
+        var slidertemp = slides2[i];
+        slidertemp.noUiSlider.on('change', function( values, handle ){
+            //jQuery("#exerciseInputSliderDisplay_" + slides2[i].id.split('_')[1]).text(values[handle]);    
+            alert(i);
+        });
+    }*/
+
+    
 });
+
