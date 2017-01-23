@@ -201,6 +201,7 @@ class datagrid
 
             }
             // get those challenges/assessments where the user has entered data
+            //echo "SELECT * FROM ".$dataViewName." WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID";
             $completedChallenges = $wpdb->get_results("SELECT * FROM ".$dataViewName." WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID", OBJECT);
             if( $wpdb->num_rows > 0 )
             {
@@ -286,7 +287,7 @@ class datagrid
                             for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
                                 $suffix = $phaseCount . $formCount;
                                 //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" class="form-control"/><span class="exerciseInputSliderDisplay">0</span></div>';
-                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><div id="SliderResult_'.($suffix).'" class="mb90Slider"></div><input type="hidden" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'"/><span class="mb90SliderPlaceHolder" id="exerciseInputSliderDisplay_'.($suffix).'">0</span></div>';
+                                $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input vc_col-sm-12"><div class="vc_col-sm-8" id="SliderResult_'.($suffix).'" class="mb90Slider"></div><input type="hidden" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'"/></div></div><div class="vc_col-sm-4"><div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber vc_col-sm-4" id="exerciseInputSliderDisplay_'.($suffix).'">0</div></div>';
                                 //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$labelArr[$bsCount].'</label></div><div class="mb90-input-form-input"><input id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" type="range" name="Result_'.($suffix).'" min="1" max="100" step="1" value="" data-orientation="horizontal" class="form-control"><span class="exerciseInputSliderDisplay">0</span></div>';
                                 /*
                                 $formInputHTML .= '<script type="text/javascript">jQuery("#Result_'.$suffix.'").slider();' . "\r\n";
@@ -302,17 +303,18 @@ class datagrid
                                 $formInputHTML .= 'animate: true,' . "\r\n";
                                 $formInputHTML .= 'animationDuration: 1000,' . "\r\n";
                                 $formInputHTML .= 'start: '. $row->$fieldNameArr[$bsCount] .',' . "\r\n";
-                                $formInputHTML .= 'step: 1, tooltips: true, connect: [true, false], ' . "\r\n";
+                                $formInputHTML .= 'step: 1, tooltips: '. MB90_INPUT_SLIDER_TOOLTIPS .', connect: [true, false], ' . "\r\n";
                                 $formInputHTML .= '            range: {' . "\r\n";
-                                $formInputHTML .= '                    "min": 0,' . "\r\n";
-                                $formInputHTML .= '                    "max": 100' . "\r\n";
+                                $formInputHTML .= '                    "min": '. MB90_INPUT_SLIDER_MIN .',' . "\r\n";
+                                $formInputHTML .= '                    "max": '. MB90_INPUT_SLIDER_MAX .',' . "\r\n";
                                 $formInputHTML .= '            }' . "\r\n";
-                                $formInputHTML .= '        }).on("change", function( values, handle, unencoded ){' . "\r\n";
-                                $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle]);' . "\r\n";
+                                $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
+                                $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
+                                $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
                                 $formInputHTML .= '        });' . "\r\n";
                                 $formInputHTML .= '</script>' . "\r\n";
                                 //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-input"><input placeholder="' . $labelArr[$bsCount] . '" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" class="form-control"/></div>';
-                                //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
+                                $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                                 $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldNameArr[$bsCount].'" />';
                                 $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" /></div></div>';
                                 $formCount ++;
@@ -320,7 +322,7 @@ class datagrid
                             //$formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
                         }else{
                             //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" class="form-control"/><span class="exerciseInputSliderDisplay">0</span></div>';
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><div id="SliderResult_'.($suffix).'" class="mb90Slider"></div><input type="hidden" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'"/><span class="mb90SliderPlaceHolder" id="exerciseInputSliderDisplay_'.($suffix).'">0</span></div>';
+                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-label vc_col-sm-12 wpb_column vc_column_container"><label>'.$row->ExerciseName.'</label><div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber" id="exerciseInputSliderDisplay_'.($suffix).'">0</div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-input vc_col-sm-12"><div id="SliderResult_'.($suffix).'" class="mb90Slider"><input type="hidden" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'"/></div></div><div class="vc_col-sm-12"></div>';
                             //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input id="Result_'.($suffix).'" value="' . $row->Result . '" type="range" name="Result_'.($suffix).'" min="1" max="100" step="1" value="" data-orientation="horizontal" class="form-control"><span class="exerciseInputSliderDisplay">0</span></div>';
                             /*
                             $formInputHTML .= '<script type="text/javascript">jQuery("#Result_'.$suffix.'").slider();' . "\r\n";
@@ -336,13 +338,14 @@ class datagrid
                             $formInputHTML .= 'animate: true,' . "\r\n";
                             $formInputHTML .= 'animationDuration: 1000,' . "\r\n";
                             $formInputHTML .= 'start: ' . $row->Result . ',' . "\r\n";
-                            $formInputHTML .= 'step: 1, tooltips: true, connect: [true, false], ' . "\r\n";
+                            $formInputHTML .= 'step: 1, tooltips: '. MB90_INPUT_SLIDER_TOOLTIPS .', connect: [true, false], ' . "\r\n";
                             $formInputHTML .= '            range: {' . "\r\n";
-                            $formInputHTML .= '                    "min": 0,' . "\r\n";
-                            $formInputHTML .= '                    "max": 100' . "\r\n";
+                            $formInputHTML .= '                    "min": '. MB90_INPUT_SLIDER_MIN .',' . "\r\n";
+                            $formInputHTML .= '                    "max": '. MB90_INPUT_SLIDER_MAX .',' . "\r\n";
                             $formInputHTML .= '            }' . "\r\n";
-                            $formInputHTML .= '        }).on("change", function( values, handle, unencoded ){' . "\r\n";
-                            $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle]);' . "\r\n";
+                            $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
+                            $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
+                            $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
                             $formInputHTML .= '        });' . "\r\n";
                             $formInputHTML .= '</script>' . "\r\n";
                             
@@ -390,13 +393,14 @@ class datagrid
                         $labelArr = array("Weight", "Right Arm", "Left Arm", "Chest", "Navel", "Hips", "Right Leg Upper", "Right Leg Thigh", "Right Leg Calf", "Left Leg Upper", "Left Leg Thigh", "Left Leg Calf"); // captions to use for forms with no data i.e. adding data
                         $fieldNameArr = array("Weight", "RightArm", "LeftArm", "Chest", "Navel", "Hips", "RightLegUpper", "RightLegThigh", "RightLegCalf", "LeftLegUpper", "LeftLegThigh", "LeftLegCalf"); // dbase field names
                     }else{
-                        //echo "SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause;
-                        foreach( $wpdb->get_results("SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause . $orderBy) as $key => $row)
+                        //echo "[SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause . " " . $orderBy . "]" . "\r\n";
+                        foreach( $wpdb->get_results("SELECT * FROM ".$exerciseViewName." " . $exerciseWhereClause ) as $key => $row)
                         {
                             //$labelArr[] = $row->ExerciseName.'&nbsp;('.$row->ExerciseMeasurementType.'):'; // captions to use for forms with no data i.e. adding data
                             $labelArr[] = $row->ExerciseName.':'; // captions to use for forms with no data i.e. adding data
                             $exerciseIdArr[] = $row->ExerciseID;
                             $measurementTypeArr[] = $row->ExerciseMeasurementType;
+                            $rowIDArr[] = $row->ID;
                         }
                     }
                     
@@ -423,7 +427,7 @@ class datagrid
                         if($page_slug == MB90_BODY_STATS_PAGE_SLUG){
                             //for($bsCount = 0; $bsCount < count($labelArr); $bsCount ++){
                                 $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" name="Result_'.($suffix).'" /></div>';
-                                //$formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
+                                $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
                                 $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldNameArr[$formCount].'" />';
                                 $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="" /></div>';
                             //}
@@ -431,11 +435,36 @@ class datagrid
                             //$formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div>';
                         }else{
                             //$formInputHTML .= '<div class="fitem ' . $formCellStyle . '"><label>'.$label.'</label><input id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" class="easyui-textbox">';
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" /></div>';
+                            /*$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="mb90-input-form-label"><label>'.$label.'</label></div><div class="mb90-input-form-input"><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="" name="Result_'.($suffix).'" /></div>';
                             $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$exerciseIdArr[$formCount].'" />';
                             $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="" />';
                             $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$measurementTypeArr[$formCount].'" /></div>';
-                            $formCount = $formCount + 1;
+                             */
+                            
+                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-label vc_col-sm-12 wpb_column vc_column_container"><label>'.$labelArr[$labelCount].'</label><div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber" id="exerciseInputSliderDisplay_'.($suffix).'">0</div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-input vc_col-sm-12"><div id="SliderResult_'.($suffix).'" class="mb90Slider"><input type="hidden" id="Result_'.($suffix).'" value="0" name="Result_'.($suffix).'"/></div></div><div class="vc_col-sm-12"></div>';
+                            
+                            $formInputHTML .= "\r\n" . '<script type="text/javascript">' . "\r\n";
+                            $formInputHTML .= 'var slide_'.$suffix.' = document.getElementById("SliderResult_'.($suffix).'");' . "\r\n";
+                            $formInputHTML .= 'noUiSlider.create(slide_'.$suffix.', {' . "\r\n";
+                            $formInputHTML .= 'animate: true,' . "\r\n";
+                            $formInputHTML .= 'animationDuration: 1000,' . "\r\n";
+                            $formInputHTML .= 'start: ' . MB90_INPUT_SLIDER_DEFAULT_STARTVALUE . ',' . "\r\n";
+                            $formInputHTML .= 'step: 1, tooltips: '. MB90_INPUT_SLIDER_TOOLTIPS .', connect: [true, false], ' . "\r\n";
+                            $formInputHTML .= '            range: {' . "\r\n";
+                            $formInputHTML .= '                    "min": '. MB90_INPUT_SLIDER_MIN .',' . "\r\n";
+                            $formInputHTML .= '                    "max": '. MB90_INPUT_SLIDER_MAX .',' . "\r\n";
+                            $formInputHTML .= '            }' . "\r\n";
+                            $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
+                            $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
+                            $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
+                            $formInputHTML .= '        });' . "\r\n";
+                            $formInputHTML .= '</script>' . "\r\n";
+                            
+                            //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-input"><input placeholder="' . $labelArr[$bsCount] . '" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" class="form-control"/></div>';
+                            $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$exerciseIdArr[$labelCount].'" />';
+                            $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$rowIDArr[$labelCount].'" />';
+                            $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$measurementTypeArr[$labelCount].'" /></div></div>';
+                            $formCount ++;
                         }
                     }
                     
@@ -540,7 +569,7 @@ class datagrid
                 //$ddHTML .= '<option value="'.$row->$tableID.'">'.$row->$dropdownCaption.'</option>';
                 //echo "<br />Exercise = [".$row->ExerciseName."]";
                 $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
-                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" class="easyui-textbox" hidden="true">';
+                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" value="'.$row->ExerciseTypeID.'" class="easyui-textbox" hidden="true">';
                 $formInputHTML .= '<input id="MeasurementType_'.$exerciseCount.'" name="MeasurementType_'.$exerciseCount.'" class="easyui-textbox" readonly="true"></div>';
                 $exerciseCount = $exerciseCount + 1;
             }
@@ -560,7 +589,7 @@ class datagrid
                 //$ddHTML .= '<option value="'.$row->$tableID.'">'.$row->$dropdownCaption.'</option>';
                 //echo "<br />Exercise = [".$row->ExerciseName."]";
                 $formInputHTML .= '<div class="fitem"><label>'.$row->ExerciseName.'&nbsp;('.$row->MeasurementType.'):</label><input onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  id="Result_'.$exerciseCount.'" name="Result_'.$exerciseCount.'" class="easyui-textbox" required="true">';
-                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" class="easyui-textbox" required="true" hidden="true">';
+                $formInputHTML .= '<input id="ExerciseID_'.$exerciseCount.'" name="ExerciseID_'.$exerciseCount.'" value="'.$row->ExerciseTypeID.'" class="easyui-textbox" required="true" hidden="true">';
                 $formInputHTML .= '<input id="MeasurementType_'.$exerciseCount.'" name="MeasurementType_'.$exerciseCount.'" class="easyui-textbox" required="true" readonly="true"></div>';
                 $exerciseCount = $exerciseCount + 1;
             }

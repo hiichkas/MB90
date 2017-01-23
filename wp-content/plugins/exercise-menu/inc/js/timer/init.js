@@ -23,12 +23,14 @@ function isNumberKey(evt) {
 
 jQuery(document).ready(function(){
     
-       
+    //jQuery("#chart-container-lower").html(""); // hide the font-awesome spinning loader image
     var chartHTML = jQuery("#chart-container").html();
     jQuery("#chart-container").html(""); // reset the chart container
     // append the chart html to the bottom row
     //alert(chartHTML);
     jQuery("#chart-container-lower").append(chartHTML);
+    jQuery("#chart-container").show();
+    //jQuery("#hiddenExerciseForms").show(); // show the hidden form panel after processing completed
     
     //jQuery('[data-toggle="tooltip"]').tooltip();
     //jQuery('.mb90-input-form-button > button').tooltip('show');
@@ -176,5 +178,9 @@ jQuery("#exlisting").html(exlistingHTML);
     }*/
 
     
+});
+
+jQuery(window).on('load', function() {
+   jQuery("#mb90-load-cover").hide();
 });
 

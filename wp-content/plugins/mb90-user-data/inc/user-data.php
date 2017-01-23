@@ -148,7 +148,7 @@
                 }
 
                 $captionArray = array();
-                echo '<div id="chart-container">';
+                echo '<div id="chart-container" style="display:none">';
                 
                 echo '<div class="vc_row wpb_row vc_row-fluid graph-raiser">'; // row start
                 for($i = 0; $i < $numExercises; $i++)

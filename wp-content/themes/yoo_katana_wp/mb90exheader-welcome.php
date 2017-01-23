@@ -1,3 +1,4 @@
+<!--<div id="mb90-load-cover"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></div>-->
 <?php
 
 /* 
@@ -23,10 +24,8 @@
     
     UtilitiesClass::GetDateLinks($page_slug); // print the date buttons for user to choose from
     
+    //UtilitiesClass::AddAjaxLoader(); 
+    
     UtilitiesClass::GetBlockDetails($page_slug); // get timings and exercises from dbase
     
-    
-  
-    
-
-
+?>

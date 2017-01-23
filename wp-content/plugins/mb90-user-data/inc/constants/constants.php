@@ -90,6 +90,12 @@ define('MB90_ORANGE', 'rgb(227, 58, 12)');
 define('MB90_SKYBLUE', 'rgb(63, 175, 212)');
 define('MB90_WHITE', 'rgb(0, 0, 0)');
 
+// input sliders
+define('MB90_INPUT_SLIDER_MIN', 0);
+define('MB90_INPUT_SLIDER_MAX', 100);
+define('MB90_INPUT_SLIDER_TOOLTIPS', "false");
+define('MB90_INPUT_SLIDER_DEFAULT_STARTVALUE', 0);
+
 /* debugging and dev work */
 define('MB90_90_DEBUG', true);
 

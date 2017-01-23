@@ -99,14 +99,13 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             var todaysDateFormatted = todaysDate.yyyymmdd();
             //alert(todaysDateFormatted);
             jQuery(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
-            if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging
+            if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging/testing
                 jQuery("#start-button").hide();
                 msgHTML = dialogHTML(caption, msg);
                 jQuery("#exercies-inputform-wrapper").html(msgHTML);
                 // hide the entire timer block
                 jQuery(".outer-timer-wrapper").hide();
             }else{
-                //alert(jQuery('#dlgFormHTML_'+challengePhase).html());
                 if( jQuery('#dlgFormHTML_'+challengePhase).length > 0 ){
                     jQuery("#start-button").show();
                     jQuery(".timer-start").show();
@@ -126,7 +125,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                     //jQuery(".mb90-input-form-input > input[type=text]")
                     // show the entire timer block
                     jQuery(".outer-timer-wrapper").show();
-
+                    //jQuery("#user-sa-data-wrapper").show();
                 }
                 
             }
@@ -136,7 +135,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         function ValidateForm(formID)
         {
             var errorCount = 0;
-            jQuery("form#" + formID + " input[type=text]").each(function(){
+            jQuery("form#" + formID + "_temp input[id^=Result_]").each(function(){
                 //alert(jQuery(this).prop("id"));
                 if(jQuery(this).val().length === 0){
                     errorCount ++;
@@ -153,8 +152,10 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         
         function saveHTMLFormRecord(e, challengePhase){
             e.preventDefault();
+            //var formOK = ValidateForm("fmFormHTML_"+challengePhase);
+            //formOK
             //jQuery('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
-            jQuery('#fmFormHTML_'+challengePhase).form('submit',{
+            jQuery('#fmFormHTML_'+challengePhase+'_temp').form('submit',{
                 url: formSubmitURL,
                 onSubmit: function(){
                     //return jQuery(this).form('validate');
@@ -335,7 +336,7 @@ if( false ){
 <?php } ?>
     
     <?php if( !$hideToolBar ){?>
-    <div id="toolbar">
+    <div id="toolbar" style="display:none !important">
 
         <a href="javascript:void(0)" class="button add" onclick="newRecord()">Add</a>
         <a href="javascript:void(0)" class="button edit" onclick="editRecord()">Edit</a>
@@ -380,7 +381,7 @@ if( false ){
     {
         ?>
     <!--<div class="input-form-hidden" id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">-->
-    <div id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">
+    <div id="dlgFormHTML_<?=$challengePhase+1?>" class="mb90ExerciseInputFormHTML">
         <div class="ftitle">My Body 90: Input Form</div>
         <form id="fmFormHTML_<?=$challengePhase+1?>_temp" method="post">
         <?=$challengeInputs[$challengePhase]?>
