@@ -272,8 +272,8 @@
       this.totalworkouttimeseconds = $("#totalworkouttime").val() * 1000;
       
       this.start = function(){
-        $("#currentExercise").html(exlistingArr[0]);
-        $("#nextExercise").html(exlistingArr[1]);
+        $("#currentExercise > button").html(exlistingArr[0]);
+        $("#nextExercise > button").html(exlistingArr[1]);
         $("#start-button").html($("#stop-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
@@ -328,8 +328,8 @@
          }
       };
       this.stop  = function(){
-        $("#currentExercise").html(exlistingArr[0]);
-        $("#nextExercise").html(exlistingArr[1]);
+        $("#currentExercise > button").html(exlistingArr[0]);
+        $("#nextExercise > button").html(exlistingArr[1]);
         $("#start-button").html($("#start-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
@@ -466,13 +466,13 @@
                 this.notify('Get Ready to Start!');      
                }
             }else{
-                    $("#currentExercise").html(exlistingArr[exerciseCount]);
+                    $("#currentExercise > button").html(exlistingArr[exerciseCount]);
                     if( exerciseCount == numexercises-1){
                         exerciseCount = 0;
                     }else{
                         exerciseCount ++;
                     }
-                    $("#nextExercise").html(exlistingArr[exerciseCount]);
+                    $("#nextExercise > button").html(exlistingArr[exerciseCount]);
 
             exNumber ++;
             this.notifyForExercise(exNumber);
@@ -650,8 +650,8 @@
             incPath = "http://mybody90.com/wp-content/plugins/exercise-menu/inc/";
         }
       
-      $("#currentExercise").html(exlistingArr[0]);
-      $("#nextExercise").html(exlistingArr[1]);
+      $("#currentExercise > button").html(exlistingArr[0]);
+      $("#nextExercise > button").html(exlistingArr[1]);
       //exerciseCount ++;
       
       tm = new TBTimer({

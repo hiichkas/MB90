@@ -17,6 +17,10 @@ define('MB90_WORKOUT_DAY_PAGE_WELCOME', 'Welcome to your workout ');
 define('MB90_WORKOUT_DAY_PAGE_WELCOME_HTML', 'h1');
 
 define('MB90_BODY_STATS_PAGE_SLUG', 'your-body-stats');
+
+define('MB90_USER_DATA_IS_AVAILABLE', true); // used to tell if form data is available on workout pages
+define('MB90_USER_DATA_NOT_AVAILABLE', false); // used to tell if form data is available on workout pages
+//
 //define('MB90_WORKOUT_DAY_PAGE_WELCOME', 'Welcome to your workout ');
 //define('MB90_WORKOUT_DAY_PAGE_WELCOME_HTML', 'h1');
 

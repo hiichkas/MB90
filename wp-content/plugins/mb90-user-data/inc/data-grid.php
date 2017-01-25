@@ -29,22 +29,33 @@ else if( $recordType == "UserBodyData"){
     $recordName = "UserBodyData";
     $getDataURL = $pluginURL . "inc/scripts/get_user_body_data.php?wpLoggedInUserID=$wpLoggedInUserID";
     $hideToolBar = true;
-    $challengeInputs = array();
+    //$challengeInputs = array();
     $challengeInputs = $dgObj->getHtmlFormInputs("UserBodyData", "edit");
+    $formDataAvailable = $challengeInputs[0];
+    unset($challengeInputs[0]); // remove the flag
+    $challengeInputs = array_values ( $challengeInputs );
 }
 else if( $recordType == "User10DayChallenge"){
     $recordName = "User10DayChallenge";
     $getDataURL = $pluginURL . "inc/scripts/get_user_10daychallenge_data.php?wpLoggedInUserID=$wpLoggedInUserID";
     $hideToolBar = true;
-    $challengeInputs = array();
+    //$challengeInputs = array();
     $challengeInputs = $dgObj->getHtmlFormInputs("User10DayChallenge", "edit");
+    $formDataAvailable = $challengeInputs[0];
+    unset($challengeInputs[0]); // remove the flag
+    $challengeInputs = array_values ( $challengeInputs );
 }
 else if( $recordType == "UserSelfAssessment"){
     $recordName = "UserSelfAssessment";
     $getDataURL = $pluginURL . "inc/scripts/get_user_selfassessment_data.php?wpLoggedInUserID=$wpLoggedInUserID";
     $hideToolBar = true;
-    $challengeInputs = array();
+    //$challengeInputs = array();
+    
     $challengeInputs = $dgObj->getHtmlFormInputs("SelfAssessment", "edit");
+    //echo "[[[" . print_R($challengeInputs) . "]]]";
+    $formDataAvailable = $challengeInputs[0];
+    unset($challengeInputs[0]); // remove the flag
+    $challengeInputs = array_values ( $challengeInputs );
 }
 
 $dataGridHeader = $dgObj->getGridHeader($recordType);
@@ -135,13 +146,12 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         function ValidateForm(formID)
         {
             var errorCount = 0;
-            jQuery("form#" + formID + "_temp input[id^=Result_]").each(function(){
-                //alert(jQuery(this).prop("id"));
-                if(jQuery(this).val().length === 0){
+            jQuery("form" + formID + " input[id^=Result_]").each(function(){
+                if(jQuery(this).val().length == 0 || jQuery(this).val() == 0){
                     errorCount ++;
-                    //jQuery(this).css("border", "1px solid red");
+                    jQuery(this).parent().css("border", "1px solid red");
                 }else{
-                    //jQuery(this).css("border", "1px solid #0fa2e6");                    
+                    jQuery(this).parent().css("border", "1px solid rgba(51, 51, 51, 0.45)");
                 }
             });
             if( errorCount > 0 ){
@@ -151,7 +161,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         }
         
         function saveHTMLFormRecord(e, challengePhase){
-            e.preventDefault();
+            //e.preventDefault();
             //var formOK = ValidateForm("fmFormHTML_"+challengePhase);
             //formOK
             //jQuery('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
@@ -159,7 +169,17 @@ $formInputs =  $dgObj->getFormInputs($recordType);
                 url: formSubmitURL,
                 onSubmit: function(){
                     //return jQuery(this).form('validate');
-                    return ValidateForm("fmFormHTML_"+challengePhase); // check that all values were entered
+                    ok = ValidateForm('#fmFormHTML_'+challengePhase+'_temp');
+                    if( !ok ){
+                        e.preventDefault();
+                        jQuery("#mb90ExerciseFormMessage").addClass("mb90ErrorMessage");
+                        jQuery("#mb90ExerciseFormMessage").html("<?php echo FILL_ALL_FORM_FIELDS?>").slideDown(1000);
+                    }else{
+                        e.preventDefault();
+                        jQuery("#mb90ExerciseFormMessage").removeClass("mb90ErrorMessage");
+                        jQuery("#mb90ExerciseFormMessage").html("").slideUp(1000);
+                    }
+                    return ok; // check that all values were entered
                 },
                 success: function(result){
                     var result = eval('('+result+')');
@@ -393,6 +413,9 @@ if( false ){
                     <!--<button data-toggle="tooltip" data-placement="top" title="Please fill all fields" class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>-->
                     <button class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>
                 </div>
+                <div class="mb90-input-form-message-wrapper">
+                    <div class="mb90FormMessage" id="mb90ExerciseFormMessage"></div>
+                </div>
             </div>
         </div>
         </div>
@@ -400,10 +423,20 @@ if( false ){
         </form>
             
     </div>    
-    </div>    
     <?php } ?>
-
     </div> <!-- close off the hidden forms div ... these are only used for data ... not displayed -->
+    </div>   
+    </div>   
+    <?php
+    //echo "challenge inputs = [" . $formDataAvailable . "]";
+    if( !$formDataAvailable ){
+        //echo '</div>' . "\r\n" . '</div>' . "\r\n" . '</div>' . "\r\n" . '</div>' . "\r\n";
+        echo '</div>' . "\r\n";
+    }else{
+        echo '</div>' . "\r\n" . '</div>' . "\r\n";
+    }
+    ?>
+
     
     
     

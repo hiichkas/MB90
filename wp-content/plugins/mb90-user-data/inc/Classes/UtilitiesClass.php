@@ -119,11 +119,11 @@ class UtilitiesClass {
         echo '<script src="'.$incPath.'js/rangeslider/nouislider.min.js'.$mb90ScriptVersion.'"></script>'."\r\n"; 
         echo '<script src="//use.fontawesome.com/bcc1886acd.js"></script>'."\r\n"; 
         
-        /*echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
+        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
         echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";*/
+        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
         
-        //echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
+        echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
 
     }
     
@@ -277,27 +277,27 @@ class UtilitiesClass {
         $finalHTML = "";
         $currNextHTML .= '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption">Current Exercise</div>' . "\r\n";
+        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer">Current Exercise</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
         $finalHTML .= self::WrapColumn($currNextHTML, 3);
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div id="currentExercise" class="timer-exercise-label">...</div>' . "\r\n";
+        $currNextHTML .= '<div id="currentExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
         $finalHTML .= self::WrapColumn($currNextHTML, 3);
         
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption">Next Exercise</div>' . "\r\n";
+        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer">Next Exercise</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
         
         $finalHTML .= self::WrapColumn($currNextHTML, 3);
 
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div id="nextExercise" class="timer-exercise-label">...</div>' . "\r\n";
+        $currNextHTML .= '<div id="nextExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
         
         $finalHTML .= self::WrapColumn($currNextHTML, 3);

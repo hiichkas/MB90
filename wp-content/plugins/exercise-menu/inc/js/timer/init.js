@@ -80,7 +80,7 @@ jQuery.each(exlistingArr, function(index, value) {
   indexInt = index*1;
 
   if( value.length > 0){
-    exlistingHTML += '<div class="exerciseListItem"><button class="btn btn-danger mb90-nopointer">' + value + '</button></div>';
+    exlistingHTML += '<div class="exerciseListItem"><button class="btn mb90-nopointer">' + value + '</button></div>';
   }
 });
 exlistingHTML += "</div>";

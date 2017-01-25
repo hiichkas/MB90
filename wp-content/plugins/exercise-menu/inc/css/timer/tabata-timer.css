@@ -43,6 +43,7 @@ timer-wrapper{
 }
 
 .exerciseListItem{padding:2px; width:50%; float: left}
+.exerciseListItem > button{background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}
 
 .exercise-listing-text{font-size: 21px;    height: 24px;    margin: 6px !important;    padding: 1px 1px 8px 10px;    text-align: left;}
 
@@ -206,7 +207,7 @@ timer-wrapper{
 }
 
 .timer-display-like{
-   //background: #373034;
+   /*background: #373034;*/
    color: #000;
    width:100%;
 }
@@ -268,12 +269,12 @@ timer-wrapper{
 #chart-container-lower > i.fa-spin{color: rgb(63, 175, 212)}
 
 .progress-bar-reset{width:0px;}
-.progressbar-wrapper-outer{margin-top:32px}
+.progressbar-wrapper-outer{margin-top:7px}
 .progressbar-wrapper{height:30px;border:1px solid #0fa2e6; border-radius: 4px;}
 
 .progressbar-caption{font-size:1.4em; padding-bottom:6px; padding-top:5px; color:#0fa2e6;text-transform: uppercase}
 
-
+.progress-bar { background-color: #0275d8; color: #fff; height: 100%; }
 
 .workout-details-column{height:300px !important;padding:12px 0 0;}
 
@@ -282,7 +283,7 @@ timer-wrapper{
 #hiddenExerciseForms{display:block}
 
 /* hide the input forms initially */
-.mb90ExerciseInputFormHTML{text-align:center;width:100%;height:auto;padding:10px 20px; display:none}
+.mb90ExerciseInputFormHTML{text-align:center;width:100%;height:auto;padding-left:8px; display:none}
 
 .input-form-hidden{display:none}
 
@@ -293,10 +294,15 @@ timer-wrapper{
 
 .mb90-input-form-input input{width:100%;height:40px;border:1px solid #0fa2e6;padding-left:10px;font-size:1em}
 .mb90-input-form-label label{width:100%; font-size:1.4em; padding-bottom:6px; padding-top:5px; color:#0fa2e6; text-transform: uppercase; text-align:left}
-.mb90-input-form-button{padding-left: 7px; padding-right: 6px; padding-top: 8%; text-align: center; width: 100%;}
+.mb90-input-form-button{padding-left: 5px; padding-right: 6px; padding-top: 8%; text-align: center; width: 100%;}
 .mb90-input-form-button > button{ background-color: rgb(52, 73, 94); cursor: pointer; cursor: hand; width: 100% }
 .mb90-input-form-button > button:hover{color: rgb(52, 73, 94); background-color: #FFF}
 .mb90-input-form-button a{width:100% }
+
+.mb90-input-form-message-wrapper{padding-left: 5px; padding-right: 6px; text-align: center; width: 100%;}
+
+.progressbar-caption > button{ background-color: rgb(52, 73, 94); cursor: pointer; cursor: hand; width: 100% }
+.timer-exercise-label > button{ background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}
 
 .numberCircle { 
     border-radius: 50%;
@@ -329,7 +335,7 @@ timer-wrapper{
 .outer-timer-wrapper{display:none;padding-bottom:0%}
 .outer-timer-wrapper > h2{margin-top:0px !important}
 
-.timer-exercise-label{color: #e33a0c; font-size:2em;text-transform: uppercase;padding-top:3px}
+.timer-exercise-label{color: #e33a0c; text-transform: uppercase;padding-top:5px}
 
 .start-button{width:60px; cursor: pointer}
 .start-button-caption{font-size:1.4em; padding-bottom:10px; color:#0fa2e6;text-align:center}
@@ -338,7 +344,11 @@ timer-wrapper{
 #start-button-html{display:none}
 #stop-button-html{display:none}
 
+
+
 .vc_separator.vc_sep_border_width_5 .vc_sep_holder .vc_sep_line{border-top-width:1px !important; border-color:#777777 !important; width:100% !important}
+
+.mb90ErrorMessage{background-color: red; color: #FFF; padding:10px; width:100%}
 
 .mb90-row-center{text-align:center !important}
 
@@ -351,10 +361,12 @@ timer-wrapper{
 #mb90-load-cover{position: relative; height: 100%; width: 100%; background: #000; z-index:9999;}
 
 /* nouislider slider settings */
-.mb90Slider{width:100%; float:left; margin-top:10px}
+.mb90Slider{width:90%; float:left; margin-top:10px}
 .mb90SliderNumber{height:100px;width:100px;padding-top:30px;text-align:center; float:left}
 .noUi-connect{background: rgb(63, 175, 212) !important}
 .noUi-handle{background: rgb(52, 73, 94) !important; border: 1px solid rgb(63, 175, 212) !important; border-radius: none !important; box-shadow: none !important}
+
+.noUi-horizontal .noUi-handle{left:-1px !important}
 
 @media 
 only screen and (max-width: 760px){
