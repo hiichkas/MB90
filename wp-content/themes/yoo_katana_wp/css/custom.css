@@ -87,11 +87,10 @@ h2{
 }
 
 h1{
-	font-family: Raleway;
-	color: #34495e;   font-weight: 600; line-height:100%;
-	text-transform: uppercase;
-
-	text-align: center;
+	font-family: Raleway !important;
+	color: #34495e  !important; font-weight: 600 !important;; line-height:100% !important;
+	text-transform: uppercase !important;
+	text-align: center !important;
 }
 
 table#pmpro_levels_table {

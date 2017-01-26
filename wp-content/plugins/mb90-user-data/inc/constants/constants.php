@@ -48,6 +48,8 @@ define('MSG_FILL_PROFILE', 'Please fill out your profile details before continui
 
 define('FILL_ALL_FORM_FIELDS', 'Please fill in all highlighted fields');
 
+define('FILL_ALL_PREVIOUS_FORMS', "Please fill out your results for all previous dates first");
+
 define('MESSAGE_SLIDE_DELAY', 3000);
 
 define('MB90_NUM_DAYS', 90);
@@ -99,6 +101,9 @@ define('MB90_INPUT_SLIDER_MIN', 0);
 define('MB90_INPUT_SLIDER_MAX', 100);
 define('MB90_INPUT_SLIDER_TOOLTIPS', "false");
 define('MB90_INPUT_SLIDER_DEFAULT_STARTVALUE', 0);
+define('MB90_INPUT_SLIDER_BORDER_STYLE', "1px solid rgba(51, 51, 51, 0.45)");
+define('MB90_INPUT_SLIDER_BORDER_STYLE_ERROR', "1px solid red");
+
 
 /* debugging and dev work */
 define('MB90_90_DEBUG', true);

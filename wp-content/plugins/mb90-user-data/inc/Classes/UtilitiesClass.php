@@ -119,9 +119,9 @@ class UtilitiesClass {
         echo '<script src="'.$incPath.'js/rangeslider/nouislider.min.js'.$mb90ScriptVersion.'"></script>'."\r\n"; 
         echo '<script src="//use.fontawesome.com/bcc1886acd.js"></script>'."\r\n"; 
         
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
+        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
+        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
+        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
         
         echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
 
@@ -236,8 +236,6 @@ class UtilitiesClass {
             //$html .= '<p class="p1" style="text-align: left;">' . $numExercises. ' exercises x ' . $numRounds . ' rounds with ' . $restBetweenRounds . ' seconds rest between rounds. ' . $timePerExercise . ' seconds per exercise with ' . $restAfterExercise . ' seconds rest per exercise</p>' . "\r\n";
 
             //$html .= '<h4>When you\'re ready, hit that timer and follow the list on the right. The timer will beep when you need to rest or get into the next exercise. Have fun!</h4>' . "\r\n";
-            $html .= '<strong>Exercise Timings: </strong><br /><span id="exercise-summaryinfo"></span>';
-            $html .= '<br /><strong>Total Time: </strong><br /><span id="totalworkouttimespan"></span>';
 
             $html .= '<input type="hidden" id="exDayLocal" value="' . $exDay . '" />' . "\r\n";
             $html .= '<input type="hidden" id="totalworkouttimestring" value="' . $totalWorkoutTimeMins . ' minutes ' . $totalWorkoutTimeSecs . ' seconds" />' . "\r\n";
@@ -266,10 +264,37 @@ class UtilitiesClass {
     public static function GetStartButton()
     {
         $incPath = get_site_url() . MB90_90_USER_DATA_INC_FOLDER_PATH;
-        $buttonLink = '<div class="start-button-caption" id="start-button">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>';
-        $buttonLink .= '<div id="start-button-html">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>';
-        $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>';
+
+        $buttonLink = '<div class="outer-timer-wrapper">' . "\r\n";
+        $buttonLink .= '<div class="progressbar-wrapper-outer">' . "\r\n";
+        
+        $buttonLink .= '<div class="progressbar-caption">TOTAL TIME: <span id="totalworkouttimespan"></span></div>' . "\r\n";
+        $buttonLink .= '<div id="total-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
+        $buttonLink .= '<div class="progressbar-caption">EXERCISE TIME</div>' . "\r\n";
+        $buttonLink .= '<div id="exercise-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
+        $buttonLink .= '<div class="progressbar-caption">REST TIME</div>' . "\r\n";
+        $buttonLink .= '<div id="rest-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
+        
+        $buttonLink .= '</div>' . "\r\n";
+            
+        $buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
+        $buttonLink .= '<div id="start-button-html">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
+        $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>' . "\r\n";
+        
+        if( MB90_90_DEBUG){
+            $buttonLink .= self::GetExerciseTimings();
+        }
+
+        $buttonLink .= '</div>' . "\r\n";
+        
         echo $buttonLink;
+    }
+    
+    public static function GetExerciseTimings()
+    {
+        $exTimingHTML = '<div id="exTimings"><div class="progressbar-caption"><button class="btn"><strong>Click here to see exercise timings: </strong></button><br /><div id="exercise-summaryinfo-wrapper"><div id="exercise-summaryinfo"></div>';
+        $exTimingHTML .= '<br /><strong>Total Time: </strong><br /><span id="totalworkouttimespandisplay"></span></div></div>';
+        return $exTimingHTML;
     }
     
     public static function GetCurrentNextExercises()

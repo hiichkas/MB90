@@ -23,6 +23,18 @@ function isNumberKey(evt) {
 
 jQuery(document).ready(function(){
     
+    jQuery("#exTimings").on('click', function(){
+        if( jQuery("#exercise-summaryinfo-wrapper").css("display") == "none"){
+            jQuery("#exercise-summaryinfo-wrapper").slideDown(1000);
+        }else{
+            jQuery("#exercise-summaryinfo-wrapper").slideUp(1000);            
+        }
+    });
+    
+    jQuery("input[id^=Result_]").each(function(){
+        jQuery(this).next("div.noUi-base").remove(); // hack to delete duplicate sliders
+    });
+    
     //jQuery("#chart-container-lower").html(""); // hide the font-awesome spinning loader image
     var chartHTML = jQuery("#chart-container").html();
     jQuery("#chart-container").html(""); // reset the chart container
@@ -41,8 +53,8 @@ jQuery(document).ready(function(){
     //});
     
 
-
-jQuery("#totalworkouttimespan").html(jQuery("#totalworkouttimestring").val()); // display total workout minutes and seconds
+//alert(jQuery("#totalworkouttimestring").val());
+jQuery("#totalworkouttimespandisplay").html(jQuery("#totalworkouttimestring").val()); // display total workout minutes and seconds
    
 timeTotal = jQuery("#totalworkouttime").val() / 2;
 
@@ -57,9 +69,9 @@ roundrest = jQuery("#roundrest").val(); // hidden var
 roundgroupings = jQuery("#roundgroupings").val(); // hidden var ... used to force repeating of rounds
 
 if( roundgroupings > 1 )
-    summaryinfo = experround + " Ex Day: [" + exDayLocal + "]<br />Exercises per round (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Num exercises per round: " + experround + "<br /> Ex Day: [" + exDayLocal + "]<br />Exercises per round (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 else
-    summaryinfo = experround + " Ex Day: [" + exDayLocal + "]<br />Exercises per round<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Num exercises per round: " + experround + "<br /> Ex Day: [" + exDayLocal + "]<br />Exercises per round<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 
 jQuery("#exercise-summaryinfo").html(summaryinfo); // display the line of summary info
 

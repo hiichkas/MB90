@@ -280,12 +280,18 @@ timer-wrapper{
 
 .h2-narrow{color: #e33a0c;font-size:20px}
 
-#hiddenExerciseForms{display:block}
+#hiddenExerciseForms{display:block; width:90%}
 
 /* hide the input forms initially */
-.mb90ExerciseInputFormHTML{text-align:center;width:100%;height:auto;padding-left:8px; display:none}
+.mb90ExerciseInputFormHTML{text-align:center;width:100%;height:auto;padding-left:26px; display:none}
+
+#exercies-inputform-wrapper{padding-left:24px;padding-right:24px}
 
 .input-form-hidden{display:none}
+
+/*#exercise-summaryinfo{display:none}*/
+#exercise-summaryinfo-wrapper{display:none}
+#exTimings{cursor: pointer; cursor: hand; }
 
 .ftitle{display:none !important}
 
@@ -301,7 +307,7 @@ timer-wrapper{
 
 .mb90-input-form-message-wrapper{padding-left: 5px; padding-right: 6px; text-align: center; width: 100%;}
 
-.progressbar-caption > button{ background-color: rgb(52, 73, 94); cursor: pointer; cursor: hand; width: 100% }
+.progressbar-caption > button{ background-color: rgb(52, 73, 94); cursor: pointer; cursor: hand; width: 100%; color: #0fa2e6; border: 1px solid #0fa2e6 }
 .timer-exercise-label > button{ background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}
 
 .numberCircle { 
@@ -330,7 +336,7 @@ timer-wrapper{
 
 .exercise-summaryinfo{text-align:center; width:100%}
 
-.exercise-summary-red{color: #e33a0c; text-transform: uppercase; font-size: 1.2em; text-align:center; padding:10px; padding-top:0px; text-align: justify}
+.exercise-summary-red{color: #e33a0c; text-transform: uppercase; font-size: 1.2em; text-align:center; padding:0 13px 10px; text-align: justify}
 
 .outer-timer-wrapper{display:none;padding-bottom:0%}
 .outer-timer-wrapper > h2{margin-top:0px !important}
@@ -348,7 +354,9 @@ timer-wrapper{
 
 .vc_separator.vc_sep_border_width_5 .vc_sep_holder .vc_sep_line{border-top-width:1px !important; border-color:#777777 !important; width:100% !important}
 
-.mb90ErrorMessage{background-color: red; color: #FFF; padding:10px; width:100%}
+.mb90ErrorMessage{color: red; padding:10px; width:100%; font-weight: bold}
+
+.mb90ErrorBorder{border: 1px solid red}
 
 .mb90-row-center{text-align:center !important}
 

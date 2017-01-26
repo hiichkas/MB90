@@ -169,7 +169,6 @@ class datagrid
         
         if( $page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG || $page_slug == MB90_SELF_ASSESSMENT_PAGE_SLUG || $page_slug == MB90_BODY_STATS_PAGE_SLUG )
         {
-            $formArray = array();
             $programmeID = $_SESSION["UserProgrammeID"];
             
             switch (strtolower($page_slug)) {
@@ -200,6 +199,9 @@ class datagrid
                 default:
 
             }
+            
+            $formArray = array($challengePhase); // init to hold 1 entry per phase i.e. 1 set of user results per self assess, challenge, workout etc
+            $currentArrayIndex = 0;
             // get those challenges/assessments where the user has entered data
             //echo "SELECT * FROM ".$dataViewName." WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID";
             $completedChallenges = $wpdb->get_results("SELECT * FROM ".$dataViewName." WHERE UserID = ".$_SESSION["LoggedUserID"]." GROUP BY InputDate ORDER BY ID", OBJECT);
@@ -248,7 +250,7 @@ class datagrid
                 }*/
                 if( count($challengeCompletionDates) > 0 && strlen($challengeCompletionDate) > 0) // if a challenge/assessment has already been inputted
                 {
-                    $formArray[] = MB90_USER_DATA_IS_AVAILABLE;
+                    //$formArray[] = MB90_USER_DATA_IS_AVAILABLE;
                     $formInputHTML = '<div class="vc_row wpb_row vc_row-fluid mb90-form-input-vc-row">';
                     $exerciseCount = 0;
                     // get the previously inputted data and generate form with data displayed
@@ -305,6 +307,7 @@ class datagrid
                                 $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
                                 $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
                                 $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
+                                $formInputHTML .= '            sliderVal = (jQuery("#Result_'.$suffix.'").val() == 0) ? jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE_ERROR . '") : jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE . '");' . "\r\n";
                                 $formInputHTML .= '        });' . "\r\n";
                                 $formInputHTML .= '</script>' . "\r\n";
                                 //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-input"><input placeholder="' . $labelArr[$bsCount] . '" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->$fieldNameArr[$bsCount] . '" name="Result_'.($suffix).'" class="form-control"/></div>';
@@ -333,6 +336,7 @@ class datagrid
                             $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
                             $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
                             $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
+                            $formInputHTML .= '            sliderVal = (jQuery("#Result_'.$suffix.'").val() == 0) ? jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE_ERROR . '") : jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE . '");' . "\r\n";
                             $formInputHTML .= '        });' . "\r\n";
                             $formInputHTML .= '</script>' . "\r\n";
                             
@@ -350,7 +354,8 @@ class datagrid
                         $formInputHTML .= '<input type="hidden" name="numEntries" id="numEntries" value="'.count($labelArr).'" />';
                         $formInputHTML .= '<input type="hidden" name="formNumber" id="formNumber" value="'.$phaseCount.'" />';
                         $formInputHTML .= '';
-                        $formArray[] = $formInputHTML;
+                        $formArray[$currentArrayIndex] = $formInputHTML;
+                        $currentArrayIndex ++;
                         $formInputHTML = "";
                     }
                     /*
@@ -363,7 +368,7 @@ class datagrid
                 //if( $isPopulatedForm === false)
                 else
                 { // add blank forms for any phase that has not already been populated and falls within the current phase or previous phases
-                    $formArray[] = MB90_USER_DATA_NOT_AVAILABLE;
+                    //$formArray[] = MB90_USER_DATA_NOT_AVAILABLE;
                     $formInputHTML = "";
                     unset($labelArr);
                     $labelArr = array();
@@ -394,6 +399,7 @@ class datagrid
                     
                     $labelCount = 0;
                     $formInputHTML .= '<div class="vc_row wpb_row vc_row-fluid mb90-form-input-vc-row">';
+                    //echo "labelArr = [" . print_r($labelArr) . "]";
                     foreach($labelArr as $label)
                     {
                         $arrayIndex = 0;
@@ -482,7 +488,8 @@ class datagrid
                     $formInputHTML .= '<input type="hidden" name="numEntries" id="numEntries" value="'.count($labelArr).'" />';
                     $formInputHTML .= '<input type="hidden" name="formNumber" id="formNumber" value="'.$phaseCount.'" />';
                     //$formInputHTML .= '</div>';
-                    $formArray[] = $formInputHTML;
+                    $formArray[$currentArrayIndex] = $formInputHTML;
+                    $currentArrayIndex ++;
                     $formInputHTML = "";
                 }
                 

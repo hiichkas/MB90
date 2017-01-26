@@ -31,9 +31,9 @@ else if( $recordType == "UserBodyData"){
     $hideToolBar = true;
     //$challengeInputs = array();
     $challengeInputs = $dgObj->getHtmlFormInputs("UserBodyData", "edit");
-    $formDataAvailable = $challengeInputs[0];
+    /*$formDataAvailable = $challengeInputs[0];
     unset($challengeInputs[0]); // remove the flag
-    $challengeInputs = array_values ( $challengeInputs );
+    $challengeInputs = array_values ( $challengeInputs );*/
 }
 else if( $recordType == "User10DayChallenge"){
     $recordName = "User10DayChallenge";
@@ -41,21 +41,21 @@ else if( $recordType == "User10DayChallenge"){
     $hideToolBar = true;
     //$challengeInputs = array();
     $challengeInputs = $dgObj->getHtmlFormInputs("User10DayChallenge", "edit");
-    $formDataAvailable = $challengeInputs[0];
+    /*$formDataAvailable = $challengeInputs[0];
     unset($challengeInputs[0]); // remove the flag
-    $challengeInputs = array_values ( $challengeInputs );
+    $challengeInputs = array_values ( $challengeInputs );*/
 }
 else if( $recordType == "UserSelfAssessment"){
     $recordName = "UserSelfAssessment";
     $getDataURL = $pluginURL . "inc/scripts/get_user_selfassessment_data.php?wpLoggedInUserID=$wpLoggedInUserID";
     $hideToolBar = true;
     //$challengeInputs = array();
-    
+    $challengePhaseNumber = $dgObj->getChallengePhase(MB90_SELF_ASSESSMENT_PAGE_SLUG);
     $challengeInputs = $dgObj->getHtmlFormInputs("SelfAssessment", "edit");
-    //echo "[[[" . print_R($challengeInputs) . "]]]";
-    $formDataAvailable = $challengeInputs[0];
-    unset($challengeInputs[0]); // remove the flag
-    $challengeInputs = array_values ( $challengeInputs );
+
+    //$formDataAvailable = $challengeInputs[0];
+    //unset($challengeInputs[0]); // remove the flag
+    //$challengeInputs = array_values ( $challengeInputs );
 }
 
 $dataGridHeader = $dgObj->getGridHeader($recordType);
@@ -93,7 +93,9 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         
         function getFormHTML(phase)
         {
-            var formHTML = jQuery("#dlgFormHTML_" + phase).html().replace("fmFormHTML_" + phase + "_temp", "fmFormHTML_" + phase ).replace('class="ftitle"', 'style="display:none"');
+            formOuterHTML = jQuery('<div>').append(jQuery("#fmFormHTML_" + phase + "_temp").clone()).html();
+            //alert(formOuterHTML);
+            var formHTML = formOuterHTML.replace("fmFormHTML_" + phase + "_temp", "fmFormHTML_" + phase ).replace('class="ftitle"', 'style="display:none"');
             return formHTML;
         }
         
@@ -105,42 +107,58 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         };
         
         function customFormHTML(formName, mode, date, challengePhase, msg, caption){
-            var debugMode = <?php echo MB90_90_DEBUG; ?>;
-            var todaysDate = new Date();
-            var todaysDateFormatted = todaysDate.yyyymmdd();
-            //alert(todaysDateFormatted);
-            jQuery(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
-            if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging/testing
-                jQuery("#start-button").hide();
-                msgHTML = dialogHTML(caption, msg);
-                jQuery("#exercies-inputform-wrapper").html(msgHTML);
-                // hide the entire timer block
-                jQuery(".outer-timer-wrapper").hide();
-            }else{
-                if( jQuery('#dlgFormHTML_'+challengePhase).length > 0 ){
-                    jQuery("#start-button").show();
-                    jQuery(".timer-start").show();
-                    jQuery("#exercies-inputform-wrapper").html(""); // reset form content
-                    currentDisplayedFormID = "dlgFormHTML_"+challengePhase;
-                    
-                    jQuery('div[id^="dlgFormHTML_"]').hide();
-                    jQuery("#" + currentDisplayedFormID).show();
-                    //jQuery("#" + currentDisplayedFormID).css("display", "block !important");
-                    //alert(jQuery("#" + currentDisplayedFormID).html());
-                    
-                    //formHTML = getFormHTML(challengePhase);
-                    //jQuery("#exercies-inputform-wrapper").html(formHTML);
-                    
-                    //jQuery("#Result_31").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
-                    
-                    //jQuery(".mb90-input-form-input > input[type=text]")
-                    // show the entire timer block
-                    jQuery(".outer-timer-wrapper").show();
-                    //jQuery("#user-sa-data-wrapper").show();
+            //alert(challengePhase);
+            stopFormFill = false;
+            if( challengePhase > 1){
+                prevDateFormVal = jQuery("#Result_" + (challengePhase-2) + "0").val();
+                if( prevDateFormVal == 0 || prevDateFormVal.length == 0){
+                        alert("<?php echo FILL_ALL_PREVIOUS_FORMS; ?>");
+                        stopFormFill = true;
+                        return;
                 }
-                
             }
-            formSubmitURL = '<?=$incURL?>scripts/save_form_record.php?formType='+formName+'&date=' + date + '&mode=' + mode + '&UserID=<?=$wpLoggedInUserID?>';
+            if( !stopFormFill )
+            {
+
+                var debugMode = <?php echo MB90_90_DEBUG; ?>;
+                var todaysDate = new Date();
+                var todaysDateFormatted = todaysDate.yyyymmdd();
+                //alert(todaysDateFormatted);
+                jQuery(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
+                if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging/testing
+                    jQuery("#start-button").hide();
+                    msgHTML = dialogHTML(caption, msg);
+                    jQuery("#exercies-inputform-wrapper").html(msgHTML);
+                    // hide the entire timer block
+                    jQuery(".outer-timer-wrapper").hide();
+                }else{
+                    if( jQuery('#dlgFormHTML_'+challengePhase).length > 0 ){
+                        jQuery("#start-button").show();
+                        jQuery(".timer-start").show();
+                        jQuery("#exercies-inputform-wrapper").html(""); // reset form content
+                        currentDisplayedFormID = "dlgFormHTML_"+challengePhase;
+
+                        jQuery('div[id^="dlgFormHTML_"]').hide();
+                        //jQuery("#" + currentDisplayedFormID).show();
+                        //jQuery("#" + currentDisplayedFormID).css("display", "block !important");
+                        //alert(jQuery("#" + currentDisplayedFormID).html());
+
+                        formHTML = getFormHTML(challengePhase);
+                        jQuery("#exercies-inputform-wrapper").html(formHTML);
+
+                        //jQuery("#Result_31").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
+
+                        //jQuery(".mb90-input-form-input > input[type=text]")
+                        // show the entire timer block
+                        jQuery(".outer-timer-wrapper").show(); // show the timer bars and start button
+
+
+                        //jQuery("#user-sa-data-wrapper").show();
+                    }
+
+                }
+                formSubmitURL = '<?=$incURL?>scripts/save_form_record.php?formType='+formName+'&date=' + date + '&mode=' + mode + '&UserID=<?=$wpLoggedInUserID?>';
+            }
         }
         
         function ValidateForm(formID)
@@ -165,11 +183,11 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             //var formOK = ValidateForm("fmFormHTML_"+challengePhase);
             //formOK
             //jQuery('#fmFormHTMLEmbedded_'+challengePhase).form('submit',{
-            jQuery('#fmFormHTML_'+challengePhase+'_temp').form('submit',{
+            jQuery('#fmFormHTML_'+challengePhase).form('submit',{
                 url: formSubmitURL,
                 onSubmit: function(){
                     //return jQuery(this).form('validate');
-                    ok = ValidateForm('#fmFormHTML_'+challengePhase+'_temp');
+                    ok = ValidateForm('#fmFormHTML_'+challengePhase);
                     if( !ok ){
                         e.preventDefault();
                         jQuery("#mb90ExerciseFormMessage").addClass("mb90ErrorMessage");
@@ -396,11 +414,22 @@ if( false ){
     <?php
     //echo "inputs length = [" . count($challengeInputs) . "]";
     //echo "challengePhase = [" . $challengePhase . "]";
+    
     echo '<div id="hiddenExerciseForms">';
-    for($challengePhase = 0; $challengePhase < count($challengeInputs); $challengePhase ++)
+    for($challengePhase = 0; $challengePhase < $challengePhaseNumber; $challengePhase ++)
     {
+        
+        //echo "[[[count = ]" . count($challengeInputs) . "] ... challenge phase = [" . $challengePhase . "] ... " . $challengeInputs[$challengePhase] . "]]]";
+        /*if( $challengePhase == 0 ){
+            $challengePhaseIndex = 0;
+        }
+        else if( $challengePhase == 4 ){
+            $challengePhaseIndex = 6;
+        }
+        else{
+            $challengePhaseIndex = $challengePhase * 2;           
+        }*/
         ?>
-    <!--<div class="input-form-hidden" id="dlgFormHTML_<?=$challengePhase+1?>" style="text-align:center;width:28%;height:auto;padding:10px 20px;">-->
     <div id="dlgFormHTML_<?=$challengePhase+1?>" class="mb90ExerciseInputFormHTML">
         <div class="ftitle">My Body 90: Input Form</div>
         <form id="fmFormHTML_<?=$challengePhase+1?>_temp" method="post">
@@ -409,12 +438,10 @@ if( false ){
         <div class="vc_row wpb_row vc_row-fluid">
             <div class="vc_col-sm-12 wpb_column vc_column_container">
                 <div class="mb90-input-form-button">
-                    <!--<a href="javascript:void(0)" class="button fullwidth bluebutton" onclick="saveHTMLFormRecord(<?=$challengePhase+1?>)">Save</a>-->
-                    <!--<button data-toggle="tooltip" data-placement="top" title="Please fill all fields" class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>-->
+                    <div class="mb90-input-form-message-wrapper">
+                        <div class="mb90FormMessage" id="mb90ExerciseFormMessage"></div>
+                    </div>
                     <button class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>
-                </div>
-                <div class="mb90-input-form-message-wrapper">
-                    <div class="mb90FormMessage" id="mb90ExerciseFormMessage"></div>
                 </div>
             </div>
         </div>
@@ -427,14 +454,16 @@ if( false ){
     </div> <!-- close off the hidden forms div ... these are only used for data ... not displayed -->
     </div>   
     </div>   
+    </div>   
+    </div>   
     <?php
     //echo "challenge inputs = [" . $formDataAvailable . "]";
-    if( !$formDataAvailable ){
+    /*if( !$formDataAvailable ){
         //echo '</div>' . "\r\n" . '</div>' . "\r\n" . '</div>' . "\r\n" . '</div>' . "\r\n";
         echo '</div>' . "\r\n";
     }else{
         echo '</div>' . "\r\n" . '</div>' . "\r\n";
-    }
+    }*/
     ?>
 
     
