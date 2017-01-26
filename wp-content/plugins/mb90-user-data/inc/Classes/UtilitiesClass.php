@@ -119,9 +119,9 @@ class UtilitiesClass {
         echo '<script src="'.$incPath.'js/rangeslider/nouislider.min.js'.$mb90ScriptVersion.'"></script>'."\r\n"; 
         echo '<script src="//use.fontawesome.com/bcc1886acd.js"></script>'."\r\n"; 
         
-        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
-        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
-        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
+        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
+        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
+        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
         
         echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
 
@@ -292,7 +292,7 @@ class UtilitiesClass {
     
     public static function GetExerciseTimings()
     {
-        $exTimingHTML = '<div id="exTimings"><div class="progressbar-caption"><button class="btn"><strong>Click here to see exercise timings: </strong></button><br /><div id="exercise-summaryinfo-wrapper"><div id="exercise-summaryinfo"></div>';
+        $exTimingHTML = '<div id="exTimings"><strong>Click here to see exercise timings: </strong><br /><div id="exercise-summaryinfo-wrapper"><div id="exercise-summaryinfo"></div>';
         $exTimingHTML .= '<br /><strong>Total Time: </strong><br /><span id="totalworkouttimespandisplay"></span></div></div>';
         return $exTimingHTML;
     }
