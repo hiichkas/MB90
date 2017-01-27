@@ -291,7 +291,7 @@ timer-wrapper{
 
 /*#exercise-summaryinfo{display:none}*/
 #exercise-summaryinfo-wrapper{display:none}
-#exTimings{cursor: pointer; cursor: hand; }
+#exTimings{ background: rgb(63, 175, 212) none repeat scroll 0 0 !important; border: 1px solid; color: #fff; cursor: pointer; padding: 10px;}
 
 .ftitle{display:none !important}
 

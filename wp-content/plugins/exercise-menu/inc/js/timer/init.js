@@ -69,9 +69,9 @@ roundrest = jQuery("#roundrest").val(); // hidden var
 roundgroupings = jQuery("#roundgroupings").val(); // hidden var ... used to force repeating of rounds
 
 if( roundgroupings > 1 )
-    summaryinfo = "Num exercises per round: " + experround + "<br /> Ex Day: [" + exDayLocal + "]<br />Exercises per round (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Exercises per round: (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 else
-    summaryinfo = "Num exercises per round: " + experround + "<br /> Ex Day: [" + exDayLocal + "]<br />Exercises per round<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Exercises per round: " + experround + "<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 
 jQuery("#exercise-summaryinfo").html(summaryinfo); // display the line of summary info
 
