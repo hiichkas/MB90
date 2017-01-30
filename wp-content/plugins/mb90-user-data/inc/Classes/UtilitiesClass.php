@@ -70,6 +70,9 @@ class UtilitiesClass {
     
     function GetTimerJs()
     {
+        global $post;
+        $page_slug = $post->post_name;
+        
         //$incPath = self::getRootURL() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         $incPath = get_site_url() . MB90_90_EX_MENU_INC_FOLDER_PATH;
         $mb90ScriptVersion = self::GetVersionString();
@@ -89,6 +92,27 @@ class UtilitiesClass {
         
         echo '<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js'.$mb90ScriptVersion.'" type="text/javascript" charset="utf-8"></script>'."\r\n";
         
+        if( strtolower($page_slug) == MB90_WORKOUT_DAY_PAGE_SLUG) {
+            echo '<script type="text/javascript">' . "\r\n";
+            echo '        jQuery( document ).ready(function() {' . "\r\n";
+            //echo '        timing_html = jQuery("#exTimings").clone().wrap("<p>").parent().html();' . "\r\n";
+            //echo '        jQuery("#exTimings").remove();' . "\r\n";
+            //echo '        jQuery("#exercies-inputform-wrapper").html(timing_html);' . "\r\n";
+            /*echo '        jQuery("#exTimings").on("click", function(){' . "\r\n";
+            echo '            if( jQuery("#exercise-summaryinfo-wrapper").css("display") == "none"){' . "\r\n";
+            echo '                jQuery("#exTimgingsCaption").html("' . MB90_EXERCISE_HIDE_TIMINGS_CAPTION . '");' . "\r\n";
+            echo '                jQuery("#exercise-summaryinfo-wrapper").slideDown(1000);' . "\r\n";
+            echo '            }else{'."\r\n";
+            echo '                jQuery("#exTimgingsCaption").html("' . MB90_EXERCISE_VIEW_TIMINGS_CAPTION . '");' . "\r\n";
+            echo '                jQuery("#exercise-summaryinfo-wrapper").slideUp(1000);            '."\r\n";
+            echo '            }' . "\r\n";
+            echo '        });' . "\r\n";*/
+            echo '        jQuery("#exercise-summaryinfo-wrapper").show();' . "\r\n";
+            echo '        jQuery(".outer-timer-wrapper").show();' . "\r\n";
+            echo '    });' . "\r\n";
+            echo '</script>' . "\r\n";
+        }
+
         //echo '<script src="'.$incPath.'js/asProgress/src/rainbow.min.js"></script>'."\r\n";
         //echo '<script src="'.$incPath.'js/asProgress/src/jquery-asProgress.js"></script>'."\r\n";
         //echo '<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>'."\r\n";
@@ -129,7 +153,6 @@ class UtilitiesClass {
     
     public static function GetDateLinks($page_slug)
     {
-
         switch (strtolower($page_slug)) {
             case MB90_SELF_ASSESSMENT_PAGE_SLUG:
                 self::GetSelfAssessmentLinks();
@@ -144,13 +167,6 @@ class UtilitiesClass {
         }
     }
     
-    public static function GetUserChallengeLinks()
-    {
-        $challengeObj = new Assessments();
-        $challengeLinks = $challengeObj->get10DayChallengeLinks("All");
-        echo $challengeLinks;
-    }
-    
     public static function GetSelfAssessmentLinks()
     {
         $challengeObj = new Assessments();
@@ -162,6 +178,18 @@ class UtilitiesClass {
         $challengObj = new Assessments();
         return $challengObj->GetSelfAssessmentExList();
     }
+    
+    public static function GetUserChallengeLinks()
+    {
+        $challengeObj = new Assessments();
+        $challengeLinks = $challengeObj->get10DayChallengeLinks("All");
+        echo $challengeLinks;
+    }
+    
+    public static function GetUserChallengeExList(){
+        $challengObj = new Assessments();
+        return $challengObj->Get10DayChallengeExList();
+    }    
     
     public static function GetBodyStatLinks()
     {
@@ -263,6 +291,8 @@ class UtilitiesClass {
     
     public static function GetStartButton()
     {
+        global $post;
+        $page_slug = $post->post_name; // used to process the appropriate page
         $incPath = get_site_url() . MB90_90_USER_DATA_INC_FOLDER_PATH;
 
         $buttonLink = '<div class="outer-timer-wrapper">' . "\r\n";
@@ -281,8 +311,18 @@ class UtilitiesClass {
         $buttonLink .= '<div id="start-button-html">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
         $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>' . "\r\n";
         
-        if( MB90_90_DEBUG){
-            $buttonLink .= self::GetExerciseTimings();
+        //if( MB90_90_DEBUG ){
+        switch (strtolower($page_slug)) {
+            case MB90_SELF_ASSESSMENT_PAGE_SLUG:
+                $buttonLink .= self::GetExerciseTimings();
+                break;
+            case MB90_10_DAY_CHALLENGE_PAGE_SLUG:
+                $buttonLink .= self::GetExerciseTimings();
+                break;
+            case MB90_WORKOUT_DAY_PAGE_SLUG:
+                break;
+            default:
+                break;
         }
 
         $buttonLink .= '</div>' . "\r\n";
@@ -292,7 +332,15 @@ class UtilitiesClass {
     
     public static function GetExerciseTimings()
     {
-        $exTimingHTML = '<div id="exTimings"><strong>Click here to see exercise timings: </strong><br /><div id="exercise-summaryinfo-wrapper"><div id="exercise-summaryinfo"></div>';
+        global $post;
+        $page_slug = $post->post_name;
+        /*if( strtolower($page_slug) == MB90_WORKOUT_DAY_PAGE_SLUG) {
+            $exTimingsCaption = MB90_EXERCISE_VIEW_TIMINGS_STATIC_CAPTION;
+        }else{
+            $exTimingsCaption = MB90_EXERCISE_VIEW_TIMINGS_CAPTION;
+        }*/
+        $exTimingsCaption = MB90_EXERCISE_VIEW_TIMINGS_STATIC_CAPTION;
+        $exTimingHTML = '<div id="exTimings"><strong><div id="exTimgingsCaption">' . $exTimingsCaption . ': </div></strong><div id="exercise-summaryinfo-wrapper"><div id="exercise-summaryinfo"></div>';
         $exTimingHTML .= '<br /><strong>Total Time: </strong><br /><span id="totalworkouttimespandisplay"></span></div></div>';
         return $exTimingHTML;
     }
@@ -302,7 +350,7 @@ class UtilitiesClass {
         $finalHTML = "";
         $currNextHTML .= '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer">Current Exercise</button></div>' . "\r\n";
+        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_CURRENT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
         $finalHTML .= self::WrapColumn($currNextHTML, 3);
@@ -315,10 +363,10 @@ class UtilitiesClass {
         
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer">Next Exercise</button></div>' . "\r\n";
+        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_NEXT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
         
-        $finalHTML .= self::WrapColumn($currNextHTML, 3);
+        $finalHTML .= self::WrapColumn($currNextHTML, 3); 
 
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
@@ -362,6 +410,315 @@ class UtilitiesClass {
     {
         //include(self::getRootPath() . 'inc/data-grid.php');
         //[user-sa-data]
+    }
+    
+    public static function GetMediaRows()
+    {
+        $exDay = $_REQUEST["exDay"];
+	$exDay = $exDay % 10;
+        global $wpdb;
+        $exListing = "";
+        //$exListing = "";
+        
+        $currentExName = "";
+        $rowHTML   = $rowStart;
+        $imageHTML = $columnHeaderStart . "<h2>Anatomy</h2>" . $columnHeaderEnd;
+        $videoHTML = $columnHeaderStart . "<h2>Video</h2>" . $columnHeaderEnd;
+        $descHTML  = "";
+        $imageCount = 0;
+        $videoCount = 0;
+        $descriptionCount = 0;
+        $rowCount   = 0;
+        $rowCountTotal = 0;
+        $rowHTMLArr = array();
+        $exNameArr = array();
+
+        $sep = self::GetRowSep();
+
+        //echo "SQL = [" . "SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=" . $exDay . "  AND UPPER(ExerciseMMType) != 'IMAGE' AND ProgrammeID = 1 order by OrderNumber, ExerciseName, ExerciseMMType ASL" . "]";
+        foreach( $wpdb->get_results("SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=" . $exDay . " AND UPPER(ExerciseMMType) != 'IMAGE' AND ProgrammeID = 1 order by OrderNumber, ExerciseName, ExerciseMMType asc" ) as $key => $row)
+        {
+            $rowCountTotal ++;
+            $exName = $row->ExerciseName;
+            if( $currentExName !== $exName ){ // start a new row
+                //echo "new row";
+                $imageCount = 0;
+                $videoCount = 0;
+                if( $currentExName !== "" ){ // if not the start of the 1st row
+                    // now clean up placeholders that were not used
+                    $rowHTML = str_replace("##EXERCISEVIDEOPATH##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE1##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE2##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE3##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE4##","",$rowHTML);
+                    //echo "adding to array";
+                    array_push($rowHTMLArr, $rowHTML);
+                    array_push($exNameArr, $currentExName);
+                    
+                    $exListing .= $currentExName . '##,##';
+                }
+
+                $rowHTML = self::GetRowTemplate();
+                $rowHTML = str_replace("##EXERCISENAME##",$row->ExerciseName,$rowHTML); // swap in ex name
+                $rowHTML = str_replace("##MESSAGE##", $row->Message, $rowHTML); // swap in description
+            }
+
+            // now process if an image
+            if( $row->ExerciseMMType == "Image" && $imageCount == 0){ // restrict to 1 image only
+                $imageCount ++;
+                $imageHTMLStr = '<a href="#" data-featherlight="#exImageName_' . $rowCountTotal . '"><img width="100" height="100" class="vc_single_image-img-custom" src="' . $row->ExerciseMMPath . '" id="exImageName_' . $rowCountTotal . '" alt="' . $row->ExerciseName . '" title="' . $row->ExerciseName . '"></a>';
+                //echo "11##IMAGE' . $imageCount. '##11";
+                $rowHTML = str_replace("##IMAGE" . $imageCount. "##", $imageHTMLStr, $rowHTML); // swap in image html
+            }
+
+            // now process if a video
+            if( $row->ExerciseMMType == "Video" && $videoCount == 0){ // only allow 1 video
+                $videoCount ++;
+                $embedCode = wp_oembed_get($row->ExerciseMMPath);
+                $rowHTML = str_replace("##EXERCISEVIDEOPATH##", $embedCode, $rowHTML); // swap in image path
+            }
+
+            $currentExName = $row->ExerciseName;
+
+        }
+
+        $rowHTML = str_replace("##EXERCISEVIDEOPATH##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE1##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE2##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE3##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE4##","",$rowHTML);             
+
+        array_push($rowHTMLArr, $rowHTML);
+        array_push($exNameArr, $currentExName);
+        
+        if( $exDay == 9 ){ // Quick Fix: rohea: double up the exercises per round ... need to tidy this up to get the roundGroupings from the mb90_workout_timings table
+            $exListing .= $currentExName . '##,##' . $exListing . $currentExName;
+        }else{
+            $exListing .= $currentExName;            
+        }
+
+        //echo $rowStart . $imageHTML . $videoHTML . $descHTML . $rowEnd;
+        //array_push($rowHTMLArr, $rowStart . $colummStart . $imageHTML . $columnEnd . $colummStart . $videoHTML . $columnEnd . $colummStart . $descHTML . $columnEnd . $rowEnd);
+        $rowCount = 1;
+        foreach( $rowHTMLArr as $rowHTMLstr){
+            echo $rowHTMLstr;
+            $rowCount ++;
+        }
+        
+        echo '<input type="hidden" id="exlistinghidden" value="' . $exListing . '" />';
+    }
+
+    
+    public static function GetMediaRowsOri()
+    {
+        $exDay = $_REQUEST["exDay"];
+	$exDay = $exDay % 10;
+        global $wpdb;
+        $exListing = "";
+        //$exListing = "";
+        
+        $currentExName = "";
+        $rowHTML   = $rowStart;
+        $imageHTML = $columnHeaderStart . "<h2>Anatomy</h2>" . $columnHeaderEnd;
+        $videoHTML = $columnHeaderStart . "<h2>Video</h2>" . $columnHeaderEnd;
+        $descHTML  = "";
+        $imageCount = 0;
+        $videoCount = 0;
+        $descriptionCount = 0;
+        $rowCount   = 0;
+        $rowCountTotal = 0;
+        $rowHTMLArr = array();
+        $exNameArr = array();
+
+        $sep = self::GetRowSep();
+
+        //echo "SQL = [" . "SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=" . $exDay . " AND ProgrammeID = 1 order by OrderNumber, ExerciseName, ExerciseMMType asc" . "]";
+        foreach( $wpdb->get_results("SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=" . $exDay . " AND ProgrammeID = 1 order by OrderNumber, ExerciseName, ExerciseMMType asc" ) as $key => $row)
+        {
+            $rowCountTotal ++;
+            $exName = $row->ExerciseName;
+            if( $currentExName !== $exName ){ // start a new row
+                //echo "new row";
+                $imageCount = 0;
+                $videoCount = 0;
+                if( $currentExName !== "" ){ // if not the start of the 1st row
+                    // now clean up placeholders that were not used
+                    $rowHTML = str_replace("##EXERCISEVIDEOPATH##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE1##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE2##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE3##","",$rowHTML);
+                    $rowHTML = str_replace("##IMAGE4##","",$rowHTML);
+                    //echo "adding to array";
+                    array_push($rowHTMLArr, $rowHTML);
+                    array_push($exNameArr, $currentExName);
+                    
+                    $exListing .= $currentExName . '##,##';
+                }
+
+                $rowHTML = self::GetRowTemplate();
+                $rowHTML = str_replace("##EXERCISENAME##",$row->ExerciseName,$rowHTML); // swap in ex name
+                $rowHTML = str_replace("##MESSAGE##", $row->Message, $rowHTML); // swap in description
+            }
+
+            // now process if an image
+            if( $row->ExerciseMMType == "Image" && $imageCount == 0){ // restrict to 1 image only
+                $imageCount ++;
+                $imageHTMLStr = '<a href="#" data-featherlight="#exImageName_' . $rowCountTotal . '"><img width="100" height="100" class="vc_single_image-img-custom" src="' . $row->ExerciseMMPath . '" id="exImageName_' . $rowCountTotal . '" alt="' . $row->ExerciseName . '" title="' . $row->ExerciseName . '"></a>';
+                //echo "11##IMAGE' . $imageCount. '##11";
+                $rowHTML = str_replace("##IMAGE" . $imageCount. "##", $imageHTMLStr, $rowHTML); // swap in image html
+            }
+
+            // now process if a video
+            if( $row->ExerciseMMType == "Video" && $videoCount == 0){ // only allow 1 video
+                $videoCount ++;
+                $embedCode = wp_oembed_get($row->ExerciseMMPath);
+                $rowHTML = str_replace("##EXERCISEVIDEOPATH##", $embedCode, $rowHTML); // swap in image path
+            }
+
+            $currentExName = $row->ExerciseName;
+
+        }
+
+        $rowHTML = str_replace("##EXERCISEVIDEOPATH##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE1##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE2##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE3##","",$rowHTML);
+        $rowHTML = str_replace("##IMAGE4##","",$rowHTML);             
+
+        array_push($rowHTMLArr, $rowHTML);
+        array_push($exNameArr, $currentExName);
+        
+        if( $exDay == 9 ){ // Quick Fix: rohea: double up the exercises per round ... need to tidy this up to get the roundGroupings from the mb90_workout_timings table
+            $exListing .= $currentExName . '##,##' . $exListing . $currentExName;
+        }else{
+            $exListing .= $currentExName;            
+        }
+
+        //echo $rowStart . $imageHTML . $videoHTML . $descHTML . $rowEnd;
+        //array_push($rowHTMLArr, $rowStart . $colummStart . $imageHTML . $columnEnd . $colummStart . $videoHTML . $columnEnd . $colummStart . $descHTML . $columnEnd . $rowEnd);
+        $rowCount = 1;
+        foreach( $rowHTMLArr as $rowHTMLstr){
+            echo $rowHTMLstr;
+            $rowCount ++;
+        }
+        
+        echo '<input type="hidden" id="exlistinghidden" value="' . $exListing . '" />';
+    }
+    
+    public static function GetRowSep()
+    {
+        $sepHTML = '<div class="vc_row wpb_row vc_row-fluid mb90-ex-separator">' . "\r\n";
+        $sepHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container">' . "\r\n";
+        $sepHTML .= '<div class="wpb_wrapper">' . "\r\n";
+        $sepHTML .= '<div class="vc_separator wpb_content_element vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey">' . "\r\n";
+        $sepHTML .= '<span class="vc_sep_holder vc_sep_holder_l"><span class="vc_sep_line"></span></span>' . "\r\n";
+        $sepHTML .= '<span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span>' . "\r\n";
+        $sepHTML .= '</div></div></div></div>' . "\r\n";
+        return $sepHTML;
+    }
+    
+    public static function GetRowTemplate()
+    {
+        $rowStart = '<div class="vc_row wpb_row vc_row-fluid mb90-ex-separator">' . "\r\n";
+        $rowEnd = '</div>' . "\r\n";    
+
+        $columnStart = '<div class="vc_col-sm-4 wpb_column vc_column_container">' . "\r\n";
+        $columnStart .= '<div class="wpb_wrapper">' . "\r\n";
+        
+        $imageColumnStart = '<div class="vc_col-sm-2 wpb_column vc_column_container">' . "\r\n";
+        $imageColumnStart .= '<div class="wpb_wrapper">' . "\r\n";
+        
+        $descColumnStart = '<div class="vc_col-sm-6 wpb_column vc_column_container">' . "\r\n";
+        $descColumnStart .= '<div class="wpb_wrapper">' . "\r\n";
+        $descColumnStart .= '<div class="mb90-exercise-description">' . "\r\n";
+
+        $columnEnd = '</div></div>' . "\r\n";
+
+        $columnHeaderStart = '<div class="wpb_text_column wpb_content_element">' . "\r\n";
+        $columnHeaderStart .= '<div class="wpb_wrapper">' . "\r\n";
+
+        $columnHeaderEnd .= '</div></div>' . "\r\n";
+
+        $imagesRowStart = '<div class="vc_row wpb_row vc_inner vc_row-fluid">' . "\r\n";
+        $imagesRowEnd = '</div>' . "\r\n";
+
+        $imageCellStart = '<div class="vc_col-sm-12 wpb_column vc_column_container">' . "\r\n";
+        $imageCellStart .= '<div class="wpb_wrapper">' . "\r\n";
+        $imageCellStart .= '<div class="wpb_single_image wpb_content_element vc_align_">' . "\r\n";
+        $imageCellStart .= '<div class="wpb_wrapper">' . "\r\n";
+        $imageCellStart .= '<div class="vc_single_image-wrapper-custom vc_box_border_grey">' . "\r\n";
+
+        
+        $imageCellEnd = '</div></div></div></div></div>' . "\r\n";
+
+        $videoCellStart = '<div class="wpb_video_widget wpb_content_element">' . "\r\n";
+        $videoCellStart .= '<div class="wpb_wrapper">' . "\r\n";
+        $videoCellStart .= '<div class="wpb_video_wrapper mb90-video-wrapper">' . "\r\n";
+
+        $videoCellEnd = '</div></div></div>' . "\r\n";
+
+        $videoLink = "";
+        $imageLink = "";
+        $descriptionText = "";
+        $columnCaption .= '<h2>Anatomy</h2>' . "\r\n";
+        $descriptionCaption = '<h2>##EXERCISENAME##</h2>' . "\r\n";
+
+        $descriptionEnd = $columnEnd;
+    
+        $rowTemplate = $rowStart;
+/*        $rowTemplate .= $imageColumnStart;
+        $rowTemplate .= $columnHeaderStart;
+        $rowTemplate .= "<h2>Anatomy</h2>";
+        $rowTemplate .= $columnHeaderEnd;
+
+        // need to loop through images here ... load them into an array
+
+        $rowTemplate .= $imagesRowStart;
+        $rowTemplate .= $imageCellStart;
+        $rowTemplate .= "##IMAGE1##";
+        $rowTemplate .= $imageCellEnd;
+        $rowTemplate .= $imageCellStart;
+        $rowTemplate .= "##IMAGE2##";
+        $rowTemplate .= $imageCellEnd;
+        $rowTemplate .= $imagesRowEnd;
+        $rowTemplate .= $imagesRowStart;
+        $rowTemplate .= $imageCellStart;
+        $rowTemplate .= "##IMAGE3##";
+        $rowTemplate .= $imageCellEnd;
+        $rowTemplate .= $imageCellStart;
+        $rowTemplate .= "##IMAGE4##";
+        $rowTemplate .= $imageCellEnd;
+        $rowTemplate .= $imagesRowEnd;
+        $rowTemplate .= $columnEnd;
+*/
+
+        $rowTemplate .= $columnStart;
+        $rowTemplate .= $columnHeaderStart;
+        $rowTemplate .= "<h2>Video</h2>";
+        $rowTemplate .= $columnHeaderEnd;
+        $rowTemplate .= $videoCellStart;
+        //echo '<iframe width="500" height="281" frameborder="0" src="' . $row->ExerciseMMPath . '" allowfullscreen=""></iframe>';
+        //echo '[embed width="500" height="281"]' . $row->ExerciseMMPath . '[/embed]';
+        $rowTemplate .= '##EXERCISEVIDEOPATH##';
+        $rowTemplate .= $videoCellEnd;        
+        $rowTemplate .= $columnEnd;
+
+        $rowTemplate .= $descColumnStart;
+        //echo $columnHeaderStart;
+        $rowTemplate .= "<h2>##EXERCISENAME##</h2>";
+        //echo $columnHeaderEnd;
+        //echo $videoCellStart;
+        $rowTemplate .= '<p>##MESSAGE##</p>' . "\r\n";
+        //echo $videoCellEnd;
+        $rowTemplate .= "</div>"  . "\r\n";
+        $rowTemplate .= $columnEnd;        
+        $rowTemplate .= $rowEnd;
+        
+        $sep = self::GetRowSep();
+        
+        $rowTemplate .= $sep;
+        
+        return $rowTemplate;
     }
     
 }

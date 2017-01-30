@@ -12,6 +12,9 @@ define('MB90_10_DAY_CHALLENGE_PAGE_SLUG', '10-day-challenge');
 define('MB90_10_DAY_CHALLENGE_PAGE_WELCOME', 'Welcome to your 10 day challenge ');
 define('MB90_10_DAY_CHALLENGE_PAGE_WELCOME_HTML', 'h1');
 
+define('MB90_CURRENT_EXERCISE_CAPTION', 'Current Exercise');
+define('MB90_NEXT_EXERCISE_CAPTION', 'Next Exercise');
+
 define('MB90_WORKOUT_DAY_PAGE_SLUG', 'your-exercise-details');
 define('MB90_WORKOUT_DAY_PAGE_WELCOME', 'Welcome to your workout ');
 define('MB90_WORKOUT_DAY_PAGE_WELCOME_HTML', 'h1');
@@ -68,6 +71,11 @@ define('MB90_SELF_ASSESSMENT_EXTIME', 10);
 define('MB90_SELF_ASSESSMENT_NUMROUNDS', 1);
 define('MB90_SELF_ASSESSMENT_ROUNDREST', 1);
 
+define('MB90_EXERCISE_VIEW_TIMINGS_CAPTION', 'Click here to view exercise timings');
+define('MB90_EXERCISE_HIDE_TIMINGS_CAPTION', 'Click here to hide exercise timings');
+define('MB90_EXERCISE_VIEW_TIMINGS_STATIC_CAPTION', 'The following are your exercise timings');
+
+
 // chart options
 define('MB90_WEIGHTGRAPH_DATANUM_FORBARCHART', 5);
 define('MB90_CHARTS_PER_ROW', 3);
@@ -95,6 +103,15 @@ define('MB90_NAVY_GREY', 'rgb(52, 73, 94)');
 define('MB90_ORANGE', 'rgb(227, 58, 12)');
 define('MB90_SKYBLUE', 'rgb(63, 175, 212)');
 define('MB90_WHITE', 'rgb(0, 0, 0)');
+
+define('MB90_EX_GRAPH_FILL_COLOR', '#23b7e5');
+define('MB90_EX_GRAPH_POINT_COLOR', '#337ab7');
+define('MB90_EX_GRAPH_STROKE_COLOR', '#337ab7');
+define('MB90_EX_GRAPH_HIGHLIGHT_STROKE_COLOR', '#337ab7');
+define('MB90_EX_GRAPH_HIGHLIGHT_FILL_COLOR', '#337ab7');
+
+define('MB90_EX_GRAPH_GRID_LINE_COLOR', 'rgb(52, 73, 94)');
+define('MB90_EX_GRAPH_SCALE_FONT_COLOR', 'rgb(52, 73, 94)');
 
 // input sliders
 define('MB90_INPUT_SLIDER_MIN', 0);

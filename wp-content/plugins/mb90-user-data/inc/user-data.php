@@ -204,12 +204,27 @@
                     //color: rgb(52, 73, 94) -- navy-grey
                     //color: rgb(63,175,212) -- sky blue
                     //echo 'fillColor : "rgba(220,220,220,0.2)",'."\r\n";
-                    echo 'fillColor : "' . MB90_ORANGE . '",'."\r\n";
-                    echo 'strokeColor : "' . MB90_WHITE . '",'."\r\n";
-                    echo 'pointColor : "' . MB90_NAVY_GREY . '",'."\r\n";
-                    echo 'pointStrokeColor : "#fff",'."\r\n";
-                    echo 'pointHighlightFill : "#fff",'."\r\n";
-                    echo 'pointHighlightStroke : "rgb(63,175,212)",'."\r\n";
+                    echo 'fillColor : "' . MB90_EX_GRAPH_FILL_COLOR . '",' . "\r\n";
+                    echo 'strokeColor : "' . MB90_EX_GRAPH_STROKE_COLOR . '",' . "\r\n";
+                    echo 'pointColor : "' . MB90_EX_GRAPH_POINT_COLOR . '",' . "\r\n";
+                    echo 'pointDotRadius : "0.5",' . "\r\n";
+                    echo 'bezierCurve : true,' . "\r\n";
+                    
+                    /*
+                    echo 'options: {' . "\r\n";
+                    echo 'title: {' . "\r\n";
+                    echo '    display: true,' . "\r\n";
+                    echo '    text: \'Custom Chart Title\'' . "\r\n";
+                    echo '  }' . "\r\n";
+                    echo '}' . "\r\n";
+                    */
+                    //echo 'pointColor : "' . MB90_NAVY_GREY . '",'."\r\n";
+                    //echo 'pointStrokeColor : "' . MB90_ORANGE_BORDER . '",'."\r\n";
+                    //echo 'pointHighlightFill : "#fff",'."\r\n";
+                    //echo 'pointHighlightStroke : "rgb(63,175,212)",'."\r\n";
+                    //echo 'pointHighlightFillColor : "black",' . "\r\n";
+                    //echo 'pointHighlightStrokeColor : "red",' . "\r\n";
+                    
                     echo "data : [".$dataArr[$i]."]"."\r\n";
                     echo '}'."\r\n";
                     echo ']'."\r\n";
@@ -222,9 +237,24 @@
                 {
                     echo 'var ctx_'.($count+1).' = document.getElementById("canvas_'.($count+1).'").getContext("2d");'."\r\n";
                     echo 'window.myLine'.($count+1).' = new Chart(ctx_'.($count+1).').Line(lineChartData_'.($count+1).', {'."\r\n";
+                    /*echo 'options: {' . "\r\n";
+                    echo 'title: {' . "\r\n";
+                    echo '    display: true,' . "\r\n";
+                    echo '    text: \'Custom Chart Title\'' . "\r\n";
+                    echo '  }' . "\r\n";
+                    echo '}' . "\r\n";
+                     * */
+
                     echo 'responsive: true,'."\r\n";
+                    //echo 'title: "test title123",'."\r\n";
                     echo 'showTooltips: true,'."\r\n";
-                    echo 'scaleFontColor: "' . MB90_NAVY_GREY . '"'."\r\n";
+                    //echo 'scaleSteps: 100,'."\r\n";
+                    //echo 'scaleLabel: "<%=value%>",'."\r\n";
+                    echo 'scaleFontColor: "' . MB90_EX_GRAPH_SCALE_FONT_COLOR. '",'."\r\n";
+                    //echo 'scaleGridLineColor: "' . MB90_EX_GRAPH_GRID_LINE_COLOR .'",'."\r\n";
+                    echo 'scaleGridLineColor: "transparent",'."\r\n";
+                    echo 'scaleLineColor: "' . MB90_EX_GRAPH_GRID_LINE_COLOR .'"'."\r\n";
+                    
                     echo '});'."\r\n";
                     $count = $count + 1;
                 }

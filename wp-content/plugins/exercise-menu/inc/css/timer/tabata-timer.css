@@ -290,7 +290,7 @@ timer-wrapper{
 .input-form-hidden{display:none}
 
 /*#exercise-summaryinfo{display:none}*/
-#exercise-summaryinfo-wrapper{display:none}
+#exercise-summaryinfo-wrapper{display:block}
 #exTimings{ background: rgb(63, 175, 212) none repeat scroll 0 0 !important; border: 1px solid; color: #fff; cursor: pointer; padding: 10px;}
 
 .ftitle{display:none !important}
@@ -364,7 +364,11 @@ timer-wrapper{
 
 .mb90-nopointer{pointer-events: none; width: 100%; white-space: normal}
 
+.ex-caption-bold{font-weight: bold}
+
 .mb90-ex-separator{padding-top:20px}
+
+.mb90-video-wrapper{margin-top:-24px}
 
 #mb90-load-cover{position: relative; height: 100%; width: 100%; background: #000; z-index:9999;}
 

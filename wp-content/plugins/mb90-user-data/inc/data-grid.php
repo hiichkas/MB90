@@ -112,11 +112,12 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             if( challengePhase > 1){
                 prevDateFormVal = jQuery("#Result_" + (challengePhase-2) + "0").val();
                 if( prevDateFormVal == 0 || prevDateFormVal.length == 0){
-                        alert("<?php echo FILL_ALL_PREVIOUS_FORMS; ?>");
-                        stopFormFill = true;
-                        return;
+                    alert("<?php echo FILL_ALL_PREVIOUS_FORMS; ?>");
+                    stopFormFill = true;
+                    return;
                 }
             }
+            
             if( !stopFormFill )
             {
 
@@ -309,7 +310,15 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             }
         });
 
-
+        /*jQuery("#exTimings").on('click', function(){
+            if( jQuery("#exercise-summaryinfo-wrapper").css("display") == "none"){
+                jQuery("#exTimgingsCaption").html("<?php echo MB90_EXERCISE_HIDE_TIMINGS_CAPTION; ?>");
+                jQuery("#exercise-summaryinfo-wrapper").slideDown(1000);
+            }else{
+                jQuery("#exTimgingsCaption").html("<?php echo MB90_EXERCISE_VIEW_TIMINGS_CAPTION; ?>");
+                jQuery("#exercise-summaryinfo-wrapper").slideUp(1000);            
+            }
+        });*/
         
         //jQuery(document).ready(function(){
                 //jQuery('[data-toggle="tooltip"]').tooltip()

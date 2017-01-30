@@ -23,14 +23,6 @@ function isNumberKey(evt) {
 
 jQuery(document).ready(function(){
     
-    jQuery("#exTimings").on('click', function(){
-        if( jQuery("#exercise-summaryinfo-wrapper").css("display") == "none"){
-            jQuery("#exercise-summaryinfo-wrapper").slideDown(1000);
-        }else{
-            jQuery("#exercise-summaryinfo-wrapper").slideUp(1000);            
-        }
-    });
-    
     jQuery("input[id^=Result_]").each(function(){
         jQuery(this).next("div.noUi-base").remove(); // hack to delete duplicate sliders
     });
@@ -188,8 +180,6 @@ jQuery("#exlisting").html(exlistingHTML);
             alert(i);
         });
     }*/
-
-    
 });
 
 jQuery(window).on('load', function() {

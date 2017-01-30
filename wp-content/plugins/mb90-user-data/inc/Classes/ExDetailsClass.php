@@ -28,7 +28,7 @@ class ExDetailsClass extends UserFunctionsClass{
                 $headerHTML .= UtilitiesClass::wrapInHTML(MB90_SELF_ASSESSMENT_PAGE_WELCOME_HTML, MB90_SELF_ASSESSMENT_PAGE_WELCOME . $current_user->first_name . "!");
                 break;
             case MB90_10_DAY_CHALLENGE_PAGE_SLUG:
-                $headerHTML .= UtilitiesClass::wrapInHTML(MB90_10_DAY_CHALLENGE_PAGE_WELCOME_HTML, MB90_10_DAY_CHALLENGE_PAGE_WELCOM . $current_user->first_name . "!");
+                $headerHTML .= UtilitiesClass::wrapInHTML(MB90_10_DAY_CHALLENGE_PAGE_WELCOME_HTML, MB90_10_DAY_CHALLENGE_PAGE_WELCOME . $current_user->first_name . "!");
                 break;
             case MB90_WORKOUT_DAY_PAGE_SLUG:
                 $headerHTML .= UtilitiesClass::wrapInHTML(MB90_WORKOUT_DAY_PAGE_WELCOME_HTML, MB90_WORKOUT_DAY_PAGE_WELCOME . $current_user->first_name . "!");

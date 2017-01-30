@@ -28,4 +28,10 @@
     
     UtilitiesClass::GetBlockDetails($page_slug); // get timings and exercises from dbase
     
+    if( strtolower($page_slug) == MB90_WORKOUT_DAY_PAGE_SLUG) {
+        //include($pluginDirPath . "../plugins/mb90-user-data/inc/scripts/workout-include.php"); 
+        //echo "\r\n" . "<style>" . "\r\n" . ".outer-timer-wrapper{display:block !important}" . "\r\n" . "#exercise-summaryinfo-wrapper{display:block !important}" . "\r\n". "</style>" . "\r\n";
+        echo "\r\n" . "<style>" . "\r\n" . ".outer-timer-wrapper{display:block !important}" . "\r\n". "</style>" . "\r\n";
+    }
+    
 ?>
