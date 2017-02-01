@@ -49,7 +49,7 @@ class UtilitiesClass {
     
     public static function GetVersionString()
     {
-        if( MB90_90_DEBUG ){
+        if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){
             return  "?v=" . microtime(true);
         }else{
             return "";
@@ -210,12 +210,29 @@ class UtilitiesClass {
         }
         else
         {
-            $blockNum = ceil($exDay / 10);
+            switch ($exDay) {
+                case -1:
+                    $blockNum = -1; // gets the set of test timings for Self Assessment
+                    $exDay = 1;
+                    break;
+                case -2:
+                    $blockNum = -2; // gets the set of test timings for Normal Workout Day
+                    $exDay = 2;
+                    break;
+                case -8:
+                    $blockNum = -8; // gets the set of test timings for 10 Day Challenge
+                    $exDay = 8;
+                    break;
+                default:
+                    $blockNum = ceil($exDay / 10);
+                    $exDay = $exDay % 10;
+                    break;
+            }
             $exCount = 0;
             $roundGroupings = 1;
 
             //$exDayOri = $exDay;
-            $exDay = $exDay % 10;
+
 
             foreach( $wpdb->get_results("SELECT * FROM mb90_workout_timings WHERE BlockNum=" . $blockNum ) as $key => $row)
             {
@@ -348,36 +365,52 @@ class UtilitiesClass {
     public static function GetCurrentNextExercises()
     {
         $finalHTML = "";
-        $currNextHTML .= '<div class="outer-timer-wrapper">' . "\r\n";
+        /*$currNextHTML .= '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
         $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_CURRENT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
         $finalHTML .= self::WrapColumn($currNextHTML, 3);
+         * 
+         */
+        
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
+        $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
         $currNextHTML .= '<div id="currentExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
-        $finalHTML .= self::WrapColumn($currNextHTML, 3);
+        $finalHTML .= self::WrapColumn($currNextHTML, 4);
         
         // new col
+        /*
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_NEXT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
         
         $finalHTML .= self::WrapColumn($currNextHTML, 3); 
+        */
 
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div id="nextExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
         
-        $finalHTML .= self::WrapColumn($currNextHTML, 3);
+        $finalHTML .= self::WrapColumn($currNextHTML, 4);
+        
+        // new col
+        $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
+        $currNextHTML .= '<div id="thirdExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
+        $currNextHTML .= '</div>' . "\r\n";
+        
+        $finalHTML .= self::WrapColumn($currNextHTML, 4);
+
         
         $finalHTML = self::WrapRow($finalHTML);
         
-        echo $finalHTML;
+        //echo $finalHTML;
+        
+        echo '<div id="mb90-exercise-scroller"></div>';
 
     }
     

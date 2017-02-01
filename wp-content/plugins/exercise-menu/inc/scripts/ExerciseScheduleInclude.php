@@ -251,10 +251,42 @@
         $nonWorkoutDaysArr = array(4,7,0);
         $fullDayCount = 0;
         $gridHTML = BuildExScheduleInputForm();
+
+        if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ // add 3 test days for debugging/testing
+            
+            $gridHTML .= '<div id="schedule-day-grid-wrapper">' . "\r\n";
+            
+            $gridHTML .= '<h2>Exercise Days</h2>' . "\r\n";
+            $gridHTML .= '<div class="image-grid-wrapper image-grid-col-test">' . "\r\n";
+               
+            $gridHTML .= '<div class="image-grid-col image-grid-col-test">';
+            $gridHTML .= '<a class="exDayScheduleLink" data-exday="-1" data-exdaytype="self-assessment" href="javascript:void(0);" title="Self Assessment">';
+            $gridHTML .= '<div class="mb90-schedule-day-number mb90-schedule-day-number-circle mb90-test-day">Self Assessment Test</div>' . "\r\n";
+            $gridHTML .= '</a></div>'; 
+
+            $gridHTML .= '<div class="image-grid-col image-grid-col-test">';
+            $gridHTML .= '<a class="exDayScheduleLink" data-exday="-2" data-exdaytype="normal-exday" href="javascript:void(0);" title="Workout">';
+            $gridHTML .= '<div class="mb90-schedule-day-number mb90-schedule-day-number-circle mb90-test-day">Workout Test</div>' . "\r\n";
+            $gridHTML .= '</a></div>'; 
+
+            $gridHTML .= '<div class="image-grid-col image-grid-col-test">';
+            $gridHTML .= '<a class="exDayScheduleLink" data-exday="-8" data-exdaytype="10-day-challenge" href="javascript:void(0);" title="10 Day Challenge">';
+            $gridHTML .= '<div class="mb90-schedule-day-number mb90-schedule-day-number-circle mb90-test-day">10 Day Test</div>' . "\r\n";
+            $gridHTML .= '</a></div>'; 
+
+            $gridHTML .= '</div>';
+                
+        }
+        
         $gridHTML .= '<div class="image-grid-wrapper">' . "\r\n";
-        for($rowCount = 1; $rowCount <= 90; $rowCount ++ )
+        for($dayCount = 1; $dayCount <= MB90_NUM_DAYS; $dayCount ++ )
         {
-            $gridHTML .= '<div class="image-grid-row">' . "\r\n";
+            $opacityClass = "";
+            if( $dayCount < $dayOfCourse){
+                $opacityClass = MB90_HALF_OPACITY_CSS;
+            }
+            
+            $gridHTML .= '<div class="image-grid-col">' . "\r\n";
             //$gridHTML .= '<h2 style="padding-right: 10px;    padding-top: 15px; float:left">PHASE [' . $rowCount. ']</h2>' . "\r\n";
             //for($dayCount = 1; $dayCount <= 10; $dayCount ++ )
             //{
@@ -292,7 +324,10 @@
                     $fullDayCountPaddedRed = $fullDayCountPadded + 7;
                 else 
                     $fullDayCountPaddedRed = $fullDayCountPadded;
-                $gridHTML .= '<img data-alt-src="'.$incPath.'images/numbers/mybodynumbers1-90Red-' . $fullDayCountPaddedRed . '.png" src="'.$incPath.'images/numbers/mybodynumbers1-90-' . $fullDayCountPaddedBlue . '.png" class="image-grid-image ' . $imageActiveClass . '" />' . "\r\n";
+                
+                //$gridHTML .= '<img data-alt-src="'.$incPath.'images/numbers/mybodynumbers1-90Red-' . $fullDayCountPaddedRed . '.png" src="'.$incPath.'images/numbers/mybodynumbers1-90-' . $fullDayCountPaddedBlue . '.png" class="image-grid-image ' . $imageActiveClass . '" />' . "\r\n";
+                $gridHTML .= '<div class="mb90-schedule-day-number mb90-schedule-day-number-circle ' . $opacityClass . '">' . $fullDayCountPadded . '</div>' . "\r\n";
+                
                 $gridHTML .= '</a>';
                 $gridHTML .= '</div>' . "\r\n";
             //}            
@@ -302,6 +337,9 @@
             }
         }
         $gridHTML .= '</div>' . "\r\n";
+        
+        $gridHTML .= '</div>' . "\r\n"; // end of the schedule-day-grid-wrapper div
+        
         echo $gridHTML;
     }
     

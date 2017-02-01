@@ -103,7 +103,8 @@ jQuery("#tabata-roundsrest").val(roundrest);
 //jQuery("#tabata-work").prop('disabled', true);
 //$exListing .= '<p style=\"text-align: right;\"><strong>' . $currentExName . '</strong></p>';
 
-jQuery("#exlisting").html(exlistingHTML);
+jQuery("#mb90-exercise-scroller").html(exlistingHTML);
+//jQuery("#exlisting").html(exlistingHTML);
 
 //jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100});
 

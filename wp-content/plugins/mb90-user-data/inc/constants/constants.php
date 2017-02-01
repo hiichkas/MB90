@@ -3,6 +3,8 @@
 // website details
 define('MB90_DOMAIN_NAME', 'mybody90.com');
 
+define('MB90_ADMIN_USERID', 1);
+
 // workout pages details
 define('MB90_SELF_ASSESSMENT_PAGE_SLUG', 'self-assessment');
 define('MB90_SELF_ASSESSMENT_PAGE_WELCOME', 'Welcome to your self assessment ');
@@ -104,6 +106,13 @@ define('MB90_ORANGE', 'rgb(227, 58, 12)');
 define('MB90_SKYBLUE', 'rgb(63, 175, 212)');
 define('MB90_WHITE', 'rgb(0, 0, 0)');
 
+define('MB90_LIGHT_GREEN', '#8cc63f');
+
+//define('MB90_SCHEDULE_PAST_CSS', 'mb90-schedule-day-number-circle-past');
+//define('MB90_SCHEDULE_FUTURE_CSS', 'mb90-schedule-day-number-circle');
+define('MB90_HALF_OPACITY_CSS', 'mb90-half-opacity');
+
+
 define('MB90_EX_GRAPH_FILL_COLOR', '#23b7e5');
 define('MB90_EX_GRAPH_POINT_COLOR', '#337ab7');
 define('MB90_EX_GRAPH_STROKE_COLOR', '#337ab7');
@@ -123,6 +132,6 @@ define('MB90_INPUT_SLIDER_BORDER_STYLE_ERROR', "1px solid red");
 
 
 /* debugging and dev work */
-define('MB90_90_DEBUG', true);
+define('MB90_DEBUG', true);
 
 ?>

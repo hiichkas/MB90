@@ -2,10 +2,54 @@
 
 .image-grid-image-div img{width:50px}
 
-.image-grid-row{float:left; padding-bottom:10px}
+.image-grid-col{float:left; padding-bottom:10px}
+
+.image-grid-col-test{margin-right:10px; float:left !important; width:100%}
 
 .image-grid-wrapper{float:none; padding-bottom:10px;width:103%}
 
 .active-exercise-dayicon{opacity: 1.0; cursor: pointer}
 
 .inactive-exercise-dayicon{opacity: 0.5; cursor: default}
+
+.mb90-schedule-day-number {
+    float: left;
+    height: 100px;
+    padding-top: 30px;
+    text-align: center;
+    width: 100px;
+}
+.mb90-schedule-day-number-circle {
+    background: rgb(63, 175, 212) none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #fff;
+    font: 26px Arial,sans-serif;
+    height: 30px;
+    padding: 10px;
+    text-align: center;
+    width: 30px;
+}
+
+.mb90-test-day{
+    background: #8cc63f none repeat scroll 0 0;
+    border-radius: 2px;
+    width:88%;
+    font-size: 18px;
+    height: 23px;
+}
+
+.mb90-schedule-day-number-circle:hover {
+    background: rgb(227, 58, 12) none repeat scroll 0 0;
+}
+
+.mb90-half-opacity { opacity: 0.5; }
+
+#schedule-day-grid-wrapper{width:100%}
+
+@media only screen and (max-width : 480px) {
+     .image-grid-wrapper{float:none}
+     #schedule-day-grid-wrapper{margin-left:-35px; width: 105% !important}
+     .mb90-test-day{width:100% !important; float:left !important}
+     .image-grid-col-test{}
+     .image-grid-image-div{margin-right:2px !important}
+}

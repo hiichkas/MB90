@@ -238,6 +238,7 @@ timer-wrapper{
 }
 
 #currentExerciseWrapper{float:left;width:100%;font-size:23px;height:auto}
+#currentExercise > button{background-color: #8cc63f; border-radius: 2px}
 .nextExerciseInner{float:right;width:46%}
 .currentExerciseInner{float:left;width:49%}
 
@@ -379,6 +380,8 @@ timer-wrapper{
 .noUi-handle{background: rgb(52, 73, 94) !important; border: 1px solid rgb(63, 175, 212) !important; border-radius: none !important; box-shadow: none !important}
 
 .noUi-horizontal .noUi-handle{left:-1px !important}
+
+#mb90-exercise-scroller{width:2000px;float:left}
 
 @media 
 only screen and (max-width: 760px){

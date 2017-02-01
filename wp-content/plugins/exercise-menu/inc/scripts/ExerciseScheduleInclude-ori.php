@@ -216,7 +216,7 @@
         $gridHTML = '<div class="image-grid-wrapper">' . "\r\n";
         for($rowCount = 1; $rowCount <= 90; $rowCount ++ )
         {
-            $gridHTML .= '<div class="image-grid-row">' . "\r\n";
+            $gridHTML .= '<div class="image-grid-col">' . "\r\n";
             //$gridHTML .= '<h2 style="padding-right: 10px;    padding-top: 15px; float:left">PHASE [' . $rowCount. ']</h2>' . "\r\n";
             //for($dayCount = 1; $dayCount <= 10; $dayCount ++ )
             //{

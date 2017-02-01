@@ -274,6 +274,7 @@
       this.start = function(){
         $("#currentExercise > button").html(exlistingArr[0]);
         $("#nextExercise > button").html(exlistingArr[1]);
+        $("#thirdExercise > button").html(exlistingArr[2]);
         $("#start-button").html($("#stop-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
@@ -330,6 +331,7 @@
       this.stop  = function(){
         $("#currentExercise > button").html(exlistingArr[0]);
         $("#nextExercise > button").html(exlistingArr[1]);
+        $("#thirdExercise > button").html(exlistingArr[2]);
         $("#start-button").html($("#start-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
@@ -473,6 +475,12 @@
                         exerciseCount ++;
                     }
                     $("#nextExercise > button").html(exlistingArr[exerciseCount]);
+                    if( exerciseCount == numexercises-1){
+                        exerciseCount = 0;
+                    }else{
+                        exerciseCount ++;
+                    }
+                    $("#thirdExercise > button").html(exlistingArr[exerciseCount]);
 
             exNumber ++;
             this.notifyForExercise(exNumber);
@@ -652,6 +660,7 @@
       
       $("#currentExercise > button").html(exlistingArr[0]);
       $("#nextExercise > button").html(exlistingArr[1]);
+      $("#thirdExercise > button").html(exlistingArr[2]);
       //exerciseCount ++;
       
       tm = new TBTimer({

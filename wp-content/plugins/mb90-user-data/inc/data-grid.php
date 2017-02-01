@@ -121,7 +121,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             if( !stopFormFill )
             {
 
-                var debugMode = <?php echo MB90_90_DEBUG; ?>;
+                var debugMode = <?php if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ echo true; }else{ echo false; } ?>;
                 var todaysDate = new Date();
                 var todaysDateFormatted = todaysDate.yyyymmdd();
                 //alert(todaysDateFormatted);
