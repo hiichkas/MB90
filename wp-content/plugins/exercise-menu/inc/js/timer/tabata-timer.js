@@ -22,7 +22,75 @@
   
     //$('[data-toggle="tooltip"]').tooltip()
 
-    var exlistingArr = $("#exlistinghidden").val().split("##,##"); // hidden var
+    this.exlistingArr = $("#exlistinghidden").val().split("##,##"); // hidden var
+    this.isFirstRest = true; // used to pervent the scroll from moving forward for the first countdown 
+    /*
+    this.exlistingHTML = "<div class='ex-scroller-center' id='ex-scroller-content'>";
+    this.exlistingHTMLTemp = "";
+    $.each(this.exlistingArr, function(index, value) { 
+      indexInt = index*1;
+      if( value.length > 0){
+        exlistingHTMLTemp += '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' + value + '</button></div>';
+      }
+    });
+    this.exlistingHTML += this.exlistingHTMLTemp + "</div>"; // close the #ex-scroller-content div
+    //exlistingHTML += "</div>"; // close the outer-timer-wrapper div
+    $("#mb90-exercise-scroller").html(this.exlistingHTML);
+    */
+    //this.exScrollerIndex = 0; // used to store the widths of each exercise elemenet within the scroller
+    //this.exScrollerWidthArray = [];
+    
+    /*$( "div.ex-scroller-internal" ).each(function(){
+        //alert($(this).css("width"));
+        exScrollerWidthArray.push($(this).actual("width"));
+    });*/
+    
+    //this.scrollToNextExercise = function(){
+    //function scrollToNextExercise(index, widthArray)
+    function scrollToNextExercise()
+    {
+        
+      $(".horizon-next").trigger('click');
+      /*
+      //alert("next index [" + index + "]");
+      //alert("next ex scroll val = [" + widthArray[index] + "]");
+      alert($("#ex-scroller-content").html());
+      //scrollLeft: "-=" + widthArray[index]
+      $('div#ex-scroller-content').animate({
+        scrollLeft: "-=300px"
+      }, "slow");
+
+        */
+       
+      /*index ++;
+      if( index == widthArray.length ){
+          index = 0;
+      }
+      return index;
+        */
+    }
+
+    function scrollToPreviousExercise()
+    {
+      $(".horizon-prev").trigger('click');
+      
+      /*$('#ex-scroller-content').animate({
+        scrollLeft: "-=" + this.exScrollerWidthArray[exScrollerIndex]
+      }, "slow");
+      exScrollerIndex --;
+      if( exScrollerIndex == 0 ){
+          exScrollerIndex = exScrollerWidthArray.length;
+      }
+        */
+       
+      index --;
+      if( index == 0 ){
+          index = widthArray.length;
+      }
+      return index;
+      
+    }
+    
     var numexercises = $("#numexercises").val();
     var exerciseCount = 0;
     var exNumber = 0; // used to display which exercise of each round
@@ -461,6 +529,12 @@
                //$('#rest-progress').progressBar('start');
             
                this.notify('Rest!');
+               //alert("is first rest = [" + isFirstRest + "]");
+               if( isFirstRest === true ){
+                   isFirstRest = false;
+               }else{
+                   scrollToNextExercise();
+               }
 
                if(rn != 0){
                   this.sounds.play('end-round');
@@ -468,7 +542,9 @@
                 this.notify('Get Ready to Start!');      
                }
             }else{
-                    $("#currentExercise > button").html(exlistingArr[exerciseCount]);
+                   //exScrollerIndex = scrollToNextExercise(exScrollerIndex, exScrollerWidthArray); 
+
+                   $("#currentExercise > button").html(exlistingArr[exerciseCount]);
                     if( exerciseCount == numexercises-1){
                         exerciseCount = 0;
                     }else{

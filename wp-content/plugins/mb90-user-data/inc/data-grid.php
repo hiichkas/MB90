@@ -108,6 +108,7 @@ $formInputs =  $dgObj->getFormInputs($recordType);
         
         function customFormHTML(formName, mode, date, challengePhase, msg, caption){
             //alert(challengePhase);
+            
             stopFormFill = false;
             if( challengePhase > 1){
                 prevDateFormVal = jQuery("#Result_" + (challengePhase-2) + "0").val();

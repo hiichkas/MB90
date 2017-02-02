@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+        <style>div.center {
+            width: 90%;
+            height: 210px;
+            border: 1px solid #000;
+            margin: auto;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            white-space: nowrap;
+             }
+             div.internal {
+              display: inline-block;
+              vertical-align: middle;
+              width: 100%;
+              text-align: center;
+              background: red;
+             }
+             div.internal2 {
+              display: inline-block;
+              vertical-align: middle;
+              width: 100%;
+              text-align: center;
+              background: orange;
+             }
+
+        </style>
+        <script language="javascript">
+            $(document).ready(function(){
+                
+                $('.horizon-prev').click(function(event) {
+                  event.preventDefault();
+                  $('#content').animate({
+                    scrollLeft: "-=775px"
+                  }, "slow");
+                });
+
+                 $('.horizon-next').click(function(event) {
+                  event.preventDefault();
+                  $('#content').animate({
+                   scrollLeft: "+=775px"
+                  }, "slow");
+                });
+              
+            });
+
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div class = "horizon horizon-prev"><<
+            <img src = "../images/left-arrow.png" />
+        </div>
+        <div class = "horizon horizon-next">>>
+          <img src = "../images/right-arrow.png" />
+        </div>
+
+        <div class="center" id="content">
+            <div class=internal>
+              div 1
+            </div>
+             <div class=internal2>
+              div 2
+            </div>
+             <div class=internal>
+              div 3
+            </div>
+             <div class=internal2>
+              div 4
+            </div>
+             <div class=internal>
+              div 5
+            </div>
+             <div class=internal2>
+              div 6
+            </div>
+             <div class=internal>
+              div 7
+            </div>
+             <div class=internal2>
+              div 8
+            </div>
+          </div>
+    </body>
+</html>

@@ -1457,6 +1457,7 @@ class Assessments
         $exListing = "";
         $exCount = 0;
         //foreach( $wpdb->get_results("SELECT * FROM mb90_exercise_types WHERE IsSelfAssessment = 'Y'") as $key => $row){
+        
         foreach( $wpdb->get_results("SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=1 AND ProgrammeID = 1 GROUP BY ExerciseID ORDER BY OrderNumber, ExerciseName, ExerciseMMType ASC" ) as $key => $row)
         {
            $exListing .= $row->ExerciseName . '##,##';

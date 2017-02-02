@@ -85,6 +85,7 @@ class UtilitiesClass {
         //echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js?v=1.0" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>'."\r\n";
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'."\r\n";
 
+        echo '<script src="'.$incPath.'js/jquery.actual.min.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n"; // used to get dimensions of hidden vars
         echo '<script src="'.$incPath.'js/timer/tabata-timer.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n";
         echo '<script src="'.$incPath.'js/timer/init.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n";
         
@@ -196,6 +197,18 @@ class UtilitiesClass {
         $challengeObj = new Assessments();
         $challengeLinks = $challengeObj->getUserBodyStatLinks("All");
         echo $challengeLinks;
+    }
+    
+    public static function GetExListingArrayForDay($day)
+    {
+        global $wpdb;
+        
+        $listingArr = array();
+        foreach( $wpdb->get_results("SELECT * FROM mb90_prog_exercises_days WHERE ExerciseDay=" . $day . " AND ProgrammeID = 1 GROUP BY ExerciseID ORDER BY OrderNumber, ExerciseName, ExerciseMMType ASC" ) as $key => $row)
+        {
+            array_push($listingArr, $row->ExerciseName);
+        }
+        return $listingArr;
     }
     
     public static function GetBlockDetails($page_slug)
@@ -364,15 +377,30 @@ class UtilitiesClass {
     
     public static function GetCurrentNextExercises()
     {
-        $finalHTML = "";
-        /*$currNextHTML .= '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_CURRENT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
-        $currNextHTML .= '</div>' . "\r\n";
+        $exScrollerHTML = '<div class="outer-timer-wrapper">' . "\r\n";
+        
+        $exScrollerHTML .= '<div class="mb90-scroller-buttons horizon horizon-prev"><<</div><div class="mb90-scroller-buttons horizon horizon-next">>></div>' . "\r\n";
+        
+        $exScrollerHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
+        
+        $exScrollerHTML .= '<div id="mb90-exercise-scroller"><div class="ex-scroller-center" id="ex-scroller-content">' . "\r\n";
+        
+        $exListing = self::GetExListingArrayForDay(MB90_SELF_ASSESSMENT_DAY_NUMBER);
+        foreach($exListing as $exerciseCaption)
+        {
+            $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' . $exerciseCaption . '</button></div>' . "\r\n";
+        }
 
-        $finalHTML .= self::WrapColumn($currNextHTML, 3);
-         * 
-         */
+        $exScrollerHTML .= '</div>' . "\r\n"; // close off the #ex-scroller-content div
+        
+        $exScrollerHTML .= '</div>' . "\r\n"; // close off the mb90-exercise-scroller div
+        
+        $exScrollerHTML .= '</div>' . "\r\n"; // close off the outer-timer-wrapper div
+        
+        echo $exScrollerHTML;
+        
+        /*
+        $finalHTML = "";
         
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
@@ -382,15 +410,6 @@ class UtilitiesClass {
 
         $finalHTML .= self::WrapColumn($currNextHTML, 4);
         
-        // new col
-        /*
-        $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
-        $currNextHTML .= '<div class="progressbar-caption"><button class="btn mb90-nopointer ex-caption-bold">' . MB90_NEXT_EXERCISE_CAPTION . '</button></div>' . "\r\n";
-        $currNextHTML .= '</div>' . "\r\n";
-        
-        $finalHTML .= self::WrapColumn($currNextHTML, 3); 
-        */
-
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div id="nextExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
@@ -408,9 +427,10 @@ class UtilitiesClass {
         
         $finalHTML = self::WrapRow($finalHTML);
         
-        //echo $finalHTML;
-        
-        echo '<div id="mb90-exercise-scroller"></div>';
+        echo "<div class='ex-scroller-center' id='ex-scroller-content'>";
+        echo '<div class="outer-timer-wrapper"><div class="timer-display">00:00.00</div><div id="mb90-exercise-scroller"></div></div>';
+         * 
+         */
 
     }
     

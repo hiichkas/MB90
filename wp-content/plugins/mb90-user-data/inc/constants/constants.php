@@ -62,6 +62,7 @@ define('MB90_NUM_PHASES', 9);
 define('MB90_NUM_SELF_ASSESSMENTS', 4);
 define('MB90_NUM_DAYS_BETWEEN_SELF_ASSESSMENTS', 30);
 define('MB90_NUM_DAYS_BETWEEN_10_DAY_CHALLENGES', 10);
+define('MB90_SELF_ASSESSMENT_DAY_NUMBER', 1); // the day of each phase that self assessment falls on
 
 define('MB90_USER_CHALLENGE_REST', 5);
 define('MB90_USER_CHALLENGE_EXTIME', 10);
@@ -129,6 +130,9 @@ define('MB90_INPUT_SLIDER_TOOLTIPS', "false");
 define('MB90_INPUT_SLIDER_DEFAULT_STARTVALUE', 0);
 define('MB90_INPUT_SLIDER_BORDER_STYLE', "1px solid rgba(51, 51, 51, 0.45)");
 define('MB90_INPUT_SLIDER_BORDER_STYLE_ERROR', "1px solid red");
+
+// exercise scroller
+define('MB90_EX_SCROLLER_ITEM_WIDTH', "400px");
 
 
 /* debugging and dev work */

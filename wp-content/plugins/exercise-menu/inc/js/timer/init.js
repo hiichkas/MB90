@@ -67,8 +67,7 @@ else
 
 jQuery("#exercise-summaryinfo").html(summaryinfo); // display the line of summary info
 
-exlistingHTML = "<div class='exercise-summary-red'>";
-exlistingArr = jQuery("#exlistinghidden").val().split("##,##") // hidden var
+exlistingArr = jQuery("#exlistinghidden").val().split("##,##"); // hidden var
 
 /*if(roundgroupings > 1) // if we want the user to repeat a block of exercises within the same round
 {
@@ -80,14 +79,24 @@ exlistingArr = jQuery("#exlistinghidden").val().split("##,##") // hidden var
    }
 }*/
 
+/* commented exercise scroller 
+//exlistingHTML = "<div class='exercise-summary-red ex-scroller-center'  id='ex-scroller-content'>";
+exlistingHTML = "<div class='ex-scroller-center'  id='ex-scroller-content'>";
+
 jQuery.each(exlistingArr, function(index, value) { 
   indexInt = index*1;
 
   if( value.length > 0){
-    exlistingHTML += '<div class="exerciseListItem"><button class="btn mb90-nopointer">' + value + '</button></div>';
+    //exlistingHTML += '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' + value + '</button></div>';
+    exlistingHTML += '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' + value + '</button></div>';
   }
 });
-exlistingHTML += "</div>";
+exlistingHTML += "</div>"; // close the #ex-scroller-content div
+//exlistingHTML += "</div>"; // close the outer-timer-wrapper div
+    
+jQuery("#mb90-exercise-scroller").html(exlistingHTML);
+    
+    */
 
 jQuery("#tabata-roundsdisplay").val(roundsdisplay);
 jQuery("#tabata-rounds").val(rounds) * roundgroupings; // total rounds = (numexercises * rounds) * roundgroupings
@@ -102,8 +111,103 @@ jQuery("#tabata-roundsrest").val(roundrest);
 //jQuery("#tabata-exrest").prop('disabled', true);
 //jQuery("#tabata-work").prop('disabled', true);
 //$exListing .= '<p style=\"text-align: right;\"><strong>' . $currentExName . '</strong></p>';
+//var testButtonsHTML = '<div class="horizon horizon-prev"><<</div><div class = "horizon horizon-next">>></div>';
+//jQuery("#mb90-exercise-scroller").html(exlistingHTML + testButtonsHTML);
 
-jQuery("#mb90-exercise-scroller").html(exlistingHTML);
+//var scrollerItemWidth = jQuery( "div.exerciseListItem" ).first().width();
+
+var exScrollerIndex = 0; // used to store the widths of each exercise elemenet within the scroller
+var exScrollerWidthArray = [];
+var totScrollDistance = 0;
+
+//setTimeout(function(){
+    
+//}, 5000);
+    
+//alert(JSON.stringify(exScrollerWidthArray));
+
+/*function scrollToPreviousExercise()
+{
+    jQuery('#ex-scroller-content').animate({
+      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex] + "px"
+      scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
+      //scrollLeft: "-=775px"
+    }, "slow");
+    exScrollerIndex --;
+    if( exScrollerIndex == 0 )
+        exScrollerIndex = exScrollerWidthArray.length;
+}
+
+function scrollToNextExercise()
+{
+    alert("next ex");
+    jQuery('#ex-scroller-content').animate({
+      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex] + "px"
+      scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
+      //scrollLeft: "-=775px"
+    }, "slow");
+    exScrollerIndex --;
+    if( exScrollerIndex == 0 )
+        exScrollerIndex = exScrollerWidthArray.length;
+}
+    */
+
+  setTimeout(function() {}, 3000);
+  pollVisibility();
+
+  function pollVisibility() {
+      if (jQuery(".outer-timer-wrapper").css("display") == "block") {
+        jQuery( ".exerciseListItem" ).each(function(){
+            //exScrollerWidthArray.push(jQuery(this).css("width"));
+            exScrollerWidthArray.push(jQuery(this).width() + 8); // add 4px for the padding
+            totScrollDistance += jQuery(this).width() + 8;
+        });  
+      } else {
+          setTimeout(pollVisibility, 500);
+      }
+  }
+  
+jQuery('.horizon-prev').on('click', function(event) {
+    //alert("here prev");
+    //alert(exScrollerWidthArray[exScrollerIndex]);
+    event.preventDefault();
+    jQuery('#ex-scroller-content').animate({
+      scrollLeft: "-=" + (exScrollerWidthArray[exScrollerIndex]) + "px" // add 2 px for padding
+      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
+      //scrollLeft: "-=775px"
+    }, "slow");
+    exScrollerIndex --;
+    if( exScrollerIndex == 0 )
+        exScrollerIndex = exScrollerWidthArray.length;
+});
+
+jQuery('.horizon-next').on('click', function(event) {
+    //alert("here next");
+    //alert(exScrollerWidthArray[exScrollerIndex]);
+    event.preventDefault();
+    jQuery('#ex-scroller-content').animate({
+      scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex] + "px"
+      //scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex]
+      //scrollLeft: "+=775px"
+    }, "slow");
+    
+    //alert(totScrollDistance);
+    
+    jQuery('#ex-scroller-content').parent().css({position: 'relative'});
+    //jQuery('#ex-scroller-content').css({left:-totScrollDistance});
+    
+    exScrollerIndex ++;
+    if( exScrollerIndex == exScrollerWidthArray.length ){
+        
+        alert("at end");
+        jQuery('#ex-scroller-content').animate({
+            scrollLeft: "-=" + totScrollDistance + "px"
+        }, "slow");
+
+        exScrollerIndex = 0;
+    }
+});
+                
 //jQuery("#exlisting").html(exlistingHTML);
 
 //jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100});
