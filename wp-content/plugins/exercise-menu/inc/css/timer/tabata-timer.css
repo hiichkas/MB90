@@ -1,5 +1,12 @@
+body{
+
+    background: #E0EAFC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #E0EAFC , #CFDEF3); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #E0EAFC , #CFDEF3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                
+}
 timer-wrapper{
-   //background: rgba(95,101,107,0.7);
+   /*background: rgba(95,101,107,0.7);
    //border-radius: 5px;
    /*box-shadow: 0px 0px 20px #373034;*/
    border: 1px solid #ebebeb;
@@ -261,7 +268,8 @@ div.ex-scroller-internal {
 }
 
 #currentExerciseWrapper{float:left;width:100%;font-size:23px;height:auto}
-#currentExercise > button{background-color: #8cc63f; border-radius: 2px}
+.current-exercise{border-radius: 2px; border: 2px solid #52880B; font-weight: bold;transition: all .2s ease-in-out}
+.unselected-exercise > button{border-radius: 2px; font-weight: bold; border-width: 2px}
 .nextExerciseInner{float:right;width:46%}
 .currentExerciseInner{float:left;width:49%}
 
@@ -407,7 +415,42 @@ div.ex-scroller-internal {
 
 .noUi-horizontal .noUi-handle{left:-1px !important}
 
+/* CSS3 Stuff */
+.animated{
+    /*-webkit-animation-duration: infinite;
+        animation-duration: infinite;
+    -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;*/
+    animation:flash 3s;
+    -moz-animation:flash 3s infinite; /* Firefox */
+    -webkit-animation:flash 3s infinite; /* Safari and Chrome */
+}
 
+/* Firefox */
+/*@-moz-keyframes flash 
+{
+    0%   {background-color:#8cc63f; color: #FFF}
+    50%  {background-color:transparent; color: #000; border: 2px solid #8cc63f}
+    100%   {background-color:#8cc63f; color: #FFF}
+}*/
+
+/* Safari and Chrome */
+@-webkit-keyframes flash 
+{
+    0%   {background-color:#8cc63f; color: #FFF; }
+    50%  {background:#52880B;  }
+    100%   {background-color:#8cc63f; color: #FFF; }
+}
+
+/*@keyframes flash {
+   0%, 50%, 100% {
+      opacity: 1;
+   }
+   25%, 75% {
+      opacity: 0;
+   }
+}
+*/
 
 @media 
 only screen and (max-width: 760px){

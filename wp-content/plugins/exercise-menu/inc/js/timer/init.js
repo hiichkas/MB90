@@ -194,9 +194,9 @@ jQuery('.horizon-next').on('click', function(event) {
     //alert(totScrollDistance);
     
     jQuery('#ex-scroller-content').parent().css({position: 'relative'});
-    //jQuery('#ex-scroller-content').css({left:-totScrollDistance});
-    
+      
     exScrollerIndex ++;
+    // once we reach the last exercis on the list, rewind the list for the next round
     if( exScrollerIndex == exScrollerWidthArray.length ){
         
         alert("at end");
@@ -205,6 +205,26 @@ jQuery('.horizon-next').on('click', function(event) {
         }, "slow");
 
         exScrollerIndex = 0;
+    }
+    // set the current exercise as green
+    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated");
+    
+  /*      setInterval(function () {
+                jQuery(".exerciseListItem > button").eq(exScrollerIndex).animate({
+                    width: "-=60px",
+                    height: "-=60px",
+                }, "slow");
+                jQuery(".exerciseListItem > button").eq(exScrollerIndex).animate({
+                    width: "+=60px",
+                    height: "+=60px",
+                }, "slow");
+            }, 1000 / 30);*/
+            
+//    alert(exScrollerIndex);
+    if(exScrollerIndex > 0){
+        jQuery(".exerciseListItem > button").eq(exScrollerIndex-1).removeClass("current-exercise animated"); // reset the previous button colour
+    }else{
+        jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // reset the previous button colour
     }
 });
                 

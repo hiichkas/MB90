@@ -386,9 +386,13 @@ class UtilitiesClass {
         $exScrollerHTML .= '<div id="mb90-exercise-scroller"><div class="ex-scroller-center" id="ex-scroller-content">' . "\r\n";
         
         $exListing = self::GetExListingArrayForDay(MB90_SELF_ASSESSMENT_DAY_NUMBER);
-        foreach($exListing as $exerciseCaption)
+        foreach($exListing as $key=>$exerciseCaption)
         {
-            $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' . $exerciseCaption . '</button></div>' . "\r\n";
+            if( $key == 0){
+                $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer current-exercise animated">' . $exerciseCaption . '</button></div>' . "\r\n";
+            }else{
+                $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' . $exerciseCaption . '</button></div>' . "\r\n";
+            }
         }
 
         $exScrollerHTML .= '</div>' . "\r\n"; // close off the #ex-scroller-content div
@@ -405,7 +409,7 @@ class UtilitiesClass {
         // new col
         $currNextHTML = '<div class="outer-timer-wrapper">' . "\r\n";
         $currNextHTML .= '<div class="timer-display">00:00.00</div>' . "\r\n";
-        $currNextHTML .= '<div id="currentExercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
+        $currNextHTML .= '<div id="current-exercise" class="timer-exercise-label"><button class="btn mb90-nopointer">...</button></div>' . "\r\n";
         $currNextHTML .= '</div>' . "\r\n";
 
         $finalHTML .= self::WrapColumn($currNextHTML, 4);
