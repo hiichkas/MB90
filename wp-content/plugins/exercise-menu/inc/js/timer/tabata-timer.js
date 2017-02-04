@@ -49,46 +49,12 @@
     //function scrollToNextExercise(index, widthArray)
     function scrollToNextExercise()
     {
-        
-      $(".horizon-next").trigger('click');
-      /*
-      //alert("next index [" + index + "]");
-      //alert("next ex scroll val = [" + widthArray[index] + "]");
-      alert($("#ex-scroller-content").html());
-      //scrollLeft: "-=" + widthArray[index]
-      $('div#ex-scroller-content').animate({
-        scrollLeft: "-=300px"
-      }, "slow");
-
-        */
-       
-      /*index ++;
-      if( index == widthArray.length ){
-          index = 0;
-      }
-      return index;
-        */
+        $(".horizon-next").trigger('click');
     }
 
     function scrollToPreviousExercise()
     {
-      $(".horizon-prev").trigger('click');
-      
-      /*$('#ex-scroller-content').animate({
-        scrollLeft: "-=" + this.exScrollerWidthArray[exScrollerIndex]
-      }, "slow");
-      exScrollerIndex --;
-      if( exScrollerIndex == 0 ){
-          exScrollerIndex = exScrollerWidthArray.length;
-      }
-        */
-       
-      index --;
-      if( index == 0 ){
-          index = widthArray.length;
-      }
-      return index;
-      
+        $(".horizon-prev").trigger('click');
     }
     
     var numexercises = $("#numexercises").val();

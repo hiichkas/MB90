@@ -53,7 +53,6 @@ timer-wrapper{
 .exerciseListItem > button{background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}*/
 
 .exerciseListItem{padding:2px;}
-.exerciseListItem > button{background-color: #e33a0c; cursor: pointer; cursor: hand; color: #FFF}
 
 .exercise-listing-text{font-size: 21px;    height: 24px;    margin: 6px !important;    padding: 1px 1px 8px 10px;    text-align: left;}
 
@@ -269,7 +268,7 @@ div.ex-scroller-internal {
 
 #currentExerciseWrapper{float:left;width:100%;font-size:23px;height:auto}
 .current-exercise{border-radius: 2px; border: 2px solid #52880B; font-weight: bold;transition: all .2s ease-in-out}
-.unselected-exercise > button{border-radius: 2px; font-weight: bold; border-width: 2px}
+.unselected-exercise{border-radius: 2px; font-weight: bold; border-width: 2px; background-color: #e33a0c; color: #FFF}
 .nextExerciseInner{float:right;width:46%}
 .currentExerciseInner{float:left;width:49%}
 
@@ -302,9 +301,21 @@ div.ex-scroller-internal {
 
 .progress-bar-reset{width:0px;}
 .progressbar-wrapper-outer{margin-top:7px}
-.progressbar-wrapper{height:30px;border:1px solid #0fa2e6; border-radius: 4px;}
+.progressbar-wrapper{height:44px;border:1px solid #0fa2e6; border-radius: 4px;margin-bottom:18px}
 
-.progressbar-caption{font-size:1.4em; padding-bottom:6px; padding-top:5px; color:#0fa2e6;text-transform: uppercase}
+.progressbar-caption{font-size:1.4em; padding-bottom:6px; padding-top:5px; color:#0fa2e6;text-transform: uppercase;text-align:center}
+
+.progress-bar-caption-overlay{
+    color: #0fa2e6;
+    font-size: 1.4em;
+    margin-top: -62px;
+    padding-bottom: 6px;
+    padding-top: 15px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 100;
+}
 
 .progress-bar { background-color: #0275d8; color: #fff; height: 100%; }
 

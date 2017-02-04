@@ -1,8 +1,9 @@
-﻿(function ($) {
+(function ($) {
     $.fn.progressTimer = function (options) {
 		var settings = $.extend({}, $.fn.progressTimer.defaults, options);
 
         this.each(function () {
+            //alert(JSON.stringify($(this)));
             $(this).empty();
             var barContainer = $("<div>").addClass("progress active progress-striped");
             var bar = $("<div>").addClass("progress-bar").addClass(settings.baseStyle)
@@ -10,9 +11,14 @@
                 .attr("aria-valuenow", "0")
                 .attr("aria-valuemin", "0")
                 .attr("aria-valuemax", settings.timeLimit);
-
             bar.appendTo(barContainer);
+            // rohea - start
+            //var barCaption = $("<div>").addClass("progress-bar-caption-overlay").html("test");
+            //barCaption.appendTo(barContainer);            
+            // rohea - end
             barContainer.appendTo($(this));
+            
+            
             
             var start = new Date();
             var limit = settings.timeLimit * 1000;

@@ -304,7 +304,7 @@
             current.round.end = new Date().getTime();
          }
          this.updateDisplay(0);
-         var self =this;
+         var self = this;
          if(this.rounds[rn]){
             var __tick = function(){
                if(!self.running){

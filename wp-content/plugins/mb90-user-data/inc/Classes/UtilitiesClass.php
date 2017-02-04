@@ -328,12 +328,12 @@ class UtilitiesClass {
         $buttonLink = '<div class="outer-timer-wrapper">' . "\r\n";
         $buttonLink .= '<div class="progressbar-wrapper-outer">' . "\r\n";
         
-        $buttonLink .= '<div class="progressbar-caption">TOTAL TIME: <span id="totalworkouttimespan"></span></div>' . "\r\n";
-        $buttonLink .= '<div id="total-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
-        $buttonLink .= '<div class="progressbar-caption">EXERCISE TIME</div>' . "\r\n";
-        $buttonLink .= '<div id="exercise-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
-        $buttonLink .= '<div class="progressbar-caption">REST TIME</div>' . "\r\n";
-        $buttonLink .= '<div id="rest-progress-timer" class="progressbar-wrapper"></div>' . "\r\n";
+        //$buttonLink .= '<div class="progressbar-caption">TOTAL TIME: <span id="totalworkouttimespan"></span></div>' . "\r\n";
+        $buttonLink .= '<div id="total-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">TOTAL TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
+        //$buttonLink .= '<div class="progressbar-caption">EXERCISE TIME</div>' . "\r\n";
+        $buttonLink .= '<div id="exercise-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">EXERCISE TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
+        //$buttonLink .= '<div class="progressbar-caption">REST TIME</div>' . "\r\n";
+        $buttonLink .= '<div id="rest-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">REST TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
         
         $buttonLink .= '</div>' . "\r\n";
             
@@ -391,7 +391,7 @@ class UtilitiesClass {
             if( $key == 0){
                 $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer current-exercise animated">' . $exerciseCaption . '</button></div>' . "\r\n";
             }else{
-                $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer">' . $exerciseCaption . '</button></div>' . "\r\n";
+                $exScrollerHTML .= '<div class="exerciseListItem ex-scroller-internal"><button class="btn mb90-nopointer unselected-exercise">' . $exerciseCaption . '</button></div>' . "\r\n";
             }
         }
 

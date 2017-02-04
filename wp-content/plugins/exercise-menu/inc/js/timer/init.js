@@ -195,19 +195,27 @@ jQuery('.horizon-next').on('click', function(event) {
     
     jQuery('#ex-scroller-content').parent().css({position: 'relative'});
       
-    exScrollerIndex ++;
-    // once we reach the last exercis on the list, rewind the list for the next round
-    if( exScrollerIndex == exScrollerWidthArray.length ){
+       
+    jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // remove the current exercise class
+    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("unselected-exercise"); // reset to unselected
+    //if at start or end of exercise display list
+    if( exScrollerIndex == (exScrollerWidthArray.length-1) ){
         
+        // once we reach the last exercis on the list, rewind the list for the next round
         alert("at end");
         jQuery('#ex-scroller-content').animate({
             scrollLeft: "-=" + totScrollDistance + "px"
         }, "slow");
-
         exScrollerIndex = 0;
+    }else{// if(exScrollerIndex > 0){
+        exScrollerIndex ++;
     }
+    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated"); // reset the previous button colour
+
+    //exScrollerIndex ++;
     // set the current exercise as green
-    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated");
+    //jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("unselected-exercise animated"); 
+
     
   /*      setInterval(function () {
                 jQuery(".exerciseListItem > button").eq(exScrollerIndex).animate({
@@ -221,11 +229,16 @@ jQuery('.horizon-next').on('click', function(event) {
             }, 1000 / 30);*/
             
 //    alert(exScrollerIndex);
+    /*
     if(exScrollerIndex > 0){
-        jQuery(".exerciseListItem > button").eq(exScrollerIndex-1).removeClass("current-exercise animated"); // reset the previous button colour
+        currentExerciseIndex = exScrollerIndex - 1;
     }else{
-        jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // reset the previous button colour
+        currentExerciseIndex = exScrollerIndex;        
     }
+    jQuery(".exerciseListItem > button").eq(currentExerciseIndex).addClass("unselected-exercise animated"); 
+    jQuery(".exerciseListItem > button").eq(currentExerciseIndex).addClass("current-exercise animated"); // reset the previous button colour
+    */
+    
 });
                 
 //jQuery("#exlisting").html(exlistingHTML);
