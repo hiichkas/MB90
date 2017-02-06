@@ -3,6 +3,7 @@ body{
     background: #E0EAFC; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #E0EAFC , #CFDEF3); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #E0EAFC , #CFDEF3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: Raleway !important;
                 
 }
 timer-wrapper{
@@ -49,7 +50,7 @@ timer-wrapper{
    width:96%;
 }
 
-i.timer-start{font-size:1.4em}
+i.timer-start{font-size:2.4em}
 
 /*.exerciseListItem{padding:2px; width:50%; float: left}
 .exerciseListItem > button{background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}*/
@@ -269,8 +270,8 @@ div.ex-scroller-internal {
 }
 
 #currentExerciseWrapper{float:left;width:100%;font-size:23px;height:auto}
-.current-exercise{border-radius: 2px; border: 2px solid #52880B; font-weight: bold;transition: all .2s ease-in-out}
-.unselected-exercise{border-radius: 2px; font-weight: bold; border-width: 2px; background-color: #e33a0c; color: #FFF}
+.current-exercise{border-radius: 2px; border: 2px solid #52880B; font-weight: bold; font-family:Raleway; transition: all .2s ease-in-out}
+.unselected-exercise{border-radius: 2px; font-weight: bold; font-family:Raleway; border-width: 2px; background-color: #e33a0c; color: #FFF}
 .nextExerciseInner{float:right;width:46%}
 .currentExerciseInner{float:left;width:49%}
 
@@ -311,6 +312,7 @@ div.ex-scroller-internal {
     color: #0fa2e6;
     font-size: 1.6em;
     font-family: Raleway;
+    font-weight: bold;
     margin-top: -62px;
     padding-bottom: 6px;
     padding-top: 4px;
@@ -413,7 +415,7 @@ div.ex-scroller-internal {
 
 .mb90-exercise-description{padding-left:20px; padding-bottom:10px}
 
-.mb90-nopointer{pointer-events: none; width: 100%; white-space: normal}
+.mb90-nopointer{pointer-events: none; width: 100%; white-space: normal;}
 
 .ex-caption-bold{font-weight: bold}
 
@@ -474,6 +476,7 @@ only screen and (max-width: 760px){
     .timer-exercise-label{text-align:center;padding-bottom:8px}
      #exercies-inputform-wrapper{padding-top:0% !important}
      .mb90Slider{width:100% !important}
+     .challengelink-button-wrapper a{width:94% !important}
 }
 
 /*@media only screen and (min-width : 320px) and (max-width : 480px) {*/

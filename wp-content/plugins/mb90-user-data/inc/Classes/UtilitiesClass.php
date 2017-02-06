@@ -144,8 +144,8 @@ class UtilitiesClass {
         echo '<script src="'.$incPath.'js/rangeslider/nouislider.min.js'.$mb90ScriptVersion.'"></script>'."\r\n"; 
         echo '<script src="//use.fontawesome.com/bcc1886acd.js"></script>'."\r\n"; 
         
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
-        echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
+        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/prelude.css">'."\r\n";
+        //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
         echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
         
         echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
@@ -342,9 +342,13 @@ class UtilitiesClass {
         $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>' . "\r\n";
          */
         
-        $buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
-        $buttonLink .= '<div id="start-button-html">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
-        $buttonLink .= '<div id="stop-button-html">Click to Stop <i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n";
+        $buttonLink .= '<div class="start-button-caption" id="start-button">' . "\r\n" . '            <div>Click to Start</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div id="start-button-html">' . "\r\n" . '            <div>Click to Start</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div id="stop-button-html">' . "\r\n" . '            <div>Click to Stop</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n" . '        </div>';
+
+        //$buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
+        //$buttonLink .= '<div id="start-button-html">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
+        //$buttonLink .= '<div id="stop-button-html">Click to Stop <i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n";
         
         //if( MB90_90_DEBUG ){
         switch (strtolower($page_slug)) {
