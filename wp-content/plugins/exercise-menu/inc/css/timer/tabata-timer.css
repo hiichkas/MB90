@@ -49,6 +49,8 @@ timer-wrapper{
    width:96%;
 }
 
+i.timer-start{font-size:1.4em}
+
 /*.exerciseListItem{padding:2px; width:50%; float: left}
 .exerciseListItem > button{background-color: #e33a0c; cursor: pointer; cursor: hand; width: 100%; color: #FFF}*/
 
@@ -307,17 +309,20 @@ div.ex-scroller-internal {
 
 .progress-bar-caption-overlay{
     color: #0fa2e6;
-    font-size: 1.4em;
+    font-size: 1.6em;
+    font-family: Raleway;
     margin-top: -62px;
     padding-bottom: 6px;
-    padding-top: 15px;
+    padding-top: 4px;
     position: relative;
     text-align: center;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
     text-transform: uppercase;
     z-index: 100;
+    /*-webkit-text-stroke: 1px #FFF;*/
 }
 
-.progress-bar { background-color: #0275d8; color: #fff; height: 100%; }
+.progress-bar { background-color: #0275d8; opacity: 0.8; color: #fff; height: 100%; }
 
 .workout-details-column{height:300px !important;padding:12px 0 0;}
 
@@ -390,7 +395,7 @@ div.ex-scroller-internal {
 .timer-exercise-label{color: #e33a0c; text-transform: uppercase;padding-top:5px}
 
 .start-button{width:60px; cursor: pointer}
-.start-button-caption{font-size:1.4em; padding-bottom:10px; color:#0fa2e6;text-align:center}
+.start-button-caption{font-size:1.4em;font-family: Raleway;padding-bottom:10px; color:#0fa2e6;text-align:center}
 .stop-button-caption{font-size:1.4em; padding-bottom:10px; color:#0fa2e6;text-align:center;display:none}
 
 #start-button-html{display:none}

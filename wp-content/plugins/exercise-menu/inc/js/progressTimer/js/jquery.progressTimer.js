@@ -13,7 +13,7 @@
                 .attr("aria-valuemax", settings.timeLimit);
             bar.appendTo(barContainer);
             // rohea - start
-            //var barCaption = $("<div>").addClass("progress-bar-caption-overlay").html("test");
+            //var barCaption = $("<div>").addClass("progress-bar-caption-overlay").html("<span style='color:black'>test</span>");
             //barCaption.appendTo(barContainer);            
             // rohea - end
             barContainer.appendTo($(this));

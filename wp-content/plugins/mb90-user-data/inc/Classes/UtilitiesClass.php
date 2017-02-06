@@ -329,17 +329,22 @@ class UtilitiesClass {
         $buttonLink .= '<div class="progressbar-wrapper-outer">' . "\r\n";
         
         //$buttonLink .= '<div class="progressbar-caption">TOTAL TIME: <span id="totalworkouttimespan"></span></div>' . "\r\n";
-        $buttonLink .= '<div id="total-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">TOTAL TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
+        $buttonLink .= '<div id="total-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">TOTAL TIME</div>' . "\r\n";
         //$buttonLink .= '<div class="progressbar-caption">EXERCISE TIME</div>' . "\r\n";
-        $buttonLink .= '<div id="exercise-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">EXERCISE TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
+        $buttonLink .= '<div id="exercise-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">EXERCISE TIME</div>' . "\r\n";
         //$buttonLink .= '<div class="progressbar-caption">REST TIME</div>' . "\r\n";
-        $buttonLink .= '<div id="rest-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">REST TIME<span id="totalworkouttimespan"></span></div>' . "\r\n";
+        $buttonLink .= '<div id="rest-progress-timer" class="progressbar-wrapper"></div><div class="progress-bar-caption-overlay">REST TIME</div>' . "\r\n";
         
         $buttonLink .= '</div>' . "\r\n";
             
-        $buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
+        /*$buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
         $buttonLink .= '<div id="start-button-html">Click to Start <img class="timer-start start-button" src="' . $incPath . 'images/play-button.png" alt="Click to Start" name="Click to Start"/></div>' . "\r\n";
         $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>' . "\r\n";
+         */
+        
+        $buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
+        $buttonLink .= '<div id="start-button-html">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
+        $buttonLink .= '<div id="stop-button-html">Click to Stop <i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n";
         
         //if( MB90_90_DEBUG ){
         switch (strtolower($page_slug)) {

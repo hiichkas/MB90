@@ -620,7 +620,7 @@
 
 
       var self = this;
-      $('body').on('click', 'img.timer-start', function() {
+      $('body').on('click', 'i.timer-start', function() {
       //$('.timer-start').on('click', function(){
           
           //$('#total-progress').asProgress('start');
