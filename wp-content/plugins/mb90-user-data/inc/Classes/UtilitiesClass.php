@@ -250,7 +250,7 @@ class UtilitiesClass {
             foreach( $wpdb->get_results("SELECT * FROM mb90_workout_timings WHERE BlockNum=" . $blockNum ) as $key => $row)
             {
                 $numRounds = $row->NumberOfRounds;
-                if( $exDay == 9 ){ // the 9th day is set to be the double round exercise setup
+                if( $exDay == MB90_DOUBLEROUND_WORKOUT ){ // the 9th day is set to be the double round exercise setup
                     $roundGroupings = 2; // used to group rounds together with no round rests inbetween
                 }
                 //$roundGroupings = $row->RoundGroupings; // used to group rounds together with no round rests inbetween
@@ -342,10 +342,15 @@ class UtilitiesClass {
         $buttonLink .= '<div id="stop-button-html">Click to Stop <img class="timer-start start-button" src="' . $incPath . 'images/stop-button.png?v=1.0" alt="Click to Stop" name="Click to Stop"/></div>' . "\r\n";
          */
         
-        $buttonLink .= '<div class="start-button-caption" id="start-button">' . "\r\n" . '            <div>Click to Start</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n" . '        </div>';
-        $buttonLink .= '<div id="start-button-html">' . "\r\n" . '            <div>Click to Start</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n" . '        </div>';
-        $buttonLink .= '<div id="stop-button-html">' . "\r\n" . '            <div>Click to Stop</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n" . '        </div>';
-
+        $buttonLink .= '<div class="timer-buttons-wrapper">';
+            
+        $buttonLink .= '<div class="start-button-caption" id="start-button">' . "\r\n" . '            <div>' . EX_TIMER_START_CAPTION . '</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle-o" aria-hidden="true" alt="' . EX_TIMER_START_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div id="start-button-html">' . "\r\n" . '            <div>' . EX_TIMER_START_CAPTION . '</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle-o" aria-hidden="true" alt="' . EX_TIMER_START_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div id="stop-button-html">' . "\r\n" . '            <div class="stop-button">' . EX_TIMER_STOP_CAPTION . '</div>' . "\r\n" .  '           <div><i class="stop-button timer-start start-button fa fa-stop-circle-o" aria-hidden="true" alt="' . EX_TIMER_STOP_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
+        //$buttonLink .= '<div class="start-button-caption" id="reset-button">' . "\r\n" . '            <div>' . EX_TIMER_RESET_CAPTION . '</div>' . "\r\n" .  '           <div><i class="timer-reset fa fa-refresh" aria-hidden="true" alt="' . EX_TIMER_RESET_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div class="start-button-caption">' . "\r\n" . '            <div>' . EX_TIMER_ROUND_NUMBER_CAPTION . '</div>' . "\r\n" .  '           <div class="round-number-wrapper"><div id="round-number" class="mb90-round-number mb90-round-number-circle">0</div></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '</div>'; 
+        
         //$buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
         //$buttonLink .= '<div id="start-button-html">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";
         //$buttonLink .= '<div id="stop-button-html">Click to Stop <i class="timer-start start-button fa fa-stop-circle" aria-hidden="true" alt="Click to Stop"></i></div>' . "\r\n";

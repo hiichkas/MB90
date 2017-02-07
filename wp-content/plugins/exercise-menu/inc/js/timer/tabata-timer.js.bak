@@ -61,9 +61,6 @@
     var exerciseCount = 0;
     var exNumber = 0; // used to display which exercise of each round
     var roundNumber = 0; // used to display which exercise of each round
-    var roundNumberDisplay = 1;
-    var totalnumrounds = $("#roundsdisplay").val();
-    var totalnumexercises = $("#rounds").val();
     if(DEBUG){
         var console = {
             log: function(){
@@ -309,15 +306,12 @@
       this.totalworkouttimeseconds = $("#totalworkouttime").val() * 1000;
       
       this.start = function(){
-        //this.stop(); // reset everything
         /*$("#currentExercise > button").html(exlistingArr[0]);
         $("#nextExercise > button").html(exlistingArr[1]);
         $("#thirdExercise > button").html(exlistingArr[2]);*/
         $("#start-button").html($("#stop-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
-        roundNumberDisplay = 1;
-        $("#round-number").html(roundNumberDisplay);
         exNumber = 0;
         
          if(this.running){
@@ -376,7 +370,6 @@
         exerciseCount = 0;
         roundNumber = 0;
         exNumber = 0;
-        isFirstRest = true;
         
          this.running = false;
          $('.timer-start').val('Start');
@@ -460,9 +453,8 @@
             current.round = this.rounds[rn];
             current.round.start = new Date().getTime();
             current.timerId = setInterval(__tick, this.resolution);
-            //alert(JSON.stringify(this.rounds[rn].round));
-            //var roundNumber = Math.floor(current.round/totalnumrounds) + 1;
-            
+            //var roundNumber = Math.floor(rn/2) + 1;
+
             //var exNumber = Math.floor(rn/2) + 1;
             //this.notifyForRound(roundNumber, current.round.type);
             //alert(roundNumber);
@@ -507,7 +499,6 @@
                if( isFirstRest === true ){
                    isFirstRest = false;
                }else{
-                   //alert("here");
                    scrollToNextExercise();
                }
 
@@ -558,27 +549,27 @@
          }else{
             this.notify('Well Done!!');
             this.sounds.play('end');
-            //this.stop();
+            this.stop();
          }
       };
       
       this.notifyForRound = function(rn, type){
           //alert("notify - type = [" + type + "]");
           
-         //$('#round-number').html(rn);
+         $('.round-number').html(rn);
          //$('.round-type').html(type=='rest' ? 'REST':'WORK');
          //rountType = $('.round-type').html();
          
          if( type == "rest"){
             $('.round-type').html("REST");
             //$("#exercise-progress-timer").progressTimer({timeLimit: 0});
-            /*$("#rest-progress-timer").progressTimer({
+            $("#rest-progress-timer").progressTimer({
                     onFinish: function () {
                     },  //invoked once the timer expires
                     timeLimit: $("#tabata-roundsrest").val(),
                     showPercentage: true,
                     showHtmlSpan: true
-            });*/
+            });
          }else{
             $('.round-type').html("WORK");
             //$('#round-progress').asProgress('reset');
@@ -590,10 +581,8 @@
       };
       
       this.notifyForExercise = function(exnum){
-         //alert("exnum, totalnumexercises = [" + exnum + ", " + totalnumexercises + "]");
          $('.exercise-number').html(exnum);
             //$("#rest-progress-timer").progressTimer({timeLimit: 0});
-            if( exnum <= totalnumexercises){ // one too many exercise progress cycles so perform this check
             $("#exercise-progress-timer").progressTimer({
                     onFinish: function () {
 
@@ -603,9 +592,6 @@
                     showPercentage: true,
                     showHtmlSpan: true
             });
-        }else{
-            //alert("reached here");
-        }
       };
 
 /*
@@ -668,104 +654,13 @@
         
         // process total time timer - END
         
-        if(!self.running){
-           self.start();
-           roundNumberDisplay = 1;
-           roundNumber = 1;
-           $("#round-number").html(roundNumberDisplay);
-        }else{
-           self.stop();
-           self.notify('Stopped!');
-           roundNumberDisplay = 1;
-           roundNumber = 1;
-           $("#round-number").html(roundNumberDisplay);
-        }
-        /*$('#ex-scroller-content').animate({
-            scrollLeft: "-=" + totScrollDistance + "px"
-        }, "slow");*/
-        //exScrollerIndex = 0;
-
+         if(!self.running){
+            self.start();
+         }else{
+            self.stop();
+            self.notify('Stopped!');
+         }
       });
-      
-    // ex scroller start
-    var exScrollerIndex = 0; // used to store the widths of each exercise elemenet within the scroller
-    var exScrollerWidthArray = [];
-    var totScrollDistance = 0;
-
-    //alert(JSON.stringify(exScrollerWidthArray));
-
-    setTimeout(function() {}, 3000);
-    pollVisibility();
-
-    function pollVisibility() {
-        if ($(".outer-timer-wrapper").css("display") == "block") {
-          $( ".exerciseListItem" ).each(function(){
-              //exScrollerWidthArray.push($(this).css("width"));
-              exScrollerWidthArray.push($(this).width() + 8); // add 4px for the padding
-              totScrollDistance += $(this).width() + 8;
-          });  
-        } else {
-            setTimeout(pollVisibility, 500);
-        }
-    }
-  
-    $('.horizon-prev').on('click', function(event) {
-        event.preventDefault();
-        $('#ex-scroller-content').animate({
-          scrollLeft: "-=" + (exScrollerWidthArray[exScrollerIndex]) + "px" // add 2 px for padding
-        }, "slow");
-        exScrollerIndex --;
-        if( exScrollerIndex == 0 )
-            exScrollerIndex = exScrollerWidthArray.length;
-    });
-
-    $('.horizon-next').on('click', function(event) {
-        event.preventDefault();
-        //alert("animate2");
-        $('#ex-scroller-content').animate({
-          scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex] + "px"
-        }, "slow");
-
-        $('#ex-scroller-content').parent().css({position: 'relative'});
-        $(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // remove the current exercise class
-        $(".exerciseListItem > button").eq(exScrollerIndex).addClass("unselected-exercise"); // reset to unselected
-        //if at start or end of exercise display list
-        if( exScrollerIndex == (exScrollerWidthArray.length-1) ){
-
-            // once we reach the last exercis on the list, rewind the list for the next round
-            console.log("at end");
-            roundNumber ++;
-            roundNumberDisplay ++;
-            $("#round-number").html(roundNumberDisplay);
-            //alert("animate1");
-            $('#ex-scroller-content').animate({
-                scrollLeft: "-=" + totScrollDistance + "px"
-            }, "slow");
-            exScrollerIndex = 0;
-            //this.updateDisplay(0);
-        }else{  // if(exScrollerIndex > 0){
-            exScrollerIndex ++;
-        }
-        $(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated"); // reset the previous button colour
-
-    });
-
-    // setup an event to rewind the exercise scroller when use clicks stop
-    $('body').on('click', 'i.stop-button', function() {
-        $(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // remove the current exercise class
-        $(".exerciseListItem > button").eq(exScrollerIndex).addClass("unselected-exercise"); // reset to unselected
-        //alert("animate3");
-        $('#ex-scroller-content').animate({
-            scrollLeft: "-=" + totScrollDistance + "px"
-        }, "slow");
-        exScrollerIndex = 0;
-
-        $(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated"); // add the current exercise class to the 1st exercise
-        $(".exerciseListItem > button").eq(exScrollerIndex).removeClass("unselected-exercise"); // remove the unselected class
-
-    });
-    
-    // ex scroller END
       
       $(document).keypress(function(e){
          switch(e.which){

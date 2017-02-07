@@ -62,8 +62,6 @@
     var exNumber = 0; // used to display which exercise of each round
     var roundNumber = 0; // used to display which exercise of each round
     var roundNumberDisplay = 1;
-    var totalnumrounds = $("#roundsdisplay").val();
-    var totalnumexercises = $("#rounds").val();
     if(DEBUG){
         var console = {
             log: function(){
@@ -309,7 +307,6 @@
       this.totalworkouttimeseconds = $("#totalworkouttime").val() * 1000;
       
       this.start = function(){
-        //this.stop(); // reset everything
         /*$("#currentExercise > button").html(exlistingArr[0]);
         $("#nextExercise > button").html(exlistingArr[1]);
         $("#thirdExercise > button").html(exlistingArr[2]);*/
@@ -317,7 +314,7 @@
         exerciseCount = 0;
         roundNumber = 0;
         roundNumberDisplay = 1;
-        $("#round-number").html(roundNumberDisplay);
+        $('#round-number').html(roundNumberDisplay);
         exNumber = 0;
         
          if(this.running){
@@ -375,8 +372,9 @@
         $("#start-button").html($("#start-button-html").html());
         exerciseCount = 0;
         roundNumber = 0;
+        roundNumberDisplay = 1;
+        $('#round-number').html(roundNumberDisplay);
         exNumber = 0;
-        isFirstRest = true;
         
          this.running = false;
          $('.timer-start').val('Start');
@@ -393,6 +391,7 @@
          
       };
       this.notify = function(message){
+         //alert("message = [" + message + "]");
          if( message == "Stopped!"){
              // reset all bars
              $("#total-progress-timer").progressTimer({timeLimit: 0});
@@ -423,6 +422,7 @@
          if(!this.running){
             return;
          }
+         //alert(roundNumber);
          // stop current if running ....
          if(current.timerId){
             clearInterval(current.timerId);
@@ -460,9 +460,13 @@
             current.round = this.rounds[rn];
             current.round.start = new Date().getTime();
             current.timerId = setInterval(__tick, this.resolution);
-            //alert(JSON.stringify(this.rounds[rn].round));
-            //var roundNumber = Math.floor(current.round/totalnumrounds) + 1;
             
+            //var roundNumber = Math.floor(rn/2) + 1;
+            
+            //roundNumber ++;
+            //$('#round-number').html(roundNumber);
+
+
             //var exNumber = Math.floor(rn/2) + 1;
             //this.notifyForRound(roundNumber, current.round.type);
             //alert(roundNumber);
@@ -507,7 +511,6 @@
                if( isFirstRest === true ){
                    isFirstRest = false;
                }else{
-                   //alert("here");
                    scrollToNextExercise();
                }
 
@@ -543,10 +546,14 @@
                 this.notifyForRound(roundNumber, current.round.type);
             }*/
             
-                if( exNumber == 1){
-                    roundNumber ++;
+                if( exNumber == 0){
+                    //roundNumber ++;
                     this.notifyForRound(roundNumber, current.round.type);
-                }
+                    //$("#round-number").html(roundNumber); // display round number on screen
+                    //alert("setting round number to [" + roundNumber + "]");
+                }/*else{
+                    $("#round-number").html(roundNumber); // display round number on screen
+                }*/
 
                 if( exNumber == numexercises){
                     exNumber = 0;
@@ -558,27 +565,29 @@
          }else{
             this.notify('Well Done!!');
             this.sounds.play('end');
-            //this.stop();
+            this.stop();
          }
       };
       
       this.notifyForRound = function(rn, type){
-          //alert("notify - type = [" + type + "]");
+         //alert("notify - type = [" + type + "]");
+         //alert("notify - val = [" + rn + "]");
           
          //$('#round-number').html(rn);
          //$('.round-type').html(type=='rest' ? 'REST':'WORK');
          //rountType = $('.round-type').html();
          
          if( type == "rest"){
+            //$("#round-number").html(roundNumber);
             $('.round-type').html("REST");
             //$("#exercise-progress-timer").progressTimer({timeLimit: 0});
-            /*$("#rest-progress-timer").progressTimer({
+            $("#rest-progress-timer").progressTimer({
                     onFinish: function () {
                     },  //invoked once the timer expires
                     timeLimit: $("#tabata-roundsrest").val(),
                     showPercentage: true,
                     showHtmlSpan: true
-            });*/
+            });
          }else{
             $('.round-type').html("WORK");
             //$('#round-progress').asProgress('reset');
@@ -590,10 +599,8 @@
       };
       
       this.notifyForExercise = function(exnum){
-         //alert("exnum, totalnumexercises = [" + exnum + ", " + totalnumexercises + "]");
          $('.exercise-number').html(exnum);
             //$("#rest-progress-timer").progressTimer({timeLimit: 0});
-            if( exnum <= totalnumexercises){ // one too many exercise progress cycles so perform this check
             $("#exercise-progress-timer").progressTimer({
                     onFinish: function () {
 
@@ -603,9 +610,6 @@
                     showPercentage: true,
                     showHtmlSpan: true
             });
-        }else{
-            //alert("reached here");
-        }
       };
 
 /*
@@ -668,23 +672,12 @@
         
         // process total time timer - END
         
-        if(!self.running){
-           self.start();
-           roundNumberDisplay = 1;
-           roundNumber = 1;
-           $("#round-number").html(roundNumberDisplay);
-        }else{
-           self.stop();
-           self.notify('Stopped!');
-           roundNumberDisplay = 1;
-           roundNumber = 1;
-           $("#round-number").html(roundNumberDisplay);
-        }
-        /*$('#ex-scroller-content').animate({
-            scrollLeft: "-=" + totScrollDistance + "px"
-        }, "slow");*/
-        //exScrollerIndex = 0;
-
+         if(!self.running){
+            self.start();
+         }else{
+            self.stop();
+            self.notify('Stopped!');
+         }
       });
       
     // ex scroller start
@@ -721,7 +714,6 @@
 
     $('.horizon-next').on('click', function(event) {
         event.preventDefault();
-        //alert("animate2");
         $('#ex-scroller-content').animate({
           scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex] + "px"
         }, "slow");
@@ -733,11 +725,10 @@
         if( exScrollerIndex == (exScrollerWidthArray.length-1) ){
 
             // once we reach the last exercis on the list, rewind the list for the next round
-            console.log("at end");
+            alert("at end");
             roundNumber ++;
             roundNumberDisplay ++;
             $("#round-number").html(roundNumberDisplay);
-            //alert("animate1");
             $('#ex-scroller-content').animate({
                 scrollLeft: "-=" + totScrollDistance + "px"
             }, "slow");
@@ -754,7 +745,7 @@
     $('body').on('click', 'i.stop-button', function() {
         $(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // remove the current exercise class
         $(".exerciseListItem > button").eq(exScrollerIndex).addClass("unselected-exercise"); // reset to unselected
-        //alert("animate3");
+
         $('#ex-scroller-content').animate({
             scrollLeft: "-=" + totScrollDistance + "px"
         }, "slow");

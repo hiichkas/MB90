@@ -245,7 +245,7 @@
                     echo '}' . "\r\n";
                      * */
 
-                    echo 'responsive: true,'."\r\n";
+                    echo 'responsive: false,'."\r\n";
                     //echo 'title: "test title123",'."\r\n";
                     echo 'showTooltips: true,'."\r\n";
                     //echo 'scaleSteps: 100,'."\r\n";
@@ -401,7 +401,7 @@
             {
                 echo 'var ctx_'.($count+1).' = document.getElementById("canvas_'.($count+1).'").getContext("2d");'."\r\n";
                 echo 'window.myLine'.($count+1).' = new Chart(ctx_'.($count+1).').Line(lineChartData_'.($count+1).', {'."\r\n";
-                echo 'responsive: true,'."\r\n";
+                echo 'responsive: false,'."\r\n";
                 echo 'showTooltips: true,'."\r\n";
                 echo 'scaleFontColor: "#777"'."\r\n";
                 echo '});'."\r\n";

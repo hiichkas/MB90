@@ -46,6 +46,10 @@ define('WEIGHT_PROGRESS_CAPTION', 'Your Weight Progress (Kilograms)');
 
 define('PROFILE_DETAILS_CAPTION', 'Your Profile Details');
 
+define('EX_TIMER_START_CAPTION', 'Start');
+define('EX_TIMER_STOP_CAPTION', 'Stop');
+define('EX_TIMER_RESET_CAPTION', 'Reset');
+define('EX_TIMER_ROUND_NUMBER_CAPTION', 'Round #');
 
 // error handling
 
@@ -63,6 +67,7 @@ define('MB90_NUM_SELF_ASSESSMENTS', 4);
 define('MB90_NUM_DAYS_BETWEEN_SELF_ASSESSMENTS', 30);
 define('MB90_NUM_DAYS_BETWEEN_10_DAY_CHALLENGES', 10);
 define('MB90_SELF_ASSESSMENT_DAY_NUMBER', 1); // the day of each phase that self assessment falls on
+define('MB90_DOUBLEROUND_WORKOUT', 9); // the day the double round workout is assigned
 
 define('MB90_USER_CHALLENGE_REST', 5);
 define('MB90_USER_CHALLENGE_EXTIME', 10);

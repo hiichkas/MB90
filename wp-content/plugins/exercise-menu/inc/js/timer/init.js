@@ -61,9 +61,9 @@ roundrest = jQuery("#roundrest").val(); // hidden var
 roundgroupings = jQuery("#roundgroupings").val(); // hidden var ... used to force repeating of rounds
 
 if( roundgroupings > 1 )
-    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Exercises per round: (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Number of rounds: " + roundsdisplay + "<br />Exercises per round: (" + (experround / roundgroupings) + " * " + roundgroupings + ")<br />" + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 else
-    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Exercises per round: " + experround + "<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
+    summaryinfo = "Exercise Day: " + exDayLocal + "<br />Number of rounds: " + roundsdisplay + "<br />Exercises per round: " + experround + "<br /> " + work + " seconds per exercise<br />" + exrest + " seconds to rest between exercises<br />" + roundrest + " seconds to rest between rounds";
 
 jQuery("#exercise-summaryinfo").html(summaryinfo); // display the line of summary info
 
@@ -99,6 +99,7 @@ jQuery("#mb90-exercise-scroller").html(exlistingHTML);
     */
 
 jQuery("#tabata-roundsdisplay").val(roundsdisplay);
+jQuery("#round-number").val(roundsdisplay);
 jQuery("#tabata-rounds").val(rounds) * roundgroupings; // total rounds = (numexercises * rounds) * roundgroupings
 jQuery("#tabata-exrest").val(exrest);
 jQuery("#tabata-work").val(work);
@@ -116,208 +117,7 @@ jQuery("#tabata-roundsrest").val(roundrest);
 
 //var scrollerItemWidth = jQuery( "div.exerciseListItem" ).first().width();
 
-var exScrollerIndex = 0; // used to store the widths of each exercise elemenet within the scroller
-var exScrollerWidthArray = [];
-var totScrollDistance = 0;
 
-//setTimeout(function(){
-    
-//}, 5000);
-    
-//alert(JSON.stringify(exScrollerWidthArray));
-
-/*function scrollToPreviousExercise()
-{
-    jQuery('#ex-scroller-content').animate({
-      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex] + "px"
-      scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
-      //scrollLeft: "-=775px"
-    }, "slow");
-    exScrollerIndex --;
-    if( exScrollerIndex == 0 )
-        exScrollerIndex = exScrollerWidthArray.length;
-}
-
-function scrollToNextExercise()
-{
-    alert("next ex");
-    jQuery('#ex-scroller-content').animate({
-      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex] + "px"
-      scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
-      //scrollLeft: "-=775px"
-    }, "slow");
-    exScrollerIndex --;
-    if( exScrollerIndex == 0 )
-        exScrollerIndex = exScrollerWidthArray.length;
-}
-    */
-
-  setTimeout(function() {}, 3000);
-  pollVisibility();
-
-  function pollVisibility() {
-      if (jQuery(".outer-timer-wrapper").css("display") == "block") {
-        jQuery( ".exerciseListItem" ).each(function(){
-            //exScrollerWidthArray.push(jQuery(this).css("width"));
-            exScrollerWidthArray.push(jQuery(this).width() + 8); // add 4px for the padding
-            totScrollDistance += jQuery(this).width() + 8;
-        });  
-      } else {
-          setTimeout(pollVisibility, 500);
-      }
-  }
-  
-jQuery('.horizon-prev').on('click', function(event) {
-    //alert("here prev");
-    //alert(exScrollerWidthArray[exScrollerIndex]);
-    event.preventDefault();
-    jQuery('#ex-scroller-content').animate({
-      scrollLeft: "-=" + (exScrollerWidthArray[exScrollerIndex]) + "px" // add 2 px for padding
-      //scrollLeft: "-=" + exScrollerWidthArray[exScrollerIndex]
-      //scrollLeft: "-=775px"
-    }, "slow");
-    exScrollerIndex --;
-    if( exScrollerIndex == 0 )
-        exScrollerIndex = exScrollerWidthArray.length;
-});
-
-jQuery('.horizon-next').on('click', function(event) {
-    //alert("here next");
-    //alert(exScrollerWidthArray[exScrollerIndex]);
-    event.preventDefault();
-    jQuery('#ex-scroller-content').animate({
-      scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex] + "px"
-      //scrollLeft: "+=" + exScrollerWidthArray[exScrollerIndex]
-      //scrollLeft: "+=775px"
-    }, "slow");
-    
-    //alert(totScrollDistance);
-    
-    jQuery('#ex-scroller-content').parent().css({position: 'relative'});
-      
-       
-    jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("current-exercise animated"); // remove the current exercise class
-    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("unselected-exercise"); // reset to unselected
-    //if at start or end of exercise display list
-    if( exScrollerIndex == (exScrollerWidthArray.length-1) ){
-        
-        // once we reach the last exercis on the list, rewind the list for the next round
-        alert("at end");
-        jQuery('#ex-scroller-content').animate({
-            scrollLeft: "-=" + totScrollDistance + "px"
-        }, "slow");
-        exScrollerIndex = 0;
-    }else{// if(exScrollerIndex > 0){
-        exScrollerIndex ++;
-    }
-    jQuery(".exerciseListItem > button").eq(exScrollerIndex).addClass("current-exercise animated"); // reset the previous button colour
-
-    //exScrollerIndex ++;
-    // set the current exercise as green
-    //jQuery(".exerciseListItem > button").eq(exScrollerIndex).removeClass("unselected-exercise animated"); 
-
-    
-  /*      setInterval(function () {
-                jQuery(".exerciseListItem > button").eq(exScrollerIndex).animate({
-                    width: "-=60px",
-                    height: "-=60px",
-                }, "slow");
-                jQuery(".exerciseListItem > button").eq(exScrollerIndex).animate({
-                    width: "+=60px",
-                    height: "+=60px",
-                }, "slow");
-            }, 1000 / 30);*/
-            
-//    alert(exScrollerIndex);
-    /*
-    if(exScrollerIndex > 0){
-        currentExerciseIndex = exScrollerIndex - 1;
-    }else{
-        currentExerciseIndex = exScrollerIndex;        
-    }
-    jQuery(".exerciseListItem > button").eq(currentExerciseIndex).addClass("unselected-exercise animated"); 
-    jQuery(".exerciseListItem > button").eq(currentExerciseIndex).addClass("current-exercise animated"); // reset the previous button colour
-    */
-    
-});
-                
-//jQuery("#exlisting").html(exlistingHTML);
-
-//jQuery(".mb90-input-form-input > input[type=text]").slider({step: 1, min: 0, max: 100});
-
-/*jQuery(".mb90-input-form-input > input[type=text]").each(function(){
-    jQuery(this).on('slide', function(slideEvt){
-        alert(slideEvt.value);
-        jQuery("#exerciseInputSliderDisplay").text(slideEvt.value);
-    });
-});*/
-    
-//jQuery(".mb90-input-form-input > input[id^='Result_']").slider({step: 1, min: 0, max: 100, value: 1, tooltip: 'always'});
-        //.on('change', function(){
-    //alert("hello");
-//});
-
-    /*jQuery(".mb90-input-form-input > input[name^='Result_']").trigger('slider-change');
-    
-    jQuery(".mb90-input-form-input > input[name^='Result_']").each(function(){
-        alert("outside event");
-        jQuery(this).on("slider-change", function(event){
-            alert("in event");
-            //alert("value = [" + event.value + "]")
-            //alert("value = [" + jQuery(this).val() + "]");
-        });
-    });*/
-
-/*jQuery(".mb90-input-form-input > input[id^='Result_']").each(function(){
-    var id = "#" + this.id;
-    jQuery(id).on('change', function(event){
-        alert("here");
-    });
-    alert(this.id);
-    jQuery(this).slider().on('slide', function(slideEvt){
-        alert(slideEvt.value);
-        jQuery("#exerciseInputSliderDisplay30").text(slideEvt.value);
-    });
-});*/
-    /*
-    var slides = document.getElementsByClassName("mb90Slider");
-    var placeHolders = document.getElementsByClassName("mb90SliderPlaceHolder");
-    var slideValue = 0;
-    for(var i = 0; i < slides.length; i++)
-    {
-//        'input[type=hidden]'
-       //alert("id = [" + slides[i].id + "]");
-       slideValue = jQuery("#" + slides[i].id).next('input[type=hidden]').val(); //init slider with the hidden input value
-       var slideID = slides[i].id;
-       var idIndex = slides[i].id.split("_")[1];
-       //var slider = document.getElementById('slider');
-       noUiSlider.create(slides[i], {
-        animate: true,
-	animationDuration: 1000,
-	start: slideValue,
-        step: 1,
-        tooltips: true,
-	connect: [true, false],
-            range: {
-                    'min': 0,
-                    'max': 100
-            }
-        }).on('change', function( values, handle, unencoded ){
-            jQuery("#exerciseInputSliderDisplay_" + slides[i].id.split('_')[1]).text(values[handle]);
-        });
-    
-        
-    }*/
-    
-    /*var slides2 = document.getElementsByClassName("mb90Slider");
-    for(var i = 0; i < slides2.length; i++)
-    {
-        var slidertemp = slides2[i];
-        slidertemp.noUiSlider.on('change', function( values, handle ){
-            //jQuery("#exerciseInputSliderDisplay_" + slides2[i].id.split('_')[1]).text(values[handle]);    
-            alert(i);
-        });
-    }*/
 });
 
 jQuery(window).on('load', function() {
