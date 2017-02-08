@@ -558,6 +558,8 @@
          }else{
             this.notify('Well Done!!');
             this.sounds.play('end');
+            //$("#start-button").html($("#start-button-html").html());
+            //$("#start-button").html($("#reset-button-html").html()); // show reset button to clear previous progress bars
             //this.stop();
          }
       };

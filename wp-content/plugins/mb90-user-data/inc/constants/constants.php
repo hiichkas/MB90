@@ -105,7 +105,7 @@ define('MB90_90_USER_DATA_INC_FOLDER_PATH', '/wp-content/plugins/mb90-user-data/
 define('MB90_90_EX_SCHEDULE_FOLDER_PATH', '/exercise-schedule/');
 
 
-// css colours
+// css colours and classes
 
 define('MB90_NAVY_GREY', 'rgb(52, 73, 94)');
 define('MB90_ORANGE', 'rgb(227, 58, 12)');
@@ -135,6 +135,11 @@ define('MB90_INPUT_SLIDER_TOOLTIPS', "false");
 define('MB90_INPUT_SLIDER_DEFAULT_STARTVALUE', 0);
 define('MB90_INPUT_SLIDER_BORDER_STYLE', "1px solid rgba(51, 51, 51, 0.45)");
 define('MB90_INPUT_SLIDER_BORDER_STYLE_ERROR', "1px solid red");
+define('MB90_INPUT_SLIDER_CIRCLE_CLASS', "mb90-slider-circle-wrapper");
+define('MB90_INPUT_SLIDER_BAR_CLASS', "mb90-sliderbar-wrapper");
+
+/* buttons */
+define('MB90_INPUT_SLIDER_SAVE_BUTTON_CAPTION', "Save Details");
 
 // exercise scroller
 define('MB90_EX_SCROLLER_ITEM_WIDTH', "400px");

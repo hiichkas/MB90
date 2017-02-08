@@ -1,0 +1,61 @@
+<div class="wpb_column vc_column_container vc_col-sm-6">
+   <div class="vc_column-inner ">
+      <div class="wpb_wrapper">
+         <div class="vc_row wpb_row vc_inner vc_row-fluid">
+            <div class="wpb_column vc_column_container vc_col-sm-3">
+               <div class="vc_column-inner ">
+                  <div class="wpb_wrapper">
+                     <div class="wpb_text_column wpb_content_element ">
+                        <div class="wpb_wrapper">
+                           <div class="mb90-input-form-label vc_col-sm-12 wpb_column vc_column_container">
+                              <label>Ab Extension</label>
+                              <p></p>
+                              <div id="exerciseInputSliderDisplay_01" class="mb90SliderPlaceHolder numberCircle mb90SliderNumber">33</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="wpb_column vc_column_container vc_col-sm-9">
+               <div class="vc_column-inner ">
+                  <div class="wpb_wrapper">
+                     <div class="wpb_text_column wpb_content_element ">
+                        <div class="wpb_wrapper">
+                           <div class="mb90-input-form-input vc_col-sm-12">
+                              <div id="SliderResult_01" class="mb90Slider noUi-target noUi-ltr noUi-horizontal" style="border: 1px solid rgba(51, 51, 51, 0.45);">
+                                 <input id="Result_01" name="Result_01" value="33" type="hidden">
+                                 <p></p>
+                                 <div class="noUi-base"></div>
+                              </div>
+                           </div>
+                           <p>
+                              <script type="text/javascript">// &lt;!&amp;#091;CDATA&amp;#091;
+                                 var slide_01 = document.getElementById("SliderResult_01");
+                                 noUiSlider.create(slide_01, {
+                                 animate: true,
+                                 animationDuration: 1000,
+                                 start: 33,
+                                 step: 1, tooltips: false, connect: &amp;#091;true, false&amp;#093;, 
+                                             range: {
+                                                     "min": 0,
+                                                     "max": 100,
+                                             }
+                                         }).on("update", function( values, handle, unencoded ){
+                                             jQuery("#exerciseInputSliderDisplay_01").text(values&amp;#091;handle&amp;#093;.split(".")&amp;#091;0&amp;#093;);
+                                             jQuery("#Result_01").val(values&amp;#091;handle&amp;#093;.split(".")&amp;#091;0&amp;#093;);
+                                             sliderVal = (jQuery("#Result_01").val() == 0) ? jQuery("#Result_01").parent().css("border", "1px solid red") : jQuery("#Result_01").parent().css("border", "1px solid rgba(51, 51, 51, 0.45)");
+                                         });
+                                 // &amp;#093;&amp;#093;&gt;
+                              </script><br>
+                              <input id="ExerciseID_01" name="ExerciseID_01" value="36" type="hidden"><input id="ID_01" name="ID_01" value="159" type="hidden"><input id="MeasurementType_01" name="MeasurementType_01" value="Reps" type="hidden">
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

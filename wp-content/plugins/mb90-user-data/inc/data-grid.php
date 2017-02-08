@@ -451,7 +451,7 @@ if( false ){
                     <div class="mb90-input-form-message-wrapper">
                         <div class="mb90FormMessage" id="mb90ExerciseFormMessage"></div>
                     </div>
-                    <button class="btn btn-primary" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)">Save Details</button>
+                    <button class="btn btn-primary mb90-save-button" onclick="saveHTMLFormRecord(event, <?=$challengePhase+1?>)" style="vertical-align:middle"><span><?=MB90_INPUT_SLIDER_SAVE_BUTTON_CAPTION?></span></button>
                 </div>
             </div>
         </div>

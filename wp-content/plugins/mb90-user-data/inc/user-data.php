@@ -27,6 +27,8 @@
     //$_SESSION["UserProgrammeID"] = $userDetailsArr['userprogrammeid'];
     $_SESSION["UserProgrammeID"] = 1;
     $_SESSION["UserStartDate"] = $userDetailsArr['userstartdate'];
+    
+    $mb90ScriptVersion = UtilitiesClass::GetVersionString(); // returns a timestamp string if debug enabled
     //$_SESSION["UserWeight"] = $userDetailsArr['userweight'];
     
     //echo "user = [".$wpLoggedInUserID."]";
@@ -42,12 +44,12 @@
 <link rel="stylesheet" type="text/css" href="<?=$incURL?>css/mb90-buttons.css">
 <link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90_cmsforms.css">
 
-<link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90-user-input.css?v=1.001">
+<link rel="stylesheet" type="text/css" href="<?=$incURL?>css/myBody90-user-input.css<?=$mb90ScriptVersion?>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?=$incURL?>js/jquery.easyui.min.js"></script>
 
-<script type="text/javascript" src="<?=$incURL?>js/mb90-functions.js"></script>
+<script type="text/javascript" src="<?=$incURL?>js/mb90-functions.js<?=$mb90ScriptVersion?>"></script>
 <!--<script type="text/javascript" src="<?=$incURL?>js/Chart.Line.js"></script>-->
 <script type="text/javascript" src="<?=$incURL?>js/chart.min.js"></script>
 
@@ -174,7 +176,7 @@
                     //echo '<div class="mb90-chart-caption"><h4>'.$caption.' ('.$exerciseType.')</h2></div>';
                     echo '<div class="mb90-chart-caption"><h4>'.$caption.'</h2></div>';
                     echo '<div class="mb90-chart-contents">';
-                    echo '<canvas id="canvas_'.($i+1).'" class="mb90-graph-canvas"></canvas>'."\r\n";
+                    echo '<canvas id="canvas_'.($i+1).'" class="mb90-graph-canvas" style="width:100%; height:100%"></canvas>'."\r\n";
                     //echo '</div>';
                     echo '</div>';
 
@@ -245,7 +247,7 @@
                     echo '}' . "\r\n";
                      * */
 
-                    echo 'responsive: false,'."\r\n";
+                    echo 'responsive: true,'."\r\n";
                     //echo 'title: "test title123",'."\r\n";
                     echo 'showTooltips: true,'."\r\n";
                     //echo 'scaleSteps: 100,'."\r\n";
@@ -253,6 +255,7 @@
                     echo 'scaleFontColor: "' . MB90_EX_GRAPH_SCALE_FONT_COLOR. '",'."\r\n";
                     //echo 'scaleGridLineColor: "' . MB90_EX_GRAPH_GRID_LINE_COLOR .'",'."\r\n";
                     echo 'scaleGridLineColor: "transparent",'."\r\n";
+                    echo 'maintainAspectRatio: false,'."\r\n"; // allows setting of canvas width and height without blurred text
                     echo 'scaleLineColor: "' . MB90_EX_GRAPH_GRID_LINE_COLOR .'"'."\r\n";
                     
                     echo '});'."\r\n";
@@ -296,7 +299,7 @@
 
                 echo '<div class="mb90-chart-caption"><h3>'.$caption.'</h3></div>';
                 echo '<div class="mb90-chart-contents">';
-                echo '<canvas id="canvas_'.($count+1).'" class="mb90-graph-canvas"></canvas>'."\r\n";
+                echo '<canvas id="canvas_'.($count+1).'" class="mb90-graph-canvas" style="width:100%; height:100%"></canvas>'."\r\n";
                 echo '</div>';
                 //echo '</div>';
 
@@ -401,8 +404,9 @@
             {
                 echo 'var ctx_'.($count+1).' = document.getElementById("canvas_'.($count+1).'").getContext("2d");'."\r\n";
                 echo 'window.myLine'.($count+1).' = new Chart(ctx_'.($count+1).').Line(lineChartData_'.($count+1).', {'."\r\n";
-                echo 'responsive: false,'."\r\n";
+                echo 'responsive: true,'."\r\n";
                 echo 'showTooltips: true,'."\r\n";
+                echo 'maintainAspectRatio: false,'."\r\n"; // allows setting of canvas width and height without blurred text
                 echo 'scaleFontColor: "#777"'."\r\n";
                 echo '});'."\r\n";
                 $count = $count + 1;

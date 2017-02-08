@@ -54,7 +54,6 @@ class UtilitiesClass {
         }else{
             return "";
         }
-       
     }
     
     // echo a chart container div with loader spinner image 
@@ -348,7 +347,9 @@ class UtilitiesClass {
         $buttonLink .= '<div id="start-button-html">' . "\r\n" . '            <div>' . EX_TIMER_START_CAPTION . '</div>' . "\r\n" .  '           <div><i class="timer-start start-button fa fa-play-circle-o" aria-hidden="true" alt="' . EX_TIMER_START_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
         $buttonLink .= '<div id="stop-button-html">' . "\r\n" . '            <div class="stop-button">' . EX_TIMER_STOP_CAPTION . '</div>' . "\r\n" .  '           <div><i class="stop-button timer-start start-button fa fa-stop-circle-o" aria-hidden="true" alt="' . EX_TIMER_STOP_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
         //$buttonLink .= '<div class="start-button-caption" id="reset-button">' . "\r\n" . '            <div>' . EX_TIMER_RESET_CAPTION . '</div>' . "\r\n" .  '           <div><i class="timer-reset fa fa-refresh" aria-hidden="true" alt="' . EX_TIMER_RESET_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
+        $buttonLink .= '<div id="reset-button-html">' . "\r\n" . '            <div>' . EX_TIMER_RESET_CAPTION . '</div>' . "\r\n" .  '           <div><i class="reset-button timer-start start-button fa fa-refresh" aria-hidden="true" alt="' . EX_TIMER_RESET_CAPTION . '"></i></div>' . "\r\n" . '        </div>';
         $buttonLink .= '<div class="start-button-caption">' . "\r\n" . '            <div>' . EX_TIMER_ROUND_NUMBER_CAPTION . '</div>' . "\r\n" .  '           <div class="round-number-wrapper"><div id="round-number" class="mb90-round-number mb90-round-number-circle">0</div></div>' . "\r\n" . '        </div>';
+        
         $buttonLink .= '</div>'; 
         
         //$buttonLink .= '<div class="start-button-caption" id="start-button">Click to Start <i class="timer-start start-button fa fa-play-circle" aria-hidden="true" alt="Click to Start"></i></div>' . "\r\n";

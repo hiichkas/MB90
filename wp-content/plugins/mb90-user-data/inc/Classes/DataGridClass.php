@@ -251,7 +251,9 @@ class datagrid
                 if( count($challengeCompletionDates) > 0 && strlen($challengeCompletionDate) > 0) // if a challenge/assessment has already been inputted
                 {
                     //$formArray[] = MB90_USER_DATA_IS_AVAILABLE;
-                    $formInputHTML = '<div class="vc_row wpb_row vc_row-fluid mb90-form-input-vc-row">';
+                    
+                    //$formInputHTML = '<div class="vc_row wpb_row vc_row-fluid mb90-form-input-vc-row">';
+                    
                     $exerciseCount = 0;
                     // get the previously inputted data and generate form with data displayed
                     //echo "SELECT * FROM ".$dataViewName." where InputDate='".$challengeCompletionDate."' and UserId=" . $_SESSION["LoggedUserID"] . " " . $orderBy;
@@ -323,35 +325,36 @@ class datagrid
                             // working version on 2 rows
                             //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-label vc_col-sm-12 wpb_column vc_column_container"><label>'.$row->ExerciseName.'</label><div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber" id="exerciseInputSliderDisplay_'.($suffix).'">0</div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-input vc_col-sm-12"><div id="SliderResult_'.($suffix).'" class="mb90Slider"><input type="hidden" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'"/></div></div><div class="vc_col-sm-12"></div>';
                             
-                            $formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-label vc_col-sm-12 wpb_column vc_column_container"><label>'.$row->ExerciseName.'</label><div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber" id="exerciseInputSliderDisplay_'.($suffix).'">0</div>';
+                            $formInputHTML .= '<div class="vc_row wpb_row vc_inner vc_row-fluid mb90-slider-wrapper">' . "\r\n";
+                                    
+                            // setup left hand side for the slider value circle
                             
-                            $formInputHTML .= '</div><div class="vc_row wpb_row vc_row-fluid"><div class="mb90-input-form-input vc_col-sm-12"><div id="SliderResult_'.($suffix).'" class="mb90Slider"><input type="hidden" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'"/></div></div>';
+                            $formInputHTML .= self::getSliderWrapperOpen(3, MB90_INPUT_SLIDER_CIRCLE_CLASS);
+                            // insert slider value circle
+                            $formInputHTML .= '                     <div class="mb90SliderPlaceHolder numberCircle mb90SliderNumber" id="exerciseInputSliderDisplay_'.($suffix).'">0</div>' . "\r\n";
+
+                            // close off the slider circle divs
+                            $formInputHTML .= self::getSliderWrapperClose();
                             
+                            // setup right hand side for the exercise label and the actual slider
+                            $formInputHTML .= self::getSliderWrapperOpen(9, MB90_INPUT_SLIDER_BAR_CLASS);
                             
-                            //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div><div class="mb90-input-form-input"><input id="Result_'.($suffix).'" value="' . $row->Result . '" type="range" name="Result_'.($suffix).'" min="1" max="100" step="1" value="" data-orientation="horizontal" class="form-control"><span class="exerciseInputSliderDisplay">0</span></div>';
+                            // insert ex label and slider 
+                            $formInputHTML .= '                     <div class="mb90-input-form-label"><label>'.$row->ExerciseName.'</label></div>' . "\r\n";
+                            $formInputHTML .= '                     <div id="SliderResult_'.($suffix).'" class="mb90Slider"><input type="hidden" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'"/></div>' . "\r\n";
                             
-                            $formInputHTML .= "\r\n" . '<script type="text/javascript">' . "\r\n";
-                            $formInputHTML .= 'var slide_'.$suffix.' = document.getElementById("SliderResult_'.($suffix).'");' . "\r\n";
-                            $formInputHTML .= 'noUiSlider.create(slide_'.$suffix.', {' . "\r\n";
-                            $formInputHTML .= 'animate: true,' . "\r\n";
-                            $formInputHTML .= 'animationDuration: 1000,' . "\r\n";
-                            $formInputHTML .= 'start: ' . $row->Result . ',' . "\r\n";
-                            $formInputHTML .= 'step: 1, tooltips: '. MB90_INPUT_SLIDER_TOOLTIPS .', connect: [true, false], ' . "\r\n";
-                            $formInputHTML .= '            range: {' . "\r\n";
-                            $formInputHTML .= '                    "min": '. MB90_INPUT_SLIDER_MIN .',' . "\r\n";
-                            $formInputHTML .= '                    "max": '. MB90_INPUT_SLIDER_MAX .',' . "\r\n";
-                            $formInputHTML .= '            }' . "\r\n";
-                            $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
-                            $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
-                            $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
-                            $formInputHTML .= '            sliderVal = (jQuery("#Result_'.$suffix.'").val() == 0) ? jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE_ERROR . '") : jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE . '");' . "\r\n";
-                            $formInputHTML .= '        });' . "\r\n";
-                            $formInputHTML .= '</script>' . "\r\n";
+                            // now add the slider javascript
+                            $formInputHTML .= self::getSliderJavascript($suffix, $row->Result);
+
+                            // add hidden vars
+                            $formInputHTML .= self::getSliderHiddenVars($suffix, $row->ExerciseTypeID, $row->ID, $fieldNameArr[$bsCount] );
                             
-                            //$formInputHTML .= '<div class="vc_col-sm-12 wpb_column vc_column_container"><div class="form-group"><div class="mb90-input-form-input"><input placeholder="' . $labelArr[$bsCount] . '" onkeyup="mb90ProcessInput(this)" onkeypress="return isNumberKey(event)"  type="text" id="Result_'.($suffix).'" value="' . $row->Result . '" name="Result_'.($suffix).'" class="form-control"/></div>';
-                            $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$row->ExerciseTypeID.'" />';
-                            $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$row->ID.'" />';
-                            $formInputHTML .= '<input type="hidden" id="MeasurementType_'.($suffix).'" name="MeasurementType_'.($suffix).'" value="'.$row->MeasurementType.'" /></div></div>';
+                            // close off the slider circle divs
+                            $formInputHTML .= self::getSliderWrapperClose();
+                            
+                            // finally wrap the full slider in a row div
+                            $formInputHTML .= '</div>' . "\r\n";
+                            
                             $formCount ++;
                         }
                     }
@@ -508,6 +511,57 @@ class datagrid
         //echo '[[[<pre>'; print_r($formArray); echo '</pre>]]]';
         return $formArray;
     }
+    
+    public static function getSliderWrapperOpen($numColsOfTwelve, $optionalCssClass)
+    {
+        $formInputHTML .= '   <div class="wpb_column vc_column_container vc_col-sm-' . $numColsOfTwelve. ' ' . $optionalCssClass . '">' . "\r\n";
+        $formInputHTML .= '     <div class="vc_column-inner ">' . "\r\n";
+        $formInputHTML .= '         <div class="wpb_wrapper">' . "\r\n";
+        $formInputHTML .= '             <div class="wpb_text_column wpb_content_element ">' . "\r\n";
+        $formInputHTML .= '                 <div class="wpb_wrapper">' . "\r\n";
+        return $formInputHTML;
+    }
+    
+    public static function getSliderWrapperClose()
+    {
+        $formInputHTML = '               </div>' . "\r\n";
+        $formInputHTML .= '            </div>' . "\r\n";
+        $formInputHTML .= '         </div>' . "\r\n";
+        $formInputHTML .= '      </div>' . "\r\n";
+        $formInputHTML .= '   </div>' . "\r\n";
+        return $formInputHTML;
+    }
+    
+    public static function getSliderJavascript($suffix, $result)
+    {
+        $formInputHTML = "\r\n" . '<script type="text/javascript">' . "\r\n";
+        $formInputHTML .= 'var slide_'.$suffix.' = document.getElementById("SliderResult_'.($suffix).'");' . "\r\n";
+        $formInputHTML .= 'noUiSlider.create(slide_'.$suffix.', {' . "\r\n";
+        $formInputHTML .= 'animate: true,' . "\r\n";
+        $formInputHTML .= 'animationDuration: 1000,' . "\r\n";
+        $formInputHTML .= 'start: ' . $result . ',' . "\r\n";
+        $formInputHTML .= 'step: 1, tooltips: '. MB90_INPUT_SLIDER_TOOLTIPS .', connect: [true, false], ' . "\r\n";
+        $formInputHTML .= '            range: {' . "\r\n";
+        $formInputHTML .= '                    "min": '. MB90_INPUT_SLIDER_MIN .',' . "\r\n";
+        $formInputHTML .= '                    "max": '. MB90_INPUT_SLIDER_MAX .',' . "\r\n";
+        $formInputHTML .= '            }' . "\r\n";
+        $formInputHTML .= '        }).on("update", function( values, handle, unencoded ){' . "\r\n";
+        $formInputHTML .= '            jQuery("#exerciseInputSliderDisplay_'.$suffix.'").text(values[handle].split(".")[0]);' . "\r\n";
+        $formInputHTML .= '            jQuery("#Result_'.$suffix.'").val(values[handle].split(".")[0]);' . "\r\n";
+        $formInputHTML .= '            sliderVal = (jQuery("#Result_'.$suffix.'").val() == 0) ? jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE_ERROR . '") : jQuery("#Result_'.$suffix.'").parent().css("border", "' . MB90_INPUT_SLIDER_BORDER_STYLE . '");' . "\r\n";
+        $formInputHTML .= '        });' . "\r\n";
+        $formInputHTML .= '</script>' . "\r\n";
+        return $formInputHTML;
+    }
+    
+    public static function getSliderHiddenVars($suffix, $exID, $rowID, $fieldName)
+    {
+        $formInputHTML .= '<input type="hidden" id="ExerciseID_'.($suffix).'" name="ExerciseID_'.($suffix).'" value="'.$exID.'" />' . "\r\n";
+        $formInputHTML .= '<input type="hidden" id="FieldName_'.($suffix).'" name="FieldName_'.($suffix).'" value="'.$fieldName.'" />' . "\r\n";
+        $formInputHTML .= '<input type="hidden" id="ID_'.($suffix).'" name="ID_'.($suffix).'" value="'.$rowID.'" />' . "\r\n";
+        return $formInputHTML;
+    }
+
     
     function getFormInputs($gridType)
     {
@@ -1053,9 +1107,11 @@ class chartFunctions
                 $graphID = "weights";
         }
         $html = '<table class="weight-fields"><tbody>';
-        $html .= '<tr><td colspan="2"><div class="mp_tablecaption">' . $graphCaption . '</div></td></tr>';
-        $html .= '<tr class="white-row"><td colspan="2" class="graph-cell"><canvas id="' . $graphID . '" ></canvas></td></tr>';
-        $html .= '</tbody></table>';
+        $html .= '<tr><td colspan="2">' . "\r\n";
+        $html .= '<div class="mp_tablecaption">' . $graphCaption . '</div>' . "\r\n";
+        $html .= '</td></tr>' . "\r\n";
+        $html .= '<tr class="white-row"><td colspan="2" class="graph-cell"><canvas id="' . $graphID . '" ></canvas></td></tr>' . "\r\n";
+        $html .= '</tbody></table>' . "\r\n";
         return $html;
     }
     
