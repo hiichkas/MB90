@@ -37,6 +37,6 @@ class ExDetailsClass extends UserFunctionsClass{
                 $headerHTML .= UtilitiesClass::wrapInHTML(MB90_WORKOUT_DAY_PAGE_WELCOME_HTML, MB90_WORKOUT_DAY_PAGE_WELCOME . $current_user->first_name . "!");
         }
         
-        echo strtoupper($headerHTML);
+        echo strtoupper($headerHTML . "</br></br>");
     }
 }

@@ -1,0 +1,138 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/* ========================================================================
+   Use this file to add custom CSS easily
+ ========================================================================== */
+ html {font-family: Raleway !important}
+  
+ #cboxLoadedContent {
+   /* background-color: rgba(39, 136, 43, 0.69) !important; */
+   border-color: #5a6061;
+   /* border-radius: 7px; */
+   color: #fff;
+   font-size: 110%;
+   padding: 40px !important;
+ 	background-color: silver !important;
+ }
+ 
+ div#cboxWrapper {
+   background: none;
+ }
+ 
+ ul.exerciseBullets {
+   list-style-type: none;
+ 	text-align: left;
+ }
+ 
+ div#colorbox {
+   border: none;
+ }
+ 
+ :focus {
+   outline: none;
+ }
+ 
+ .uk-panel-box-secondary {
+   background-color: #f1f2f2;
+   color: #414042;
+   border: solid gray;
+   border-width: 4px 0px 0px 0px;
+   font-size: 80%; 
+ }
+.uk-panel-box-secondary h5, .uk-panel-box-secondary h5 {
+   color: #414042 !important;
+ }
+ 
+ 
+ 
+canvas {
+/*  background: #f68b1f;*/
+	padding: 20px;
+	/*border-top: medium solid silver;*/
+	margin-bottom: 20px;
+	margin-top: -20px;
+}
+
+.datagrid .panel-body {
+  background-color: #BF9554;
+/*  border-color: #5a6061;*/
+  color: #fff;
+}
+
+.uk-article-title {
+  /* font-size: 38px; */
+  line-height: 52px;
+  font-weight: 200;
+  text-transform: none;
+  display: none !important;
+}
+
+.vc_btn3.vc_btn3-color-info, .vc_btn3.vc_btn3-color-info.vc_btn3-style-flat {
+    color: #FFF;
+    background-color: #48B3E5;
+}
+
+
+
+nav {
+    position: relative;
+    height: 100px;
+    margin-bottom: -60px;
+}
+
+h2{
+	font: 20px Raleway;
+	color: #48B3E5;   font-weight: 300;
+	
+}
+
+h1{
+	font-family: Raleway !important;
+	color: #34495e  !important; font-weight: 600 !important;; line-height:100% !important;
+	text-transform: uppercase !important;
+	text-align: center !important;
+}
+
+table#pmpro_levels_table {
+  align-items: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  	margin-bottom: 20px;
+  
+}
+
+nav#nav-below {
+  display: none!important;
+}
+
+nav-previous.alignleft {
+  display: none !important;
+}
+
+.tm-block-primary {
+  background: #112A36 !important; margin-top: -30PX;
+}
+
+p{ font-size:16px;}
+
+.ui-widget-content {
+    border: none !important;
+    background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
+    color: #222222;
+    
+.ui-widget-header {
+     border: none !important;
+    background: none !important;
+    color: #222222;
+    font-weight: bold;
+}
+
+.site-content h2.heading {
+    font-size: 405px;
+    font-weight: lighter;
+    margin-top: 200px !important;
+}
+
+.wbp_wrapper {
+    padding: 5px !important;
+}

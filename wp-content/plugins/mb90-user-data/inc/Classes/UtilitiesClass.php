@@ -49,7 +49,8 @@ class UtilitiesClass {
     
     public static function GetVersionString()
     {
-        if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){
+        if( (string)MB90_DEBUG == "true" && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){
+            //return  "?v=" . microtime(true);
             return  "?v=" . microtime(true);
         }else{
             return "";
@@ -59,7 +60,24 @@ class UtilitiesClass {
     // echo a chart container div with loader spinner image 
     public static function AddChartContainer()
     {
-        echo '<div id="chart-container-lower"></div>';
+        //echo '<div id="accordion"><h3>' . MB90_SELF_ASSESSMENT_GRAPH_ACCORDION_CAPTION . '</h3>';
+        
+        // bootstrap accordion
+        /*echo '<div class="panel panel-default" id="ReadMorePanel">' . "\r\n";
+        echo '    <div class="panel-heading">' . "\r\n";
+        echo '      <h4 class="panel-title">' . "\r\n";
+        echo '          <a data-toggle="collapse" data-target="#ReadMoreInfo" href="#ReadMoreInfo">' . MB90_SELF_ASSESSMENT_GRAPH_ACCORDION_CAPTION . '</a>';
+        echo '      </h4>' . "\r\n";
+        echo '    </div>' . "\r\n";
+        echo '    <div id="ReadMoreInfo" class="panel-collapse collapse"><div class="panel-body">' . "\r\n";
+        */
+        echo '      <div id="chart-container-lower"></div>' . "\r\n";
+        /*
+        echo '    </div>' . "\r\n";
+        echo '  </div>' . "\r\n";
+        echo '</div>' . "\r\n";
+         */
+        //echo '</div>' . "\r\n";
     }
     
     public static function AddAjaxLoader()
@@ -84,7 +102,7 @@ class UtilitiesClass {
         //echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js?v=1.0" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>'."\r\n";
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'."\r\n";
 
-        echo '<script src="'.$incPath.'js/jquery.actual.min.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n"; // used to get dimensions of hidden vars
+        //echo '<script src="'.$incPath.'js/jquery.actual.min.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n"; // used to get dimensions of hidden vars
         echo '<script src="'.$incPath.'js/timer/tabata-timer.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n";
         echo '<script src="'.$incPath.'js/timer/init.js'.$mb90ScriptVersion.'" type="text/javascript"></script>'."\r\n";
         
@@ -147,8 +165,8 @@ class UtilitiesClass {
         //echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/rainbow.css">'."\r\n";
         echo '<link rel="stylesheet" href="'.$incPath.'js/asProgress/css/progress.css">'."\r\n";
         
-        echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
-
+        //echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
+        //echo '<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>'."\r\n";
     }
     
     public static function GetDateLinks($page_slug)

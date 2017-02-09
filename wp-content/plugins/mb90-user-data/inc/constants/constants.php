@@ -9,6 +9,7 @@ define('MB90_ADMIN_USERID', 1);
 define('MB90_SELF_ASSESSMENT_PAGE_SLUG', 'self-assessment');
 define('MB90_SELF_ASSESSMENT_PAGE_WELCOME', 'Welcome to your self assessment ');
 define('MB90_SELF_ASSESSMENT_PAGE_WELCOME_HTML', 'h1');
+define('MB90_SELF_ASSESSMENT_GRAPH_ACCORDION_CAPTION', 'View your self assessment progress');
 
 define('MB90_10_DAY_CHALLENGE_PAGE_SLUG', '10-day-challenge');
 define('MB90_10_DAY_CHALLENGE_PAGE_WELCOME', 'Welcome to your 10 day challenge ');
@@ -103,6 +104,12 @@ define('MB90_90_DAY_COMPLETE_PURCHASE_REMINDER', 'Please complete your 90 day co
 define('MB90_90_EX_MENU_INC_FOLDER_PATH', '/wp-content/plugins/exercise-menu/inc/');
 define('MB90_90_USER_DATA_INC_FOLDER_PATH', '/wp-content/plugins/mb90-user-data/inc/');
 define('MB90_90_EX_SCHEDULE_FOLDER_PATH', '/exercise-schedule/');
+define('MB90_90_EX_MENU_FOLDER', 'exercise-menu/');
+define('MB90_90_USER_DATA_FOLDER', 'mb90-user-data/');
+define('MB90_90_PLUGIN_FOLDER_PATH', '/wp-content/plugins/');
+
+define('MB90_90_EX_MENU_PLUGIN_URL', get_site_url() . MB90_90_PLUGIN_FOLDER_PATH . MB90_90_EX_MENU_FOLDER);
+define('MB90_90_USER_DATA_PLUGIN_URL', get_site_url() . MB90_90_PLUGIN_FOLDER_PATH . MB90_90_USER_DATA_FOLDER);
 
 
 // css colours and classes
@@ -146,6 +153,6 @@ define('MB90_EX_SCROLLER_ITEM_WIDTH', "400px");
 
 
 /* debugging and dev work */
-define('MB90_DEBUG', true);
+define('MB90_DEBUG', "true");
 
 ?>

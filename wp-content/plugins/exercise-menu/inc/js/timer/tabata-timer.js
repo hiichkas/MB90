@@ -18,6 +18,7 @@
 */
 
 (function($){
+    try{
     var DEBUG = false;
   
     //$('[data-toggle="tooltip"]').tooltip()
@@ -830,5 +831,9 @@
       });
       
    });
-   
+   }
+   catch(err)
+   {
+       console.log("error found is: [" + err + "]");
+   }
 })(jQuery);

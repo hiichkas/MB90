@@ -122,12 +122,12 @@ $formInputs =  $dgObj->getFormInputs($recordType);
             if( !stopFormFill )
             {
 
-                var debugMode = <?php if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ echo true; }else{ echo false; } ?>;
+                var debugMode = "<?php if( (string)MB90_DEBUG == "true" && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ echo true; }else{ echo false; } ?>";
                 var todaysDate = new Date();
                 var todaysDateFormatted = todaysDate.yyyymmdd();
                 //alert(todaysDateFormatted);
                 jQuery(".graph-raiser").css("margin-top", "0px"); // lower the graphs as the timer will now be displayed
-                if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode === false){ // switch off the "date is in future" check for debugging/testing
+                if( (todaysDate.getTime() < new Date(date).getTime()) && debugMode == ""){ // switch off the "date is in future" check for debugging/testing
                     jQuery("#start-button").hide();
                     msgHTML = dialogHTML(caption, msg);
                     jQuery("#exercies-inputform-wrapper").html(msgHTML);

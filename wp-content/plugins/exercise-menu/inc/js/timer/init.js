@@ -28,12 +28,17 @@ jQuery(document).ready(function(){
     });
     
     //jQuery("#chart-container-lower").html(""); // hide the font-awesome spinning loader image
+
+    
+    //jQuery( "#accordion" ).accordion({ header: "h3", collapsible: true, active: false });
+    
+    
     var chartHTML = jQuery("#chart-container").html();
     jQuery("#chart-container").html(""); // reset the chart container
     // append the chart html to the bottom row
     //alert(chartHTML);
     jQuery("#chart-container-lower").append(chartHTML);
-    jQuery("#chart-container").show();
+
     //jQuery("#hiddenExerciseForms").show(); // show the hidden form panel after processing completed
     
     //jQuery('[data-toggle="tooltip"]').tooltip();
@@ -67,7 +72,7 @@ else
 
 jQuery("#exercise-summaryinfo").html(summaryinfo); // display the line of summary info
 
-exlistingArr = jQuery("#exlistinghidden").val().split("##,##"); // hidden var
+//exlistingArr = jQuery("#exlistinghidden").val().split("##,##"); // hidden var
 
 /*if(roundgroupings > 1) // if we want the user to repeat a block of exercises within the same round
 {
@@ -122,5 +127,7 @@ jQuery("#tabata-roundsrest").val(roundrest);
 
 jQuery(window).on('load', function() {
    jQuery("#mb90-load-cover").hide();
+    jQuery("#chart-container").show();
+    jQuery("#chart-container-lower").show();
 });
 

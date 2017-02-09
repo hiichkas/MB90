@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/styles/blue/css/theme.css</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/css/custom-new.css</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/bootstrap-progressbar/bootstrap.progressbar.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-config.php</file>
             <file>file:/C:/wamp64/www/MB90/mb90-db-13Jan2017.sql</file>
@@ -20,11 +21,13 @@
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/DataGridClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/UserFunctionsClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_goal_data.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/timer/tabata-timer-master/tabata-timer.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/cms-forms/exercise-input.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/get_user_10daychallenge_data.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/js/mb90-functions.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/exercise-menu.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-includes/script-loader.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/data-grid.php</file>
-            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/js/timer/tabata-timer-temp.js</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/Classes/ExerciseUtilitiesClass.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/WeightSaveWebService.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/styles/blue/style.less</file>
@@ -46,7 +49,6 @@
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/css/memberpress-custom.css</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/update_record.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/user-data-dupe.php</file>
-            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/user-data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/exercise-menu/inc/scripts/get_exercise_listing_data.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/themes/yoo_katana_wp/layouts/theme.config.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/Classes/ExDetailsClass.php</file>
@@ -67,6 +69,8 @@
             <file>file:/C:/wamp64/www/MB90/.htaccess-LIVE</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/destroy_record.php</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/scripts/getFormHTML.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/memberpress/app/views/account/home.php</file>
+            <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/exercises.php</file>
             <file>file:/C:/wamp64/www/MB90/database-backups/mb90-localhost-dbasebkup-25Jan2017%20-%20EditedForLive.sql</file>
             <file>file:/C:/wamp64/www/MB90/wp-content/plugins/mb90-user-data/inc/constants/html-tag-constants.php</file>
             <file>file:/C:/wamp64/www/MB90/.htaccess</file>

@@ -252,8 +252,9 @@
         $fullDayCount = 0;
         $gridHTML = BuildExScheduleInputForm();
 
-        if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ // add 3 test days for debugging/testing
+        if( (string)MB90_DEBUG == "true" && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ){ // add 3 test days for debugging/testing
             
+            //$test = '"' . MB90_DEBUG . '" ... [' . $_SESSION["LoggedUserID"] . '] ... [' . MB90_ADMIN_USERID . ']';
             $gridHTML .= '<div id="schedule-day-grid-wrapper">' . "\r\n";
             
             $gridHTML .= '<h2>Exercise Days</h2>' . "\r\n";
@@ -486,23 +487,23 @@
         $ddHTML .= '</select>' . "\r\n";
         echo $ddHTML;
     }
-    function GetDietJs($incPath)
+    function GetDietJs()
     {
         //echo '<script src="'.$incPath.'js/timer/tabata-timer.js" type="text/javascript"></script>';
         echo '<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>';
-        echo '<script src="'.$incPath.'js/diet/init.js" type="text/javascript"></script>';
+        echo '<script src="' . MB90_90_EX_MENU_PLUGIN_URL . 'inc/js/diet/init.js" type="text/javascript"></script>';
     }
 
-    function GetExerciseScheduleJs($incPath)
+    function GetExerciseScheduleJs()
     {
         //echo '<script src="'.$incPath.'js/timer/tabata-timer.js" type="text/javascript"></script>';
         //echo '<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>';
-        echo '<script src="'.$incPath.'js/exercise-schedule/exercise-schedule.js?v=1.1" type="text/javascript"></script>';
+        echo '<script src="' . MB90_90_EX_MENU_PLUGIN_URL . 'inc/js/exercise-schedule/exercise-schedule.js?v=1.100" type="text/javascript"></script>';
     }
     
-    function GetExerciseScheduleCss($incPath)
+    function GetExerciseScheduleCss()
     {
-        echo '<link rel="stylesheet" href="'.$incPath.'css/exercise-schedule/exercise-schedule.css">';
+        echo '<link rel="stylesheet" href="' . MB90_90_EX_MENU_PLUGIN_URL . 'inc/css/exercise-schedule/exercise-schedule.css?v=1.000">';
         //echo '<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">';
         //echo '<link rel="stylesheet" href="'.$incPath.'css/jquery-ui-1.11.4-smoothness.css">';
     }

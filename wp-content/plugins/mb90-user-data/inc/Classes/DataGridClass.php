@@ -698,7 +698,7 @@ class datagrid
         global $post;
         $page_slug = $post->post_name;
         
-        if( MB90_DEBUG && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ) // if in debug mode then return the max number of phases to display
+        if( (string)MB90_DEBUG == "true" && $_SESSION["LoggedUserID"] == MB90_ADMIN_USERID ) // if in debug mode then return the max number of phases to display
         {
             if($page_slug == MB90_10_DAY_CHALLENGE_PAGE_SLUG|| $page_slug == MB90_BODY_STATS_PAGE_SLUG )
                 $phase = MB90_NUM_PHASES;
