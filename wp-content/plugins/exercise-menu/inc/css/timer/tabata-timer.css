@@ -570,4 +570,5 @@ only screen and (max-width: 760px){
      div.ex-scroller-internal{width:100%; float:left}
      /*.mb90Slider{width:100%; float:left; margin-top:0px}*/
     .round-number-wrapper{padding-left: 33%}
+    /*.mb90-graph-canvas{height:140px !important; width:100% !important}*/
 }

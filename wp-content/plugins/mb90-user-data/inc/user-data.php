@@ -176,7 +176,7 @@
                     //echo '<div class="mb90-chart-caption"><h4>'.$caption.' ('.$exerciseType.')</h2></div>';
                     echo '<div class="mb90-chart-caption"><h4>'.$caption.'</h2></div>';
                     echo '<div class="mb90-chart-contents">';
-                    echo '<canvas id="canvas_'.($i+1).'" class="mb90-graph-canvas" style="width:100%; height:100%"></canvas>'."\r\n";
+                    echo '<canvas id="canvas_'.($i+1).'" class="mb90-graph-canvas"></canvas>'."\r\n";
                     //echo '</div>';
                     echo '</div>';
 

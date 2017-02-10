@@ -310,9 +310,9 @@ jQuery(document).ready(function() {
 <div class="uk-width-medium-2-4">
 <div class="uk-panel uk-panel-box uk-panel-box-secondary ">
 
-				<table class="profile-fields">
+        <table class="profile-fields">
                                     
-                                    <tr><td colspan="2"><div class="mp_tablecaption"><?php echo PROFILE_DETAILS_CAPTION; ?></div></td></tr>
+                                    <tr><td colspan="2"><div class="mp_tablecaption" id="bd-profile-details"><?php echo PROFILE_DETAILS_CAPTION; ?></div></td></tr>
                                     <?php echo $msg; ?>
                                     <tr><td colspan="2"><div id="mp-errormessage"></div></td></tr>
 
@@ -406,7 +406,7 @@ jQuery(document).ready(function() {
                                                 <td><span>Status:</span></td>
                                                 <td><a href="#" id="status"></a></td>
                                             </tr>   -->   
-				</table>
+        </table>
 
 
 <!--<div class="uk-progress">
@@ -418,8 +418,9 @@ jQuery(document).ready(function() {
 </div>
     
 <div class="uk-panel uk-panel-box uk-panel-box-secondary ">
+<div id="bd-profile-weight-stats"></div>
     <?php 
-        echo $weightInputHTML; 
+       echo $weightInputHTML; 
     ?>
 </div>
     
@@ -428,7 +429,7 @@ jQuery(document).ready(function() {
 
 <div class="uk-width-medium-2-4">
 <div class="uk-panel uk-panel-box uk-panel-box-secondary ">
-<div class="mp_tablecaption"><?php echo BMI_BMR_STATS_CAPTION; ?></div>
+<div class="mp_tablecaption" id="bd-profile-bmi-stats"><?php echo BMI_BMR_STATS_CAPTION; ?></div>
 <?php
     if( $userDetailsExist === false){
         echo USER_PROFILE_INCOMPLETE;
@@ -449,7 +450,7 @@ jQuery(document).ready(function() {
 </div>
     
 <div class="uk-panel uk-panel-box uk-panel-box-secondary ">
-<div class="mp_tablecaption"><?php echo BMI_BMR_ENERGY_PROGRESS_CAPTION; ?></div>
+<div class="mp_tablecaption" id="bd-profile-bmi-energy-stats"><?php echo BMI_BMR_ENERGY_PROGRESS_CAPTION; ?></div>
 <?php
     if( $userDetailsExist === false){
         echo USER_PROFILE_INCOMPLETE;

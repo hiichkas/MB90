@@ -63,7 +63,7 @@ root {
    		height:10px;
    	}
     
-.mb90-graph-canvas{}
+.mb90-graph-canvas{height:200px; width:100%}
 canvas{padding-top:0px !important;margin-top:0px !important}
         
 /* rohea: changes to responsive classes */
